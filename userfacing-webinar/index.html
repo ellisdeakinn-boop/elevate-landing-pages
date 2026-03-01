@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How I Actually Trade Stocks — @userfacing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:     #080808;
+    --surface: #111111;
+    --border: #1e1e1e;
+    --accent: #e8b84b;
+    --accent2: #c49a2e;
+    --text:   #f0ede8;
+    --muted:  #666;
+    --label:  #999;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .live-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .live-dot {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 92vh;
+    overflow: hidden;
+  }
+
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+  }
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.97) 50%,
+      rgba(255,255,255,0.2) 72%,
+      rgba(255,255,255,0) 88%
+    );
+    mask-image: linear-gradient(
+      to right,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.97) 50%,
+      rgba(255,255,255,0.2) 72%,
+      rgba(255,255,255,0) 88%
+    );
+  }
+  .hero-image::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    z-index: 2;
+  }
+  .face-label {
+    position: absolute;
+    bottom: 40px;
+    left: 28px;
+    background: var(--accent);
+    color: #000;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    z-index: 3;
+  }
+
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 52px;
+  }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-copy h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.12;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+  .hero-copy h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-copy p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 36px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    padding: 15px 32px;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+    align-self: flex-start;
+  }
+  .cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat {
+    flex: 1;
+    text-align: center;
+    padding: 32px 20px;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ── BLUE OCEAN STRIP ── */
+  .ocean-strip {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 40px;
+    text-align: center;
+  }
+  .ocean-strip p {
+    max-width: 640px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .ocean-strip strong { color: var(--text); }
+
+  /* ── MODULES ── */
+  .modules-wrap {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .modules-wrap > .section-label { margin-bottom: 12px; }
+  .modules-wrap > h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 400;
+    margin-bottom: 56px;
+    max-width: 560px;
+    line-height: 1.2;
+  }
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .module {
+    background: var(--bg);
+    padding: 36px 32px;
+  }
+  .module-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+  .module-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .module-body {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* ── QUOTE ── */
+  .quote-wrap {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 40px;
+    text-align: center;
+  }
+  blockquote {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text);
+    max-width: 680px;
+    margin: 0 auto 20px;
+    line-height: 1.4;
+  }
+  cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── REGISTER ── */
+  .register-wrap {
+    padding: 100px 40px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+  .register-inner { max-width: 480px; margin: 0 auto; }
+  .register-inner h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .register-inner > p { color: var(--muted); font-size: 15px; margin-bottom: 36px; }
+  .form-row { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+  .form-input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+  .form-input::placeholder { color: #444; }
+  .form-input:focus { border-color: var(--accent); }
+  .form-btn {
+    display: block;
+    width: 100%;
+    background: var(--accent);
+    color: #000;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 15px 32px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity 0.15s;
+    letter-spacing: 0.03em;
+  }
+  .form-btn:hover { opacity: 0.88; }
+  .cta-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p { font-size: 13px; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-image { height: 55vw; }
+    .hero-copy { padding: 40px 24px; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat { flex: 1 1 50%; }
+    .module-grid { grid-template-columns: 1fr; }
+    .modules-wrap { padding: 60px 24px; }
+    .register-wrap { padding: 60px 24px; }
+    footer { padding: 24px 20px; }
+    .ocean-strip { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">@userfacing · elevate operations</span>
+  <div class="live-pill">
+    <div class="live-dot"></div>
+    Free · Live · No Replay
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-image">
+    <img src="https://via.placeholder.com/600x600/0a0a0a/e8b84b?text=REPLACE+WITH+IG+PHOTO" alt="@userfacing">
+    <div class="face-label">Female · Trader · Real</div>
+  </div>
+  <div class="hero-copy">
+    <p class="section-label">Free live webinar</p>
+    <h1>Trading content made by women,<br><em>for women.</em></h1>
+    <p>@userfacing walks through her complete stock trading system — the setup, the entry, the exit, and the mindset behind every decision. No signals. No lifestyle flex. Just process.</p>
+    <a href="#register" class="cta-btn">Save My Spot &rarr;</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">5K+</div>
+    <div class="stat-label">following the journey</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">1</div>
+    <div class="stat-label">system. no shortcuts.</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">0</div>
+    <div class="stat-label">signals. think for yourself.</div>
+  </div>
+</div>
+
+<!-- BLUE OCEAN STRIP -->
+<div class="ocean-strip">
+  <p>Most trading education was built by men, for men — aggressive, ego-driven, obsessed with the wins.
+  <strong>@userfacing built a system around how she actually thinks.</strong>
+  This session is the one she wishes had existed when she started.</p>
+</div>
+
+<!-- MODULES -->
+<div class="modules-wrap">
+  <p class="section-label">What you'll learn</p>
+  <h2>The system. Live. Unfiltered.</h2>
+  <div class="module-grid">
+    <div class="module">
+      <div class="module-num">01 / THE SETUP</div>
+      <div class="module-title">Before you open a position</div>
+      <div class="module-body">How to scan for stocks, the filters that remove most bad trades before they happen, and why she deliberately doesn't trade every day.</div>
+    </div>
+    <div class="module">
+      <div class="module-num">02 / THE EXECUTION</div>
+      <div class="module-title">Entry, exit, and position sizing</div>
+      <div class="module-body">Exact entry and exit logic on real charts. How she sizes positions, sets stops, and what she does when a trade goes against her in the first five minutes.</div>
+    </div>
+    <div class="module">
+      <div class="module-num">03 / THE MINDSET</div>
+      <div class="module-title">The part nobody talks about</div>
+      <div class="module-body">The emotional patterns that blow up most traders — and the routine that keeps them in check. Trading is 80% mindset. This is the 80%.</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-wrap">
+  <blockquote>"I'm not here because I'm exceptional. I'm here because I built a system and I followed it. That's the whole thing."</blockquote>
+  <cite>— @userfacing</cite>
+</div>
+
+<!-- REGISTER -->
+<div class="register-wrap" id="register">
+  <div class="register-inner">
+    <p class="section-label">Register free</p>
+    <h2>One session.<br>No replay.<br>Be there.</h2>
+    <p>Enter your details and we'll send the link. Reminder goes out the day before and two hours before we go live.</p>
+    <div class="form-row">
+      <input class="form-input" type="text" placeholder="First name">
+      <input class="form-input" type="email" placeholder="Email address">
+      <input class="form-input" type="tel" placeholder="Phone number (for reminder SMS)">
+    </div>
+    <a href="https://elevateoperations.info/booking" target="_blank" class="form-btn">Save My Spot &rarr;</a>
+    <p class="cta-note" style="margin-top:14px;">No spam. SMS reminder only. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Built by <a href="https://elevateoperations.info" target="_blank">Elevate Operations</a>
+  &nbsp;&middot;&nbsp;
+  <a href="https://www.instagram.com/userfacing/" target="_blank">@userfacing</a></p>
+  <p style="font-size:12px;">Free webinar &middot; No replay &middot; Live only</p>
+</footer>
+
+</body>
+</html>
