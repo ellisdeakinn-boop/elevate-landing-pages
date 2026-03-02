@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How I Make $10K/Month on Amazon Without a Warehouse — @daveemane</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg:      #020209;
-    --surface: #07070f;
-    --border:  #ffffff0d;
+    --surface: #0b0b14;
+    --border:  #ffffff0e;
     --accent:  #00d984;
     --orange:  #ff9500;
     --text:    #eeeef5;
@@ -20,7 +20,7 @@
   body {
     background: var(--bg);
     background-image: radial-gradient(rgba(0,217,132,0.035) 1px, transparent 1px);
-    background-size: 28px 28px;
+    background-size: 30px 30px;
     color: var(--text);
     font-family: 'Inter', sans-serif;
     font-size: 16px;
@@ -32,174 +32,196 @@
   .bg-glow { position: absolute; border-radius: 50%; filter: blur(110px); }
   .bg-glow-1 {
     width: 800px; height: 800px;
-    background: radial-gradient(circle, rgba(0,217,132,0.08) 0%, transparent 70%);
-    top: -300px; left: 50%; transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(0,217,132,0.07) 0%, transparent 70%);
+    top: -280px; left: 50%; transform: translateX(-50%);
     animation: drift1 18s ease-in-out infinite alternate;
   }
   .bg-glow-2 {
     width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(255,149,0,0.07) 0%, transparent 70%);
-    bottom: 10%; right: 5%;
+    background: radial-gradient(circle, rgba(255,149,0,0.06) 0%, transparent 70%);
+    bottom: 15%; right: 5%;
     animation: drift2 22s ease-in-out infinite alternate;
   }
-  @keyframes drift1 { from { transform: translateX(-50%) translate(0,0); } to { transform: translateX(-50%) translate(30px,60px); } }
-  @keyframes drift2 { from { transform: translate(0,0); } to { transform: translate(-50px,-40px); } }
-  nav, .vsl-hero, .bullets-section, .optin-section, .proof-strip, footer {
+  @keyframes drift1 { from { transform: translateX(-50%) translate(0,0); } to { transform: translateX(-50%) translate(25px,55px); } }
+  @keyframes drift2 { from { transform: translate(0,0); } to { transform: translate(-45px,-35px); } }
+
+  nav, .vsl-above, .video-section, .cta-section,
+  .testimonials, .opportunity, .mechanism, footer {
     position: relative; z-index: 1;
   }
+
+  /* ── NAV ── */
   nav {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 40px;
+    padding: 18px 40px;
     border-bottom: 1px solid var(--border);
-    background: rgba(2,2,9,0.85);
+    background: rgba(2,2,9,0.88);
     backdrop-filter: blur(12px);
   }
   .nav-logo { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
   .nav-tag {
     font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent);
     letter-spacing: 0.1em; text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(0,217,132,0.6);
+    text-shadow: 0 0 10px rgba(0,217,132,0.5);
   }
 
-  /* ── VSL HERO ── */
-  .vsl-hero {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 80px 40px 60px;
+  /* ── ABOVE VIDEO: HEADLINE + SUBHEADLINE ── */
+  .vsl-above {
+    max-width: 760px; margin: 0 auto;
+    padding: 72px 40px 40px;
     text-align: center;
   }
-  .pre-headline {
+  .eyebrow {
     font-family: 'Space Mono', monospace; font-size: 11px;
     color: var(--orange); letter-spacing: 0.18em; text-transform: uppercase;
-    margin-bottom: 20px;
-    text-shadow: 0 0 12px rgba(255,149,0,0.6);
+    margin-bottom: 18px;
+    text-shadow: 0 0 10px rgba(255,149,0,0.5);
   }
-  .vsl-hero h1 {
-    font-size: clamp(2rem, 4vw, 3.4rem);
-    font-weight: 800; line-height: 1.1; letter-spacing: -0.03em;
-    margin-bottom: 20px;
-    text-shadow: 0 0 40px rgba(0,217,132,0.15);
+  .vsl-above h1 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900; line-height: 1.07; letter-spacing: -0.035em;
+    margin-bottom: 18px;
   }
-  .vsl-hero h1 em {
+  .vsl-above h1 em {
     font-style: normal; color: var(--accent);
-    text-shadow: 0 0 30px rgba(0,217,132,0.7), 0 0 60px rgba(0,217,132,0.35);
+    text-shadow: 0 0 28px rgba(0,217,132,0.65), 0 0 56px rgba(0,217,132,0.3);
   }
   .vsl-sub {
-    color: var(--muted); font-size: 17px; max-width: 600px;
-    margin: 0 auto 48px; line-height: 1.7;
+    color: var(--muted); font-size: 17px; max-width: 560px;
+    margin: 0 auto; line-height: 1.75;
   }
 
-  /* ── VIDEO PLAYER ── */
+  /* ── VIDEO ── */
+  .video-section { padding: 36px 40px 0; max-width: 860px; margin: 0 auto; }
   .video-wrap {
-    position: relative;
-    background: #000;
-    border: 1px solid rgba(0,217,132,0.15);
-    box-shadow: 0 0 60px rgba(0,217,132,0.12), 0 0 120px rgba(0,217,132,0.06);
-    max-width: 860px;
-    margin: 0 auto;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
+    position: relative; background: #000;
+    border: 1px solid rgba(0,217,132,0.18);
+    box-shadow: 0 0 70px rgba(0,217,132,0.13), 0 0 140px rgba(0,217,132,0.06);
+    aspect-ratio: 16 / 9; overflow: hidden;
   }
-  .video-wrap iframe {
-    width: 100%; height: 100%; border: none; display: block;
-  }
-  /* Placeholder if no video yet */
+  .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
   .video-placeholder {
     width: 100%; height: 100%;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    background: linear-gradient(135deg, #07070f 0%, #0a0a18 100%);
-    cursor: pointer; gap: 20px;
+    background: linear-gradient(135deg, #07070f 0%, #0d0d1c 100%);
+    gap: 18px; cursor: pointer;
   }
   .play-btn {
-    width: 80px; height: 80px;
-    background: var(--accent);
-    border-radius: 50%;
+    width: 76px; height: 76px; background: var(--accent); border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 30px rgba(0,217,132,0.6), 0 0 60px rgba(0,217,132,0.3);
+    box-shadow: 0 0 28px rgba(0,217,132,0.55), 0 0 56px rgba(0,217,132,0.28);
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .play-btn svg { margin-left: 5px; }
   .video-placeholder:hover .play-btn {
-    transform: scale(1.08);
+    transform: scale(1.07);
     box-shadow: 0 0 40px rgba(0,217,132,0.8), 0 0 80px rgba(0,217,132,0.4);
   }
-  .video-duration {
-    font-family: 'Space Mono', monospace; font-size: 12px;
-    color: var(--muted); letter-spacing: 0.1em;
+  .video-label {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase;
   }
 
-  /* ── BULLETS ── */
-  .bullets-section {
-    max-width: 860px; margin: 0 auto; padding: 64px 40px;
+  /* ── CALL CTA ── */
+  .cta-section {
+    max-width: 860px; margin: 0 auto;
+    padding: 32px 40px 80px;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
   }
-  .bullets-label {
-    font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent);
-    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 32px;
-    text-shadow: 0 0 10px rgba(0,217,132,0.6);
+  .cta-btn {
+    display: inline-block; background: var(--accent); color: #000;
+    font-weight: 800; font-size: 16px; letter-spacing: 0.03em;
+    padding: 18px 52px; text-decoration: none;
+    box-shadow: 0 0 28px rgba(0,217,132,0.45), 0 0 56px rgba(0,217,132,0.22);
+    transition: box-shadow 0.2s, transform 0.15s;
   }
-  .bullets-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  .cta-btn:hover {
+    box-shadow: 0 0 40px rgba(0,217,132,0.8), 0 0 80px rgba(0,217,132,0.4);
+    transform: translateY(-2px);
   }
-  .bullet-item {
-    display: flex; gap: 16px; align-items: flex-start;
-    padding: 24px; background: var(--surface);
-    border: 1px solid rgba(0,217,132,0.07);
+  .cta-note {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.07em;
+  }
+
+  /* ── SHARED SECTION STYLES ── */
+  .section-wrap {
+    max-width: 900px; margin: 0 auto; padding: 90px 40px;
+  }
+  .section-label {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 14px; text-shadow: 0 0 10px rgba(0,217,132,0.55);
+  }
+  .section-wrap h2 {
+    font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1.12; margin-bottom: 44px;
+    max-width: 580px;
+  }
+  .section-wrap h2 em { font-style: normal; color: var(--accent); }
+  .divider { border: none; border-top: 1px solid var(--border); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--bg); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .testi-card {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 28px 24px; min-height: 180px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .testi-stars { color: var(--orange); font-size: 14px; letter-spacing: 2px; }
+  .testi-quote { color: var(--muted); font-size: 14px; line-height: 1.7; font-style: italic; flex: 1; }
+  .testi-name { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--label, #606080); letter-spacing: 0.08em; }
+  /* Placeholder state */
+  .testi-card.placeholder {
+    align-items: center; justify-content: center;
+    border-style: dashed; border-color: rgba(255,255,255,0.07);
+  }
+  .testi-card.placeholder span {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: rgba(255,255,255,0.12); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  /* ── OPPORTUNITY ── */
+  .opportunity { background: rgba(0,217,132,0.02); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .opp-body { color: var(--muted); font-size: 15px; line-height: 1.85; }
+  .opp-body p + p { margin-top: 16px; }
+  .opp-body strong { color: var(--text); }
+  .opp-stats { display: flex; flex-direction: column; gap: 24px; }
+  .opp-stat { padding: 24px; background: var(--surface); border: 1px solid rgba(0,217,132,0.1); }
+  .opp-stat-num {
+    font-size: 2.4rem; font-weight: 800; color: var(--accent);
+    letter-spacing: -0.04em; line-height: 1; margin-bottom: 6px;
+    text-shadow: 0 0 20px rgba(0,217,132,0.5);
+  }
+  .opp-stat-label { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ── MECHANISM ── */
+  .mechanism { background: var(--bg); }
+  .mech-steps { display: flex; flex-direction: column; gap: 2px; }
+  .mech-step {
+    display: grid; grid-template-columns: 64px 1fr;
+    background: var(--surface); border: 1px solid rgba(0,217,132,0.07);
     transition: border-color 0.3s;
   }
-  .bullet-item:hover { border-color: rgba(0,217,132,0.3); }
-  .bullet-icon {
-    flex-shrink: 0; width: 32px; height: 32px;
-    background: rgba(0,217,132,0.1); border-radius: 4px;
+  .mech-step:hover { border-color: rgba(0,217,132,0.3); }
+  .mech-num {
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Space Mono', monospace; font-size: 12px;
-    color: var(--accent); font-weight: 700;
+    font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700;
+    color: var(--accent); border-right: 1px solid rgba(0,217,132,0.08);
+    text-shadow: 0 0 8px rgba(0,217,132,0.4);
   }
-  .bullet-text { font-size: 15px; color: var(--muted); line-height: 1.6; }
-  .bullet-text strong { color: var(--text); display: block; margin-bottom: 4px; font-size: 15px; }
+  .mech-content { padding: 28px 32px; }
+  .mech-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .mech-body { color: var(--muted); font-size: 14px; line-height: 1.7; }
 
-  /* ── OPT-IN ── */
-  .optin-section {
-    max-width: 540px; margin: 0 auto; padding: 40px 40px 100px;
-    text-align: center;
-  }
-  .optin-section h2 {
-    font-size: clamp(1.5rem,2.5vw,2rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 12px;
-  }
-  .optin-section > p { color: var(--muted); font-size: 15px; margin-bottom: 32px; }
-  .optin-form { display: flex; flex-direction: column; gap: 12px; }
-  .form-input {
-    background: rgba(7,7,15,0.9); border: 1px solid rgba(0,217,132,0.13);
-    color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px;
-    padding: 14px 16px; outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
-  }
-  .form-input::placeholder { color: #232338; }
-  .form-input:focus { border-color: var(--accent); box-shadow: 0 0 16px rgba(0,217,132,0.18); }
-  .form-btn {
-    display: block; width: 100%; background: var(--accent); color: #000;
-    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px;
-    padding: 16px 32px; border: none; cursor: pointer; text-align: center;
-    text-decoration: none; transition: box-shadow 0.2s, transform 0.15s;
-    letter-spacing: 0.03em;
-    box-shadow: 0 0 24px rgba(0,217,132,0.4), 0 0 48px rgba(0,217,132,0.2);
-  }
-  .form-btn:hover { box-shadow: 0 0 36px rgba(0,217,132,0.75), 0 0 72px rgba(0,217,132,0.35); transform: translateY(-1px); }
-  .optin-note { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.06em; margin-top: 12px; }
-
-  /* ── PROOF STRIP ── */
-  .proof-strip {
-    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    background: rgba(7,7,15,0.8); padding: 36px 40px; text-align: center;
-  }
-  .proof-strip p { color: var(--muted); font-size: 14px; max-width: 640px; margin: 0 auto; line-height: 1.8; }
-  .proof-strip strong { color: var(--text); }
-
+  /* ── FOOTER ── */
   footer {
-    border-top: 1px solid var(--border); padding: 28px 40px;
+    border-top: 1px solid var(--border); padding: 26px 40px;
     display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 12px; background: rgba(2,2,9,0.9);
+    flex-wrap: wrap; gap: 12px; background: rgba(2,2,9,0.92);
   }
   footer p { font-size: 13px; color: var(--muted); }
   footer a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
@@ -207,11 +229,14 @@
 
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
-    .vsl-hero { padding: 50px 24px 40px; }
-    .bullets-section { padding: 40px 24px; }
-    .bullets-grid { grid-template-columns: 1fr; }
-    .optin-section { padding: 24px 24px 60px; }
-    footer { padding: 24px 20px; }
+    .vsl-above { padding: 48px 24px 28px; }
+    .video-section { padding: 24px 24px 0; }
+    .cta-section { padding: 24px 24px 60px; }
+    .section-wrap { padding: 60px 24px; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .opp-grid { grid-template-columns: 1fr; gap: 32px; }
+    .mech-step { grid-template-columns: 48px 1fr; }
+    footer { padding: 20px 24px; }
     .bg-glow-1, .bg-glow-2 { display: none; }
   }
 </style>
@@ -221,71 +246,122 @@
   <div class="bg-glow bg-glow-1"></div>
   <div class="bg-glow bg-glow-2"></div>
 </div>
+
 <nav>
   <span class="nav-logo">@daveemane · elevate operations</span>
   <span class="nav-tag">Free Training</span>
 </nav>
 
-<!-- HERO -->
-<div class="vsl-hero">
-  <p class="pre-headline">Free 20-minute training</p>
-  <h1>How I Make <em>£10K/Month</em> on Amazon<br>Without a Warehouse.</h1>
-  <p class="vsl-sub">@daveemane walks through the online arbitrage model — product sourcing, margin formula, listing strategy, and operations. Press play.</p>
+<!-- HEADLINE + SUBHEADLINE -->
+<div class="vsl-above">
+  <p class="eyebrow">Free video training</p>
+  <h1>How I Make <em>£10K/Month</em><br>Selling on Amazon<br>Without a Warehouse.</h1>
+  <p class="vsl-sub">No brand. No manufacturing. No staff. Watch @daveemane walk through the online arbitrage model that runs in 1–2 hours a day.</p>
 </div>
 
-<!-- VIDEO -->
-<div style="max-width:860px;margin:0 auto;padding:0 40px 16px;">
+<!-- VSL -->
+<div class="video-section">
   <div class="video-wrap">
-    <!-- Replace src with your video embed URL when ready -->
+    <!-- Swap this placeholder div for an <iframe> embed when the video is recorded -->
     <div class="video-placeholder">
       <div class="play-btn">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="#000"><polygon points="5,3 19,12 5,21"/></svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#000"><polygon points="5,3 19,12 5,21"/></svg>
       </div>
-      <span class="video-duration">~ 20 minutes · Free</span>
+      <span class="video-label">Press play · Free · ~20 min</span>
     </div>
   </div>
 </div>
 
-<!-- BULLETS -->
-<div class="bullets-section">
-  <p class="bullets-label">What's covered in this video</p>
-  <div class="bullets-grid">
-    <div class="bullet-item">
-      <div class="bullet-icon">01</div>
-      <div class="bullet-text"><strong>The Margin Formula</strong>The number that tells you — before you buy — whether a product will actually make money on Amazon.</div>
-    </div>
-    <div class="bullet-item">
-      <div class="bullet-icon">02</div>
-      <div class="bullet-text"><strong>Product Sourcing</strong>The exact tools and 5-point criteria used to find profitable online arbitrage products in minutes — not hours.</div>
-    </div>
-    <div class="bullet-item">
-      <div class="bullet-icon">03</div>
-      <div class="bullet-text"><strong>Buy Box Strategy</strong>How to win the buy box consistently without a race to the bottom — and the repricing approach that protects margin.</div>
-    </div>
-    <div class="bullet-item">
-      <div class="bullet-icon">04</div>
-      <div class="bullet-text"><strong>1–2 Hour Operations</strong>The prep centre setup, repricing automation, and sourcing routine that runs this business in under 2 hours a day.</div>
+<!-- BOOK A CALL CTA -->
+<div class="cta-section">
+  <a href="https://elevateoperations.info/booking" target="_blank" class="cta-btn">Apply to Work With Dave &rarr;</a>
+  <span class="cta-note">Limited spots available &middot; Application takes 2 minutes</span>
+</div>
+
+<hr class="divider">
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <div class="section-wrap">
+    <p class="section-label">Results</p>
+    <h2>What students<br>are saying.</h2>
+    <div class="testi-grid">
+      <div class="testi-card placeholder"><span>Testimonial coming soon</span></div>
+      <div class="testi-card placeholder"><span>Testimonial coming soon</span></div>
+      <div class="testi-card placeholder"><span>Testimonial coming soon</span></div>
     </div>
   </div>
 </div>
 
-<!-- PROOF STRIP -->
-<div class="proof-strip">
-  <p><strong>Online arbitrage works.</strong> Hundreds of millions of buyers.
-  Amazon handles the storage, fulfilment, and customer service.
-  You source the products. The system does the rest.</p>
+<hr class="divider">
+
+<!-- THE OPPORTUNITY -->
+<div class="opportunity">
+  <div class="section-wrap">
+    <p class="section-label">The opportunity</p>
+    <h2>The biggest marketplace<br>in the world.<br><em>Most of it is untapped.</em></h2>
+    <div class="opp-grid">
+      <div class="opp-body">
+        <p>Amazon has over <strong>300 million active customers</strong> and processes more than £500 billion in annual sales. The infrastructure — storage, fulfilment, payments, customer service — is already built. You just need to put the right products in front of the right buyers.</p>
+        <p>Online arbitrage is the simplest entry point into this market. You're not manufacturing anything. You're not building a brand from scratch. You're finding products that are already selling at a lower price somewhere else, and listing them on Amazon at the market rate.</p>
+        <p>The margin is the business. The platform does the rest.</p>
+      </div>
+      <div class="opp-stats">
+        <div class="opp-stat">
+          <div class="opp-stat-num">300M+</div>
+          <div class="opp-stat-label">Active Amazon customers</div>
+        </div>
+        <div class="opp-stat">
+          <div class="opp-stat-num">£500B+</div>
+          <div class="opp-stat-label">Annual Amazon sales volume</div>
+        </div>
+        <div class="opp-stat">
+          <div class="opp-stat-num">1–2hrs</div>
+          <div class="opp-stat-label">Daily time required at scale</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- OPT-IN -->
-<div class="optin-section">
-  <h2>Get the follow-up resources<br>+ live session invite</h2>
-  <p>Enter your details and we'll send you the sourcing checklist, the margin formula template, and an invite to the live session.</p>
-  <div class="optin-form">
-    <input class="form-input" type="text" placeholder="First name">
-    <input class="form-input" type="email" placeholder="Email address">
-    <a href="https://elevateoperations.info/booking" target="_blank" class="form-btn">Send Me the Resources &rarr;</a>
+<hr class="divider">
+
+<!-- THE MECHANISM -->
+<div class="mechanism">
+  <div class="section-wrap">
+    <p class="section-label">The mechanism</p>
+    <h2>Four steps.<br>Repeat until<br><em>£10K/month.</em></h2>
+    <div class="mech-steps">
+      <div class="mech-step">
+        <div class="mech-num">01</div>
+        <div class="mech-content">
+          <div class="mech-title">Source products with the right margin</div>
+          <div class="mech-body">Use sourcing tools to find products available below Amazon's selling price. Apply the margin formula — buy price + Amazon fees vs. current sell price. Only proceed if the net profit clears 30%+.</div>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="mech-num">02</div>
+        <div class="mech-content">
+          <div class="mech-title">Send inventory to a prep centre</div>
+          <div class="mech-body">Products go to a third-party prep centre — they inspect, label, and ship to Amazon's fulfilment network. You never touch the stock. From purchase to live listing: typically 5–10 days.</div>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="mech-num">03</div>
+        <div class="mech-content">
+          <div class="mech-title">Win the buy box. Get sales.</div>
+          <div class="mech-body">Repricing software automatically adjusts your prices to win the buy box without destroying your margin. Amazon handles the sale, payment, packing, shipping, and customer service.</div>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="mech-num">04</div>
+        <div class="mech-content">
+          <div class="mech-title">Reinvest. Scale the product catalogue.</div>
+          <div class="mech-body">Profit goes back into more inventory across more products. £10K/month in this model isn't one viral product — it's 30–50 consistent products each doing modest, predictable volume.</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <p class="optin-note">No spam. Unsubscribe anytime.</p>
 </div>
 
 <footer>
