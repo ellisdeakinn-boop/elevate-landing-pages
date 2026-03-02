@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Amazon FBA Blueprint — @daveemane</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #020209;
+    --surface: #07070f;
+    --border:  #ffffff0d;
+    --accent:  #00d984;
+    --orange:  #ff9500;
+    --text:    #eeeef5;
+    --muted:   #484860;
+    --label:   #606080;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    background-image: radial-gradient(rgba(0,217,132,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .bg-glows { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .bg-glow { position: absolute; border-radius: 50%; filter: blur(100px); }
+  .bg-glow-1 {
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,217,132,0.1) 0%, transparent 70%);
+    top: -250px; left: -200px;
+    animation: drift1 15s ease-in-out infinite alternate;
+  }
+  .bg-glow-2 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,149,0,0.09) 0%, transparent 70%);
+    top: 35%; right: -150px;
+    animation: drift2 19s ease-in-out infinite alternate;
+  }
+  .bg-glow-3 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,217,132,0.07) 0%, transparent 70%);
+    bottom: 10%; left: 20%;
+    animation: drift3 13s ease-in-out infinite alternate;
+  }
+  @keyframes drift1 { from { transform: translate(0,0); } to { transform: translate(55px,75px); } }
+  @keyframes drift2 { from { transform: translate(0,0); } to { transform: translate(-65px,55px); } }
+  @keyframes drift3 { from { transform: translate(0,0); } to { transform: translate(35px,-55px); } }
+  nav, .hero, .stats-bar, .problem-strip, .modules-wrap, .quote-wrap, .register-wrap, footer {
+    position: relative; z-index: 1;
+  }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(2,2,9,0.85);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+  .live-pill {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(0,217,132,0.7);
+  }
+  .live-dot {
+    width: 7px; height: 7px; background: var(--accent); border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent), 0 0 18px var(--accent);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px var(--accent), 0 0 18px var(--accent); }
+    50% { opacity: 0.4; transform: scale(0.7); box-shadow: 0 0 4px var(--accent); }
+  }
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 92vh; overflow: hidden; }
+  .hero-image { position: relative; overflow: hidden; background: #000; }
+  .hero-image img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
+    -webkit-mask-image: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.97) 50%, rgba(255,255,255,0.15) 75%, rgba(255,255,255,0) 90%);
+    mask-image: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.97) 50%, rgba(255,255,255,0.15) 75%, rgba(255,255,255,0) 90%);
+  }
+  .hero-image::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(to bottom, var(--accent), var(--orange), var(--accent));
+    box-shadow: 0 0 16px var(--accent), 0 0 32px rgba(0,217,132,0.4); z-index: 2;
+  }
+  .hero-image::after {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.035) 3px, rgba(0,0,0,0.035) 4px);
+    pointer-events: none; z-index: 3;
+  }
+  .face-label {
+    position: absolute; bottom: 40px; left: 28px;
+    background: var(--accent); color: #000;
+    font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 14px;
+    box-shadow: 0 0 20px rgba(0,217,132,0.6), 0 0 40px rgba(0,217,132,0.3); z-index: 4;
+  }
+  .hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 80px 60px 80px 52px; }
+  .section-label {
+    font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px;
+    text-shadow: 0 0 12px rgba(0,217,132,0.7);
+  }
+  .hero-copy h1 {
+    font-size: clamp(2.2rem, 3.8vw, 3.4rem); font-weight: 800;
+    line-height: 1.08; margin-bottom: 24px; letter-spacing: -0.03em;
+    text-shadow: 0 0 40px rgba(0,217,132,0.15);
+  }
+  .hero-copy h1 em {
+    font-style: normal; color: var(--accent);
+    text-shadow: 0 0 30px rgba(0,217,132,0.8), 0 0 60px rgba(0,217,132,0.4);
+  }
+  .hero-copy p { color: var(--muted); font-size: 16px; line-height: 1.7; max-width: 420px; margin-bottom: 36px; }
+  .cta-btn {
+    display: inline-block; background: var(--accent); color: #000;
+    font-weight: 700; font-size: 14px; letter-spacing: 0.04em;
+    padding: 15px 36px; text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.15s; align-self: flex-start;
+    box-shadow: 0 0 24px rgba(0,217,132,0.5), 0 0 48px rgba(0,217,132,0.25);
+  }
+  .cta-btn:hover { box-shadow: 0 0 36px rgba(0,217,132,0.85), 0 0 70px rgba(0,217,132,0.4); transform: translateY(-2px); }
+  .stats-bar {
+    display: flex; justify-content: center;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    background: rgba(7,7,15,0.8);
+  }
+  .stat { flex: 1; text-align: center; padding: 32px 20px; border-right: 1px solid var(--border); }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-size: 2.1rem; font-weight: 800; color: var(--accent); line-height: 1;
+    margin-bottom: 6px; letter-spacing: -0.03em;
+    text-shadow: 0 0 20px rgba(0,217,132,0.7), 0 0 40px rgba(0,217,132,0.3);
+  }
+  .stat-num.orange {
+    color: var(--orange);
+    text-shadow: 0 0 20px rgba(255,149,0,0.7), 0 0 40px rgba(255,149,0,0.3);
+  }
+  .stat-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .problem-strip { background: rgba(7,7,15,0.9); border-bottom: 1px solid var(--border); padding: 52px 40px; text-align: center; }
+  .problem-strip p { max-width: 680px; margin: 0 auto; color: var(--muted); font-size: 16px; line-height: 1.9; }
+  .problem-strip strong { color: var(--text); }
+  .modules-wrap { padding: 100px 40px; max-width: 1100px; margin: 0 auto; }
+  .modules-wrap > .section-label { margin-bottom: 12px; }
+  .modules-wrap > h2 { font-size: clamp(1.8rem,2.8vw,2.7rem); font-weight: 800; letter-spacing: -0.025em; margin-bottom: 56px; max-width: 540px; line-height: 1.12; }
+  .module-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(0,217,132,0.08); }
+  .module { background: var(--surface); padding: 36px 32px; border: 1px solid rgba(0,217,132,0.07); transition: border-color 0.3s, box-shadow 0.3s, background 0.3s; }
+  .module:hover { border-color: rgba(0,217,132,0.35); box-shadow: 0 0 30px rgba(0,217,132,0.08), inset 0 0 30px rgba(0,217,132,0.02); background: rgba(0,217,132,0.03); }
+  .module-num { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 14px; text-shadow: 0 0 10px rgba(0,217,132,0.5); }
+  .module-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--text); letter-spacing: -0.01em; }
+  .module-body { color: var(--muted); font-size: 14px; line-height: 1.7; }
+  .quote-wrap {
+    background: rgba(7,7,15,0.95); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 90px 40px; text-align: center; position: relative; overflow: hidden;
+  }
+  .quote-wrap::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,217,132,0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  blockquote {
+    font-size: clamp(1.3rem,2.2vw,1.9rem); font-weight: 700; color: var(--text);
+    max-width: 740px; margin: 0 auto 20px; line-height: 1.45; letter-spacing: -0.015em;
+    position: relative;
+  }
+  blockquote em { color: var(--orange); font-style: normal; text-shadow: 0 0 20px rgba(255,149,0,0.5); }
+  cite { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; position: relative; }
+  .register-wrap { padding: 100px 40px; background: var(--bg); border-top: 1px solid var(--border); }
+  .register-inner { max-width: 480px; margin: 0 auto; }
+  .register-inner h2 { font-size: clamp(1.8rem,2.8vw,2.6rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.12; margin-bottom: 14px; }
+  .register-inner > p { color: var(--muted); font-size: 15px; margin-bottom: 36px; }
+  .form-row { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+  .form-input {
+    background: rgba(7,7,15,0.9); border: 1px solid rgba(0,217,132,0.13);
+    color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px;
+    padding: 14px 16px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+  }
+  .form-input::placeholder { color: #232338; }
+  .form-input:focus { border-color: var(--accent); box-shadow: 0 0 16px rgba(0,217,132,0.18); }
+  .form-btn {
+    display: block; width: 100%; background: var(--accent); color: #000;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px;
+    padding: 16px 32px; border: none; cursor: pointer; text-align: center;
+    text-decoration: none; transition: box-shadow 0.2s, transform 0.15s; letter-spacing: 0.03em;
+    box-shadow: 0 0 24px rgba(0,217,132,0.4), 0 0 48px rgba(0,217,132,0.2);
+  }
+  .form-btn:hover { box-shadow: 0 0 36px rgba(0,217,132,0.75), 0 0 72px rgba(0,217,132,0.35); transform: translateY(-1px); }
+  .cta-note { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+  footer {
+    border-top: 1px solid var(--border); padding: 28px 40px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    background: rgba(2,2,9,0.9);
+  }
+  footer p { font-size: 13px; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+  footer a:hover { color: var(--accent); }
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-image { height: 60vw; }
+    .hero-copy { padding: 40px 24px; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat { flex: 1 1 50%; }
+    .module-grid { grid-template-columns: 1fr; }
+    .modules-wrap, .register-wrap { padding: 60px 24px; }
+    .problem-strip { padding: 36px 24px; }
+    footer { padding: 24px 20px; }
+    .bg-glow-1, .bg-glow-2, .bg-glow-3 { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-glows" aria-hidden="true">
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+</div>
+<nav>
+  <span class="nav-logo">@daveemane · elevate operations</span>
+  <div class="live-pill"><div class="live-dot"></div>Free · Live · No Replay</div>
+</nav>
+<div class="hero">
+  <div class="hero-image">
+    <img src="https://ellisdeakinn-boop.github.io/elevate-landing-pages/daveemane-webinar/daveemane.jpg" alt="@daveemane">
+    <div class="face-label">@daveemane · Live This Week</div>
+  </div>
+  <div class="hero-copy">
+    <p class="section-label">Free live webinar</p>
+    <h1>The Amazon FBA<br>Blueprint.<br><em>Live. Real numbers.</em></h1>
+    <p>@daveemane walks through online arbitrage end to end — product sourcing, margin formula, listing strategy, and operations. One session. No replay. No theory.</p>
+    <a href="#register" class="cta-btn">Save My Spot &rarr;</a>
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">£10K+</div>
+    <div class="stat-label">monthly target. the blueprint is tonight.</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num orange">4</div>
+    <div class="stat-label">modules. sourcing to scaling.</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">0</div>
+    <div class="stat-label">theory. 100% working system.</div>
+  </div>
+</div>
+<div class="problem-strip">
+  <p>Everyone knows Amazon FBA is an opportunity.
+  <strong>Nobody shows you the real system behind it.</strong>
+  Most people who try fail because they're missing the margin formula,
+  the sourcing criteria, or the operating rhythm.
+  <strong>Tonight @daveemane shows you the full thing — live.</strong></p>
+</div>
+<div class="modules-wrap">
+  <p class="section-label">What you'll learn</p>
+  <h2>Sourcing to scaling.<br>In one session.</h2>
+  <div class="module-grid">
+    <div class="module">
+      <div class="module-num">01 / PRODUCT SOURCING</div>
+      <div class="module-title">Find profitable products in minutes</div>
+      <div class="module-body">The sourcing tools and the 5-point criteria that separate winners from money pits. The margin formula — the number that tells you before you buy whether a product will profit. Live demo included.</div>
+    </div>
+    <div class="module">
+      <div class="module-num">02 / LISTING + BUY BOX</div>
+      <div class="module-title">List correctly. Win sales.</div>
+      <div class="module-body">How to win the buy box without a race to the bottom. Repricing software setup and strategy. The common listing mistakes that kill conversion rates before a single customer sees your product.</div>
+    </div>
+    <div class="module">
+      <div class="module-num">03 / MARGIN + CASH FLOW</div>
+      <div class="module-title">The numbers that make or break it</div>
+      <div class="module-body">True profit calculation after all Amazon fees. Inventory turnover — the metric most sellers ignore. Cash flow management when you're reinvesting at scale. When to reinvest vs when to expand.</div>
+    </div>
+    <div class="module">
+      <div class="module-num">04 / OPERATIONS + SYSTEMS</div>
+      <div class="module-title">Run it in 1–2 hours a day</div>
+      <div class="module-body">Prep centres, repricing automation, and the sourcing routine that scales. The tools that handle 70% of the admin automatically. The path from £1K/month to £10K without adding complexity.</div>
+    </div>
+  </div>
+</div>
+<div class="quote-wrap">
+  <blockquote>"The problem isn't Amazon.<br>The problem isn't competition.<br><em>The problem is learning FBA from people who are still learning FBA.</em>"</blockquote>
+  <cite>— @daveemane</cite>
+</div>
+<div class="register-wrap" id="register">
+  <div class="register-inner">
+    <p class="section-label">Register free</p>
+    <h2>One night.<br>The full blueprint.<br>No replay.</h2>
+    <p>Enter your details and we'll send you the link. Reminder goes out the day before and two hours before we go live.</p>
+    <div class="form-row">
+      <input class="form-input" type="text" placeholder="First name">
+      <input class="form-input" type="email" placeholder="Email address">
+      <input class="form-input" type="tel" placeholder="Phone number (for reminder SMS)">
+    </div>
+    <a href="https://elevateoperations.info/booking" target="_blank" class="form-btn">Save My Spot &rarr;</a>
+    <p class="cta-note" style="margin-top:14px;">No spam. SMS reminder only. Unsubscribe anytime.</p>
+  </div>
+</div>
+<footer>
+  <p>Built by <a href="https://elevateoperations.info" target="_blank">Elevate Operations</a>
+  &nbsp;&middot;&nbsp;
+  <a href="https://www.tiktok.com/@daveemane" target="_blank">@daveemane</a></p>
+  <p style="font-size:12px;">Free webinar &middot; Live only &middot; No replay</p>
+</footer>
+</body>
+</html>
