@@ -3,30 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The $10K/Month Dropshipping Blueprint — @antt</title>
+<title>Dropshipping works. Yours just doesn't. Yet. — @antt</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:      #080808;
-    --surface: #0f0f0f;
-    --border:  #1a1a1a;
+    --bg:      #050508;
+    --surface: #0a0a0f;
+    --border:  #ffffff0f;
     --accent:  #4f9eff;
-    --accent2: #2d7dd2;
-    --text:    #f2f2f2;
-    --muted:   #555;
-    --label:   #888;
+    --orange:  #ff6b2b;
+    --text:    #f0f0f5;
+    --muted:   #505060;
+    --label:   #7070a0;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     background: var(--bg);
+    background-image: radial-gradient(rgba(79,158,255,0.055) 1px, transparent 1px);
+    background-size: 28px 28px;
     color: var(--text);
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── NEON BACKGROUND GLOWS ── */
+  .bg-glows { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 1;
+  }
+  .bg-glow-1 {
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(79,158,255,0.13) 0%, transparent 70%);
+    top: -250px; left: -200px;
+    animation: drift1 14s ease-in-out infinite alternate;
+  }
+  .bg-glow-2 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,107,43,0.11) 0%, transparent 70%);
+    top: 30%; right: -150px;
+    animation: drift2 18s ease-in-out infinite alternate;
+  }
+  .bg-glow-3 {
+    width: 450px; height: 450px;
+    background: radial-gradient(circle, rgba(79,158,255,0.09) 0%, transparent 70%);
+    bottom: 10%; left: 15%;
+    animation: drift3 12s ease-in-out infinite alternate;
+  }
+  .bg-glow-4 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(255,107,43,0.07) 0%, transparent 70%);
+    bottom: 30%; left: 50%;
+    animation: drift1 20s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes drift1 { from { transform: translate(0,0); } to { transform: translate(60px,80px); } }
+  @keyframes drift2 { from { transform: translate(0,0); } to { transform: translate(-70px,60px); } }
+  @keyframes drift3 { from { transform: translate(0,0); } to { transform: translate(40px,-60px); } }
+
+  /* all content above glows */
+  nav, .hero, .stats-bar, .problem-strip,
+  .modules-wrap, .quote-wrap, .register-wrap, footer {
+    position: relative; z-index: 1;
   }
 
   /* ── NAV ── */
@@ -36,6 +81,8 @@
     justify-content: space-between;
     padding: 20px 40px;
     border-bottom: 1px solid var(--border);
+    background: rgba(5,5,8,0.85);
+    backdrop-filter: blur(12px);
   }
   .nav-logo {
     font-family: 'Space Mono', monospace;
@@ -52,16 +99,18 @@
     color: var(--accent);
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(79,158,255,0.6);
   }
   .live-dot {
     width: 7px; height: 7px;
     background: var(--accent);
     border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent);
     animation: pulse 1.8s ease-in-out infinite;
   }
   @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent); }
+    50% { opacity: 0.5; transform: scale(0.75); box-shadow: 0 0 4px var(--accent); }
   }
 
   /* ── HERO ── */
@@ -86,15 +135,15 @@
       to right,
       rgba(255,255,255,1) 0%,
       rgba(255,255,255,0.97) 50%,
-      rgba(255,255,255,0.2) 72%,
-      rgba(255,255,255,0) 88%
+      rgba(255,255,255,0.15) 75%,
+      rgba(255,255,255,0) 90%
     );
     mask-image: linear-gradient(
       to right,
       rgba(255,255,255,1) 0%,
       rgba(255,255,255,0.97) 50%,
-      rgba(255,255,255,0.2) 72%,
-      rgba(255,255,255,0) 88%
+      rgba(255,255,255,0.15) 75%,
+      rgba(255,255,255,0) 90%
     );
   }
   .hero-image::before {
@@ -102,14 +151,29 @@
     position: absolute;
     left: 0; top: 0; bottom: 0;
     width: 3px;
-    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    background: linear-gradient(to bottom, var(--orange), var(--accent), var(--orange));
+    box-shadow: 0 0 16px var(--accent), 0 0 32px rgba(79,158,255,0.4);
     z-index: 2;
+  }
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0,0,0,0.04) 3px,
+      rgba(0,0,0,0.04) 4px
+    );
+    pointer-events: none;
+    z-index: 3;
   }
   .face-label {
     position: absolute;
     bottom: 40px;
     left: 28px;
-    background: var(--accent);
+    background: var(--orange);
     color: #000;
     font-family: 'Space Mono', monospace;
     font-size: 10px;
@@ -117,7 +181,8 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     padding: 6px 14px;
-    z-index: 3;
+    box-shadow: 0 0 20px rgba(255,107,43,0.6), 0 0 40px rgba(255,107,43,0.3);
+    z-index: 4;
   }
 
   .hero-copy {
@@ -133,17 +198,20 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     margin-bottom: 20px;
+    text-shadow: 0 0 12px rgba(79,158,255,0.7);
   }
   .hero-copy h1 {
-    font-size: clamp(2.2rem, 3.8vw, 3.4rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 22px;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+    text-shadow: 0 0 40px rgba(79,158,255,0.2);
   }
   .hero-copy h1 em {
     font-style: normal;
-    color: var(--accent);
+    color: var(--orange);
+    text-shadow: 0 0 30px rgba(255,107,43,0.8), 0 0 60px rgba(255,107,43,0.4);
   }
   .hero-copy p {
     color: var(--muted);
@@ -159,13 +227,16 @@
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 0.04em;
-    padding: 15px 32px;
+    padding: 15px 36px;
     text-decoration: none;
-    transition: opacity 0.15s, transform 0.15s;
+    transition: box-shadow 0.2s, transform 0.15s;
     align-self: flex-start;
-    border-radius: 2px;
+    box-shadow: 0 0 24px rgba(79,158,255,0.5), 0 0 48px rgba(79,158,255,0.25);
   }
-  .cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+  .cta-btn:hover {
+    box-shadow: 0 0 32px rgba(79,158,255,0.8), 0 0 64px rgba(79,158,255,0.4);
+    transform: translateY(-2px);
+  }
 
   /* ── STATS BAR ── */
   .stats-bar {
@@ -173,6 +244,7 @@
     justify-content: center;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
+    background: rgba(10,10,15,0.8);
   }
   .stat {
     flex: 1;
@@ -182,12 +254,17 @@
   }
   .stat:last-child { border-right: none; }
   .stat-num {
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 2.2rem;
+    font-weight: 800;
     color: var(--accent);
     line-height: 1;
     margin-bottom: 6px;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    text-shadow: 0 0 20px rgba(79,158,255,0.7), 0 0 40px rgba(79,158,255,0.3);
+  }
+  .stat-num.orange {
+    color: var(--orange);
+    text-shadow: 0 0 20px rgba(255,107,43,0.7), 0 0 40px rgba(255,107,43,0.3);
   }
   .stat-label {
     font-family: 'Space Mono', monospace;
@@ -199,17 +276,17 @@
 
   /* ── PROBLEM STRIP ── */
   .problem-strip {
-    background: var(--surface);
+    background: rgba(10,10,15,0.9);
     border-bottom: 1px solid var(--border);
-    padding: 48px 40px;
+    padding: 52px 40px;
     text-align: center;
   }
   .problem-strip p {
-    max-width: 660px;
+    max-width: 680px;
     margin: 0 auto;
     color: var(--muted);
-    font-size: 15px;
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 1.9;
   }
   .problem-strip strong { color: var(--text); }
 
@@ -221,23 +298,30 @@
   }
   .modules-wrap > .section-label { margin-bottom: 12px; }
   .modules-wrap > h2 {
-    font-size: clamp(1.7rem, 2.8vw, 2.6rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-size: clamp(1.8rem, 2.8vw, 2.7rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
     margin-bottom: 56px;
     max-width: 540px;
-    line-height: 1.15;
+    line-height: 1.12;
+    text-shadow: 0 0 40px rgba(79,158,255,0.15);
   }
   .module-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    gap: 1px;
+    background: rgba(79,158,255,0.1);
   }
   .module {
-    background: var(--bg);
+    background: var(--surface);
     padding: 36px 32px;
+    border: 1px solid rgba(79,158,255,0.08);
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+  }
+  .module:hover {
+    border-color: rgba(79,158,255,0.35);
+    box-shadow: 0 0 30px rgba(79,158,255,0.1), inset 0 0 30px rgba(79,158,255,0.03);
+    background: rgba(79,158,255,0.04);
   }
   .module-num {
     font-family: 'Space Mono', monospace;
@@ -245,10 +329,11 @@
     color: var(--accent);
     letter-spacing: 0.1em;
     margin-bottom: 14px;
+    text-shadow: 0 0 10px rgba(79,158,255,0.5);
   }
   .module-title {
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 10px;
     color: var(--text);
     letter-spacing: -0.01em;
@@ -261,28 +346,44 @@
 
   /* ── QUOTE ── */
   .quote-wrap {
-    background: var(--surface);
+    background: rgba(10,10,15,0.95);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 80px 40px;
+    padding: 90px 40px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(79,158,255,0.06) 0%, transparent 65%);
+    pointer-events: none;
   }
   blockquote {
-    font-size: clamp(1.3rem, 2.2vw, 1.85rem);
-    font-weight: 600;
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 700;
     color: var(--text);
-    max-width: 660px;
+    max-width: 700px;
     margin: 0 auto 20px;
     line-height: 1.4;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+    position: relative;
+    text-shadow: 0 0 30px rgba(79,158,255,0.15);
   }
-  blockquote em { color: var(--accent); font-style: normal; }
+  blockquote em {
+    color: var(--orange);
+    font-style: normal;
+    text-shadow: 0 0 20px rgba(255,107,43,0.6);
+  }
   cite {
     font-family: 'Space Mono', monospace;
     font-size: 11px;
     color: var(--muted);
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    position: relative;
   }
 
   /* ── REGISTER ── */
@@ -293,28 +394,31 @@
   }
   .register-inner { max-width: 480px; margin: 0 auto; }
   .register-inner h2 {
-    font-size: clamp(1.7rem, 2.8vw, 2.5rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
     margin-bottom: 14px;
+    text-shadow: 0 0 40px rgba(79,158,255,0.2);
   }
   .register-inner > p { color: var(--muted); font-size: 15px; margin-bottom: 36px; }
   .form-row { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
   .form-input {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: rgba(10,10,15,0.9);
+    border: 1px solid rgba(79,158,255,0.15);
     color: var(--text);
     font-family: 'Inter', sans-serif;
     font-size: 15px;
     padding: 14px 16px;
     outline: none;
-    transition: border-color 0.15s;
+    transition: border-color 0.2s, box-shadow 0.2s;
     width: 100%;
-    border-radius: 2px;
   }
-  .form-input::placeholder { color: #333; }
-  .form-input:focus { border-color: var(--accent); }
+  .form-input::placeholder { color: #303045; }
+  .form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 16px rgba(79,158,255,0.2);
+  }
   .form-btn {
     display: block;
     width: 100%;
@@ -323,16 +427,19 @@
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 15px;
-    padding: 15px 32px;
+    padding: 16px 32px;
     border: none;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    transition: opacity 0.15s;
-    letter-spacing: 0.02em;
-    border-radius: 2px;
+    transition: box-shadow 0.2s, transform 0.15s;
+    letter-spacing: 0.03em;
+    box-shadow: 0 0 24px rgba(79,158,255,0.4), 0 0 48px rgba(79,158,255,0.2);
   }
-  .form-btn:hover { opacity: 0.88; }
+  .form-btn:hover {
+    box-shadow: 0 0 36px rgba(79,158,255,0.7), 0 0 72px rgba(79,158,255,0.35);
+    transform: translateY(-1px);
+  }
   .cta-note {
     font-family: 'Space Mono', monospace;
     font-size: 11px;
@@ -349,16 +456,17 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
+    background: rgba(5,5,8,0.9);
   }
   footer p { font-size: 13px; color: var(--muted); }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--accent); }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+  footer a:hover { color: var(--accent); text-shadow: 0 0 10px rgba(79,158,255,0.5); }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
     .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-image { height: 55vw; }
+    .hero-image { height: 60vw; }
     .hero-copy { padding: 40px 24px; }
     .stats-bar { flex-wrap: wrap; }
     .stat { flex: 1 1 50%; }
@@ -366,11 +474,20 @@
     .modules-wrap { padding: 60px 24px; }
     .register-wrap { padding: 60px 24px; }
     footer { padding: 24px 20px; }
-    .problem-strip { padding: 32px 24px; }
+    .problem-strip { padding: 36px 24px; }
+    .bg-glow-1, .bg-glow-2, .bg-glow-3, .bg-glow-4 { display: none; }
   }
 </style>
 </head>
 <body>
+
+<!-- BACKGROUND NEON GLOWS -->
+<div class="bg-glows" aria-hidden="true">
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+  <div class="bg-glow bg-glow-4"></div>
+</div>
 
 <nav>
   <span class="nav-logo">@antt · elevate operations</span>
@@ -384,12 +501,12 @@
 <div class="hero">
   <div class="hero-image">
     <img src="https://via.placeholder.com/600x600/0a0a0a/4f9eff?text=REPLACE+WITH+IG+PHOTO" alt="@antt">
-    <div class="face-label">@antt · Dropshipping</div>
+    <div class="face-label">@antt · Live This Week</div>
   </div>
   <div class="hero-copy">
     <p class="section-label">Free live webinar</p>
-    <h1>The dropshipping blueprint.<br><em>Live. Free. No fluff.</em></h1>
-    <p>@antt walks through the complete system — product research, store structure, paid traffic, and operations. One session. No replay. Just the framework.</p>
+    <h1>Dropshipping works.<br>Yours just doesn't.<br><em>Yet.</em></h1>
+    <p>@antt walks through the complete system live — product research, store structure, paid traffic, and operations. One session. No replay. No fluff.</p>
     <a href="#register" class="cta-btn">Save My Spot &rarr;</a>
   </div>
 </div>
@@ -398,15 +515,15 @@
 <div class="stats-bar">
   <div class="stat">
     <div class="stat-num">£10K+</div>
-    <div class="stat-label">monthly target. tonight's the blueprint.</div>
+    <div class="stat-label">monthly target. here's the blueprint.</div>
   </div>
   <div class="stat">
-    <div class="stat-num">4</div>
+    <div class="stat-num orange">4</div>
     <div class="stat-label">modules. product to profit.</div>
   </div>
   <div class="stat">
     <div class="stat-num">0</div>
-    <div class="stat-label">fluff. 100% system.</div>
+    <div class="stat-label">theory. 100% working system.</div>
   </div>
 </div>
 
@@ -414,7 +531,8 @@
 <div class="problem-strip">
   <p>Most dropshipping content teaches you <strong>what to do</strong>.
   Nobody shows you how the system actually works end to end.
-  <strong>Tonight @antt is showing you the full thing</strong> — product, store, ads, operations. Live and unfiltered.</p>
+  <strong>This session is different.</strong> @antt is showing the full thing live —
+  product, store, ads, operations. Unfiltered.</p>
 </div>
 
 <!-- MODULES -->
@@ -435,12 +553,12 @@
     <div class="module">
       <div class="module-num">03 / PAID TRAFFIC</div>
       <div class="module-title">Ads that validate in 48–72 hours</div>
-      <div class="module-body">Meta vs TikTok — what to run and when. The creative principles that get clicks. The testing framework that tells you fast whether a product has legs.</div>
+      <div class="module-body">Meta vs TikTok — what to run and when. The creative principles that stop the scroll. The testing framework that tells you fast whether a product has legs.</div>
     </div>
     <div class="module">
       <div class="module-num">04 / SYSTEMS + OPERATIONS</div>
       <div class="module-title">Run it in 1–2 hours a day</div>
-      <div class="module-body">Supplier relationships, fulfilment systems, and the tools that automate 80% of the grind. How to build a business, not a second job.</div>
+      <div class="module-body">Supplier relationships, fulfilment systems, and the tools that automate 80% of the grind. How to build a business, not create a second job.</div>
     </div>
   </div>
 </div>
