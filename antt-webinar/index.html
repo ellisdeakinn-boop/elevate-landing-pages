@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The $10K/Month Dropshipping Blueprint — @antt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #080808;
+    --surface: #0f0f0f;
+    --border:  #1a1a1a;
+    --accent:  #4f9eff;
+    --accent2: #2d7dd2;
+    --text:    #f2f2f2;
+    --muted:   #555;
+    --label:   #888;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .live-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .live-dot {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 92vh;
+    overflow: hidden;
+  }
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+  }
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.97) 50%,
+      rgba(255,255,255,0.2) 72%,
+      rgba(255,255,255,0) 88%
+    );
+    mask-image: linear-gradient(
+      to right,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.97) 50%,
+      rgba(255,255,255,0.2) 72%,
+      rgba(255,255,255,0) 88%
+    );
+  }
+  .hero-image::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    z-index: 2;
+  }
+  .face-label {
+    position: absolute;
+    bottom: 40px;
+    left: 28px;
+    background: var(--accent);
+    color: #000;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    z-index: 3;
+  }
+
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 52px;
+  }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-copy h1 {
+    font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 22px;
+    letter-spacing: -0.02em;
+  }
+  .hero-copy h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-copy p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 36px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    padding: 15px 32px;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+    align-self: flex-start;
+    border-radius: 2px;
+  }
+  .cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat {
+    flex: 1;
+    text-align: center;
+    padding: 32px 20px;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── PROBLEM STRIP ── */
+  .problem-strip {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .problem-strip p {
+    max-width: 660px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .problem-strip strong { color: var(--text); }
+
+  /* ── MODULES ── */
+  .modules-wrap {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .modules-wrap > .section-label { margin-bottom: 12px; }
+  .modules-wrap > h2 {
+    font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 56px;
+    max-width: 540px;
+    line-height: 1.15;
+  }
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .module {
+    background: var(--bg);
+    padding: 36px 32px;
+  }
+  .module-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+  .module-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .module-body {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* ── QUOTE ── */
+  .quote-wrap {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 40px;
+    text-align: center;
+  }
+  blockquote {
+    font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+    font-weight: 600;
+    color: var(--text);
+    max-width: 660px;
+    margin: 0 auto 20px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+  blockquote em { color: var(--accent); font-style: normal; }
+  cite {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── REGISTER ── */
+  .register-wrap {
+    padding: 100px 40px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+  .register-inner { max-width: 480px; margin: 0 auto; }
+  .register-inner h2 {
+    font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .register-inner > p { color: var(--muted); font-size: 15px; margin-bottom: 36px; }
+  .form-row { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+  .form-input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+    border-radius: 2px;
+  }
+  .form-input::placeholder { color: #333; }
+  .form-input:focus { border-color: var(--accent); }
+  .form-btn {
+    display: block;
+    width: 100%;
+    background: var(--accent);
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 15px 32px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity 0.15s;
+    letter-spacing: 0.02em;
+    border-radius: 2px;
+  }
+  .form-btn:hover { opacity: 0.88; }
+  .cta-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p { font-size: 13px; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-image { height: 55vw; }
+    .hero-copy { padding: 40px 24px; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat { flex: 1 1 50%; }
+    .module-grid { grid-template-columns: 1fr; }
+    .modules-wrap { padding: 60px 24px; }
+    .register-wrap { padding: 60px 24px; }
+    footer { padding: 24px 20px; }
+    .problem-strip { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">@antt · elevate operations</span>
+  <div class="live-pill">
+    <div class="live-dot"></div>
+    Free · Live · No Replay
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-image">
+    <img src="https://via.placeholder.com/600x600/0a0a0a/4f9eff?text=REPLACE+WITH+IG+PHOTO" alt="@antt">
+    <div class="face-label">@antt · Dropshipping</div>
+  </div>
+  <div class="hero-copy">
+    <p class="section-label">Free live webinar</p>
+    <h1>The dropshipping blueprint.<br><em>Live. Free. No fluff.</em></h1>
+    <p>@antt walks through the complete system — product research, store structure, paid traffic, and operations. One session. No replay. Just the framework.</p>
+    <a href="#register" class="cta-btn">Save My Spot &rarr;</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">£10K+</div>
+    <div class="stat-label">monthly target. tonight's the blueprint.</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">4</div>
+    <div class="stat-label">modules. product to profit.</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">0</div>
+    <div class="stat-label">fluff. 100% system.</div>
+  </div>
+</div>
+
+<!-- PROBLEM STRIP -->
+<div class="problem-strip">
+  <p>Most dropshipping content teaches you <strong>what to do</strong>.
+  Nobody shows you how the system actually works end to end.
+  <strong>Tonight @antt is showing you the full thing</strong> — product, store, ads, operations. Live and unfiltered.</p>
+</div>
+
+<!-- MODULES -->
+<div class="modules-wrap">
+  <p class="section-label">What you'll learn</p>
+  <h2>The complete system.<br>In one session.</h2>
+  <div class="module-grid">
+    <div class="module">
+      <div class="module-num">01 / PRODUCT SELECTION</div>
+      <div class="module-title">Find winners before you spend a penny</div>
+      <div class="module-body">The 3-filter method that separates winning products from money pits — and how to validate demand before a single ad goes live.</div>
+    </div>
+    <div class="module">
+      <div class="module-num">02 / STORE + OFFER STRUCTURE</div>
+      <div class="module-title">Why your store kills your conversion rate</div>
+      <div class="module-body">The one-product store setup that outperforms general stores every time. Offer framing, trust signals, and upsell architecture that funds your ad spend.</div>
+    </div>
+    <div class="module">
+      <div class="module-num">03 / PAID TRAFFIC</div>
+      <div class="module-title">Ads that validate in 48–72 hours</div>
+      <div class="module-body">Meta vs TikTok — what to run and when. The creative principles that get clicks. The testing framework that tells you fast whether a product has legs.</div>
+    </div>
+    <div class="module">
+      <div class="module-num">04 / SYSTEMS + OPERATIONS</div>
+      <div class="module-title">Run it in 1–2 hours a day</div>
+      <div class="module-body">Supplier relationships, fulfilment systems, and the tools that automate 80% of the grind. How to build a business, not a second job.</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-wrap">
+  <blockquote>"Dropshipping doesn't not work.<br><em>Your system doesn't work.</em><br>That's a very different problem."</blockquote>
+  <cite>— @antt</cite>
+</div>
+
+<!-- REGISTER -->
+<div class="register-wrap" id="register">
+  <div class="register-inner">
+    <p class="section-label">Register free</p>
+    <h2>One night.<br>The full blueprint.<br>No replay.</h2>
+    <p>Enter your details and we'll send you the link. Reminder goes out the day before and two hours before we go live.</p>
+    <div class="form-row">
+      <input class="form-input" type="text" placeholder="First name">
+      <input class="form-input" type="email" placeholder="Email address">
+      <input class="form-input" type="tel" placeholder="Phone number (for reminder SMS)">
+    </div>
+    <a href="https://elevateoperations.info/booking" target="_blank" class="form-btn">Save My Spot &rarr;</a>
+    <p class="cta-note" style="margin-top:14px;">No spam. SMS reminder only. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Built by <a href="https://elevateoperations.info" target="_blank">Elevate Operations</a>
+  &nbsp;&middot;&nbsp;
+  <a href="https://www.instagram.com/antt/" target="_blank">@antt</a></p>
+  <p style="font-size:12px;">Free webinar &middot; Live only &middot; No replay</p>
+</footer>
+
+</body>
+</html>
