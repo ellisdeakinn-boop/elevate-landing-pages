@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How I Trade The Markets Every Day (And How You Can Too) — @azultradez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #030310;
+    --surface: #0a0a1c;
+    --border:  #ffffff0e;
+    --accent:  #f0c040;
+    --blue:    #4a9eff;
+    --text:    #eeeef8;
+    --muted:   #484868;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    background-image: radial-gradient(rgba(240,192,64,0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .bg-glows { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .bg-glow { position: absolute; border-radius: 50%; filter: blur(110px); }
+  .bg-glow-1 {
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(240,192,64,0.07) 0%, transparent 70%);
+    top: -280px; left: 50%; transform: translateX(-50%);
+    animation: drift1 18s ease-in-out infinite alternate;
+  }
+  .bg-glow-2 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(74,158,255,0.06) 0%, transparent 70%);
+    bottom: 15%; right: 5%;
+    animation: drift2 22s ease-in-out infinite alternate;
+  }
+  @keyframes drift1 { from { transform: translateX(-50%) translate(0,0); } to { transform: translateX(-50%) translate(25px,55px); } }
+  @keyframes drift2 { from { transform: translate(0,0); } to { transform: translate(-45px,-35px); } }
+  nav, .vsl-above, .video-section, .cta-section,
+  .testimonials, .opportunity, .mechanism, footer {
+    position: relative; z-index: 1;
+  }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px; border-bottom: 1px solid var(--border);
+    background: rgba(3,3,16,0.88); backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+  .nav-tag {
+    font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(240,192,64,0.5);
+  }
+  .vsl-above { max-width: 760px; margin: 0 auto; padding: 72px 40px 40px; text-align: center; }
+  .eyebrow {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: var(--blue); letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 18px; text-shadow: 0 0 10px rgba(74,158,255,0.5);
+  }
+  .vsl-above h1 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900; line-height: 1.07; letter-spacing: -0.035em; margin-bottom: 18px;
+  }
+  .vsl-above h1 em {
+    font-style: normal; color: var(--accent);
+    text-shadow: 0 0 28px rgba(240,192,64,0.65), 0 0 56px rgba(240,192,64,0.3);
+  }
+  .vsl-sub { color: var(--muted); font-size: 17px; max-width: 560px; margin: 0 auto; line-height: 1.75; }
+  .video-section { padding: 36px 40px 0; max-width: 860px; margin: 0 auto; }
+  .video-wrap {
+    position: relative; background: #000;
+    border: 1px solid rgba(240,192,64,0.18);
+    box-shadow: 0 0 70px rgba(240,192,64,0.1), 0 0 140px rgba(240,192,64,0.05);
+    aspect-ratio: 16 / 9; overflow: hidden;
+  }
+  .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+  .video-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #080818 0%, #0d0d22 100%);
+    gap: 18px; cursor: pointer;
+  }
+  .play-btn {
+    width: 76px; height: 76px; background: var(--accent); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 28px rgba(240,192,64,0.55), 0 0 56px rgba(240,192,64,0.28);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .play-btn svg { margin-left: 5px; }
+  .video-placeholder:hover .play-btn {
+    transform: scale(1.07);
+    box-shadow: 0 0 40px rgba(240,192,64,0.8), 0 0 80px rgba(240,192,64,0.4);
+  }
+  .video-label { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+  .cta-section {
+    max-width: 860px; margin: 0 auto;
+    padding: 32px 40px 80px;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  .cta-btn {
+    display: inline-block; background: var(--accent); color: #000;
+    font-weight: 800; font-size: 16px; letter-spacing: 0.03em;
+    padding: 18px 52px; text-decoration: none;
+    box-shadow: 0 0 28px rgba(240,192,64,0.45), 0 0 56px rgba(240,192,64,0.22);
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .cta-btn:hover {
+    box-shadow: 0 0 40px rgba(240,192,64,0.8), 0 0 80px rgba(240,192,64,0.4);
+    transform: translateY(-2px);
+  }
+  .cta-note { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.07em; }
+  .section-wrap { max-width: 900px; margin: 0 auto; padding: 90px 40px; }
+  .section-label {
+    font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 14px; text-shadow: 0 0 10px rgba(240,192,64,0.55);
+  }
+  .section-wrap h2 {
+    font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1.12; margin-bottom: 44px; max-width: 580px;
+  }
+  .section-wrap h2 em { font-style: normal; color: var(--accent); }
+  .divider { border: none; border-top: 1px solid var(--border); }
+  /* TESTIMONIALS */
+  .testimonials { background: var(--bg); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .testi-card {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 28px 24px; min-height: 180px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .testi-stars { color: var(--accent); font-size: 14px; letter-spacing: 2px; }
+  .testi-quote { color: var(--muted); font-size: 14px; line-height: 1.7; font-style: italic; flex: 1; }
+  .testi-name { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--label, #606090); letter-spacing: 0.08em; }
+  .testi-card.placeholder {
+    align-items: center; justify-content: center;
+    border-style: dashed; border-color: rgba(255,255,255,0.07);
+  }
+  .testi-card.placeholder span {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: rgba(255,255,255,0.12); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  /* OPPORTUNITY */
+  .opportunity { background: rgba(240,192,64,0.015); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .opp-body { color: var(--muted); font-size: 15px; line-height: 1.85; }
+  .opp-body p + p { margin-top: 16px; }
+  .opp-body strong { color: var(--text); }
+  .opp-stats { display: flex; flex-direction: column; gap: 24px; }
+  .opp-stat { padding: 24px; background: var(--surface); border: 1px solid rgba(240,192,64,0.1); }
+  .opp-stat-num {
+    font-size: 2.2rem; font-weight: 800; color: var(--accent);
+    letter-spacing: -0.04em; line-height: 1; margin-bottom: 6px;
+    text-shadow: 0 0 20px rgba(240,192,64,0.5);
+  }
+  .opp-stat-label { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  /* MECHANISM */
+  .mechanism { background: var(--bg); }
+  .mech-steps { display: flex; flex-direction: column; gap: 2px; }
+  .mech-step {
+    display: grid; grid-template-columns: 64px 1fr;
+    background: var(--surface); border: 1px solid rgba(240,192,64,0.07);
+    transition: border-color 0.3s;
+  }
+  .mech-step:hover { border-color: rgba(240,192,64,0.35); }
+  .mech-num {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700;
+    color: var(--accent); border-right: 1px solid rgba(240,192,64,0.08);
+    text-shadow: 0 0 8px rgba(240,192,64,0.4);
+  }
+  .mech-content { padding: 28px 32px; }
+  .mech-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .mech-body { color: var(--muted); font-size: 14px; line-height: 1.7; }
+  footer {
+    border-top: 1px solid var(--border); padding: 26px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px; background: rgba(3,3,16,0.92);
+  }
+  footer p { font-size: 13px; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+  footer a:hover { color: var(--accent); }
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .vsl-above { padding: 48px 24px 28px; }
+    .video-section { padding: 24px 24px 0; }
+    .cta-section { padding: 24px 24px 60px; }
+    .section-wrap { padding: 60px 24px; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .opp-grid { grid-template-columns: 1fr; gap: 32px; }
+    .mech-step { grid-template-columns: 48px 1fr; }
+    footer { padding: 20px 24px; }
+    .bg-glow-1, .bg-glow-2 { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-glows" aria-hidden="true">
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+</div>
+<nav>
+  <span class="nav-logo">@azultradez · elevate operations</span>
+  <span class="nav-tag">Free Training</span>
+</nav>
+
+<!-- HEADLINE + SUBHEADLINE -->
+<div class="vsl-above">
+  <p class="eyebrow">Free video training</p>
+  <h1>Watch This Before You<br>Spend <em>Another Penny</em><br>on Trading.</h1>
+  <p class="vsl-sub">Omar walks through the complete trading framework — market structure, entry model, risk management, daily routine. Live on a real chart. No signals. No hype.</p>
+</div>
+
+<!-- VSL -->
+<div class="video-section">
+  <div class="video-wrap">
+    <!-- Swap placeholder for <iframe> embed when video is recorded -->
+    <div class="video-placeholder">
+      <div class="play-btn">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#000"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+      <span class="video-label">Press play · Free · ~20 min</span>
+    </div>
+  </div>
+</div>
+
+<!-- APPLY CTA -->
+<div class="cta-section">
+  <a href="https://elevateoperations.info/booking" target="_blank" class="cta-btn">Apply to Work With Omar &rarr;</a>
+  <span class="cta-note">Limited spots available &middot; Application takes 2 minutes</span>
+</div>
+
+<hr class="divider">
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <div class="section-wrap">
+    <p class="section-label">Results</p>
+    <h2>What students<br>are saying.</h2>
+    <div class="testi-grid">
+      <div class="testi-card placeholder"><span>Testimonial coming soon</span></div>
+      <div class="testi-card placeholder"><span>Testimonial coming soon</span></div>
+      <div class="testi-card placeholder"><span>Testimonial coming soon</span></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- THE OPPORTUNITY -->
+<div class="opportunity">
+  <div class="section-wrap">
+    <p class="section-label">The opportunity</p>
+    <h2>The largest financial<br>market in the world.<br><em>Open to anyone.</em></h2>
+    <div class="opp-grid">
+      <div class="opp-body">
+        <p>The foreign exchange market trades over <strong>$7.5 trillion per day</strong> — more than every stock exchange in the world combined. It's open five days a week, around the clock. You don't need a broker's licence, a degree, or a Bloomberg terminal.</p>
+        <p>You need a proven framework, a funded account, and the discipline to follow the rules. That's it. The infrastructure is already there. The liquidity is already there. <strong>The question is whether you have a system — or just a hope.</strong></p>
+        <p>Trading has the lowest overhead of any serious income model. No inventory. No clients. No staff. Just you, a chart, and a process.</p>
+      </div>
+      <div class="opp-stats">
+        <div class="opp-stat">
+          <div class="opp-stat-num">$7.5T</div>
+          <div class="opp-stat-label">Daily FX market volume</div>
+        </div>
+        <div class="opp-stat">
+          <div class="opp-stat-num">24/5</div>
+          <div class="opp-stat-label">Market hours — London to New York</div>
+        </div>
+        <div class="opp-stat">
+          <div class="opp-stat-num">20min</div>
+          <div class="opp-stat-label">Daily pre-market routine at scale</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- THE MECHANISM -->
+<div class="mechanism">
+  <div class="section-wrap">
+    <p class="section-label">The mechanism</p>
+    <h2>Four steps.<br>Same process.<br><em>Every single day.</em></h2>
+    <div class="mech-steps">
+      <div class="mech-step">
+        <div class="mech-num">01</div>
+        <div class="mech-content">
+          <div class="mech-title">Establish your daily bias on the higher timeframe</div>
+          <div class="mech-body">Check the daily chart. Is the market making higher highs and higher lows, or lower highs and lower lows? That's your direction for the day. You're only looking for trades that align with it — nothing else gets considered.</div>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="mech-num">02</div>
+        <div class="mech-content">
+          <div class="mech-title">Identify key levels — points of interest</div>
+          <div class="mech-body">Drop to the lower timeframe and mark the levels where price is likely to react: previous swing highs/lows, fair value gaps, liquidity pools. Set alerts. Walk away. You don't sit at a screen watching every candle.</div>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="mech-num">03</div>
+        <div class="mech-content">
+          <div class="mech-title">Wait for confirmation. Then execute.</div>
+          <div class="mech-body">When price reaches your level, you wait for the confirmation signal — a structure shift on the lower timeframe, a defined candle pattern. No confirmation: no trade. Entry, stop, and target are set before you click the button.</div>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="mech-num">04</div>
+        <div class="mech-content">
+          <div class="mech-title">1% risk per trade. Minimum 1:2 reward. Log everything.</div>
+          <div class="mech-body">Position size is calculated every time — never by feel. If the trade hits stop: 1% loss, move on. If it hits target: 2%+ gain. Over 100 trades, this maths is undefeated. The journal shows you where to improve.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Built by <a href="https://elevateoperations.info" target="_blank">Elevate Operations</a>
+  &nbsp;&middot;&nbsp;
+  <a href="https://www.instagram.com/azultradez/" target="_blank">@azultradez</a></p>
+  <p style="font-size:12px;">Free training &middot; @azultradez</p>
+</footer>
+
+</body>
+</html>
