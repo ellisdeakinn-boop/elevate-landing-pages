@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How I Make $10K/Month on Amazon Without a Warehouse — @daveemane</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #020209;
+    --surface: #07070f;
+    --border:  #ffffff0d;
+    --accent:  #00d984;
+    --orange:  #ff9500;
+    --text:    #eeeef5;
+    --muted:   #484860;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    background-image: radial-gradient(rgba(0,217,132,0.035) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .bg-glows { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .bg-glow { position: absolute; border-radius: 50%; filter: blur(110px); }
+  .bg-glow-1 {
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(0,217,132,0.08) 0%, transparent 70%);
+    top: -300px; left: 50%; transform: translateX(-50%);
+    animation: drift1 18s ease-in-out infinite alternate;
+  }
+  .bg-glow-2 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,149,0,0.07) 0%, transparent 70%);
+    bottom: 10%; right: 5%;
+    animation: drift2 22s ease-in-out infinite alternate;
+  }
+  @keyframes drift1 { from { transform: translateX(-50%) translate(0,0); } to { transform: translateX(-50%) translate(30px,60px); } }
+  @keyframes drift2 { from { transform: translate(0,0); } to { transform: translate(-50px,-40px); } }
+  nav, .vsl-hero, .bullets-section, .optin-section, .proof-strip, footer {
+    position: relative; z-index: 1;
+  }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(2,2,9,0.85);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+  .nav-tag {
+    font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0,217,132,0.6);
+  }
+
+  /* ── VSL HERO ── */
+  .vsl-hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 40px 60px;
+    text-align: center;
+  }
+  .pre-headline {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: var(--orange); letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 0 0 12px rgba(255,149,0,0.6);
+  }
+  .vsl-hero h1 {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 800; line-height: 1.1; letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 40px rgba(0,217,132,0.15);
+  }
+  .vsl-hero h1 em {
+    font-style: normal; color: var(--accent);
+    text-shadow: 0 0 30px rgba(0,217,132,0.7), 0 0 60px rgba(0,217,132,0.35);
+  }
+  .vsl-sub {
+    color: var(--muted); font-size: 17px; max-width: 600px;
+    margin: 0 auto 48px; line-height: 1.7;
+  }
+
+  /* ── VIDEO PLAYER ── */
+  .video-wrap {
+    position: relative;
+    background: #000;
+    border: 1px solid rgba(0,217,132,0.15);
+    box-shadow: 0 0 60px rgba(0,217,132,0.12), 0 0 120px rgba(0,217,132,0.06);
+    max-width: 860px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .video-wrap iframe {
+    width: 100%; height: 100%; border: none; display: block;
+  }
+  /* Placeholder if no video yet */
+  .video-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #07070f 0%, #0a0a18 100%);
+    cursor: pointer; gap: 20px;
+  }
+  .play-btn {
+    width: 80px; height: 80px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 30px rgba(0,217,132,0.6), 0 0 60px rgba(0,217,132,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .play-btn svg { margin-left: 5px; }
+  .video-placeholder:hover .play-btn {
+    transform: scale(1.08);
+    box-shadow: 0 0 40px rgba(0,217,132,0.8), 0 0 80px rgba(0,217,132,0.4);
+  }
+  .video-duration {
+    font-family: 'Space Mono', monospace; font-size: 12px;
+    color: var(--muted); letter-spacing: 0.1em;
+  }
+
+  /* ── BULLETS ── */
+  .bullets-section {
+    max-width: 860px; margin: 0 auto; padding: 64px 40px;
+  }
+  .bullets-label {
+    font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 32px;
+    text-shadow: 0 0 10px rgba(0,217,132,0.6);
+  }
+  .bullets-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  }
+  .bullet-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 24px; background: var(--surface);
+    border: 1px solid rgba(0,217,132,0.07);
+    transition: border-color 0.3s;
+  }
+  .bullet-item:hover { border-color: rgba(0,217,132,0.3); }
+  .bullet-icon {
+    flex-shrink: 0; width: 32px; height: 32px;
+    background: rgba(0,217,132,0.1); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace; font-size: 12px;
+    color: var(--accent); font-weight: 700;
+  }
+  .bullet-text { font-size: 15px; color: var(--muted); line-height: 1.6; }
+  .bullet-text strong { color: var(--text); display: block; margin-bottom: 4px; font-size: 15px; }
+
+  /* ── OPT-IN ── */
+  .optin-section {
+    max-width: 540px; margin: 0 auto; padding: 40px 40px 100px;
+    text-align: center;
+  }
+  .optin-section h2 {
+    font-size: clamp(1.5rem,2.5vw,2rem); font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 12px;
+  }
+  .optin-section > p { color: var(--muted); font-size: 15px; margin-bottom: 32px; }
+  .optin-form { display: flex; flex-direction: column; gap: 12px; }
+  .form-input {
+    background: rgba(7,7,15,0.9); border: 1px solid rgba(0,217,132,0.13);
+    color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px;
+    padding: 14px 16px; outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+  }
+  .form-input::placeholder { color: #232338; }
+  .form-input:focus { border-color: var(--accent); box-shadow: 0 0 16px rgba(0,217,132,0.18); }
+  .form-btn {
+    display: block; width: 100%; background: var(--accent); color: #000;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px;
+    padding: 16px 32px; border: none; cursor: pointer; text-align: center;
+    text-decoration: none; transition: box-shadow 0.2s, transform 0.15s;
+    letter-spacing: 0.03em;
+    box-shadow: 0 0 24px rgba(0,217,132,0.4), 0 0 48px rgba(0,217,132,0.2);
+  }
+  .form-btn:hover { box-shadow: 0 0 36px rgba(0,217,132,0.75), 0 0 72px rgba(0,217,132,0.35); transform: translateY(-1px); }
+  .optin-note { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.06em; margin-top: 12px; }
+
+  /* ── PROOF STRIP ── */
+  .proof-strip {
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    background: rgba(7,7,15,0.8); padding: 36px 40px; text-align: center;
+  }
+  .proof-strip p { color: var(--muted); font-size: 14px; max-width: 640px; margin: 0 auto; line-height: 1.8; }
+  .proof-strip strong { color: var(--text); }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 28px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px; background: rgba(2,2,9,0.9);
+  }
+  footer p { font-size: 13px; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .vsl-hero { padding: 50px 24px 40px; }
+    .bullets-section { padding: 40px 24px; }
+    .bullets-grid { grid-template-columns: 1fr; }
+    .optin-section { padding: 24px 24px 60px; }
+    footer { padding: 24px 20px; }
+    .bg-glow-1, .bg-glow-2 { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-glows" aria-hidden="true">
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+</div>
+<nav>
+  <span class="nav-logo">@daveemane · elevate operations</span>
+  <span class="nav-tag">Free Training</span>
+</nav>
+
+<!-- HERO -->
+<div class="vsl-hero">
+  <p class="pre-headline">Free 20-minute training</p>
+  <h1>How I Make <em>£10K/Month</em> on Amazon<br>Without a Warehouse.</h1>
+  <p class="vsl-sub">@daveemane walks through the online arbitrage model — product sourcing, margin formula, listing strategy, and operations. Press play.</p>
+</div>
+
+<!-- VIDEO -->
+<div style="max-width:860px;margin:0 auto;padding:0 40px 16px;">
+  <div class="video-wrap">
+    <!-- Replace src with your video embed URL when ready -->
+    <div class="video-placeholder">
+      <div class="play-btn">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#000"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+      <span class="video-duration">~ 20 minutes · Free</span>
+    </div>
+  </div>
+</div>
+
+<!-- BULLETS -->
+<div class="bullets-section">
+  <p class="bullets-label">What's covered in this video</p>
+  <div class="bullets-grid">
+    <div class="bullet-item">
+      <div class="bullet-icon">01</div>
+      <div class="bullet-text"><strong>The Margin Formula</strong>The number that tells you — before you buy — whether a product will actually make money on Amazon.</div>
+    </div>
+    <div class="bullet-item">
+      <div class="bullet-icon">02</div>
+      <div class="bullet-text"><strong>Product Sourcing</strong>The exact tools and 5-point criteria used to find profitable online arbitrage products in minutes — not hours.</div>
+    </div>
+    <div class="bullet-item">
+      <div class="bullet-icon">03</div>
+      <div class="bullet-text"><strong>Buy Box Strategy</strong>How to win the buy box consistently without a race to the bottom — and the repricing approach that protects margin.</div>
+    </div>
+    <div class="bullet-item">
+      <div class="bullet-icon">04</div>
+      <div class="bullet-text"><strong>1–2 Hour Operations</strong>The prep centre setup, repricing automation, and sourcing routine that runs this business in under 2 hours a day.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <p><strong>Online arbitrage works.</strong> Hundreds of millions of buyers.
+  Amazon handles the storage, fulfilment, and customer service.
+  You source the products. The system does the rest.</p>
+</div>
+
+<!-- OPT-IN -->
+<div class="optin-section">
+  <h2>Get the follow-up resources<br>+ live session invite</h2>
+  <p>Enter your details and we'll send you the sourcing checklist, the margin formula template, and an invite to the live session.</p>
+  <div class="optin-form">
+    <input class="form-input" type="text" placeholder="First name">
+    <input class="form-input" type="email" placeholder="Email address">
+    <a href="https://elevateoperations.info/booking" target="_blank" class="form-btn">Send Me the Resources &rarr;</a>
+  </div>
+  <p class="optin-note">No spam. Unsubscribe anytime.</p>
+</div>
+
+<footer>
+  <p>Built by <a href="https://elevateoperations.info" target="_blank">Elevate Operations</a>
+  &nbsp;&middot;&nbsp;
+  <a href="https://www.tiktok.com/@daveemane" target="_blank">@daveemane</a></p>
+  <p style="font-size:12px;">Free training &middot; @daveemane</p>
+</footer>
+
+</body>
+</html>
