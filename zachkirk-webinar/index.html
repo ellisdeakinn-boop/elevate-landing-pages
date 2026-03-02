@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Agency Blueprint — Zach Kirk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #030309;
+    --surface: #08080f;
+    --border:  #ffffff0d;
+    --accent:  #7c5cfc;
+    --cyan:    #00c8ff;
+    --text:    #eeeef5;
+    --muted:   #4a4a6a;
+    --label:   #6060a0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    background-image: radial-gradient(rgba(124,92,252,0.045) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── NEON GLOWS ── */
+  .bg-glows { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+  }
+  .bg-glow-1 {
+    width: 750px; height: 750px;
+    background: radial-gradient(circle, rgba(124,92,252,0.12) 0%, transparent 70%);
+    top: -300px; right: -200px;
+    animation: drift1 16s ease-in-out infinite alternate;
+  }
+  .bg-glow-2 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,200,255,0.09) 0%, transparent 70%);
+    bottom: 5%; left: -150px;
+    animation: drift2 20s ease-in-out infinite alternate;
+  }
+  .bg-glow-3 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(124,92,252,0.08) 0%, transparent 70%);
+    top: 40%; left: 40%;
+    animation: drift3 13s ease-in-out infinite alternate;
+  }
+  @keyframes drift1 { from { transform: translate(0,0); } to { transform: translate(-60px,80px); } }
+  @keyframes drift2 { from { transform: translate(0,0); } to { transform: translate(70px,-50px); } }
+  @keyframes drift3 { from { transform: translate(0,0); } to { transform: translate(-40px,60px); } }
+
+  nav, .hero, .stats-bar, .problem-strip,
+  .modules-wrap, .quote-wrap, .register-wrap, footer {
+    position: relative; z-index: 1;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(3,3,9,0.85);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .live-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(124,92,252,0.7);
+  }
+  .live-dot {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent), 0 0 18px var(--accent);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px var(--accent), 0 0 18px var(--accent); }
+    50% { opacity: 0.4; transform: scale(0.7); box-shadow: 0 0 4px var(--accent); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 92vh;
+    overflow: hidden;
+  }
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+  }
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.97) 50%,
+      rgba(255,255,255,0.15) 75%,
+      rgba(255,255,255,0) 90%
+    );
+    mask-image: linear-gradient(
+      to right,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.97) 50%,
+      rgba(255,255,255,0.15) 75%,
+      rgba(255,255,255,0) 90%
+    );
+  }
+  .hero-image::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--cyan), var(--accent), var(--cyan));
+    box-shadow: 0 0 16px var(--accent), 0 0 32px rgba(124,92,252,0.4);
+    z-index: 2;
+  }
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0,0,0,0.035) 3px,
+      rgba(0,0,0,0.035) 4px
+    );
+    pointer-events: none;
+    z-index: 3;
+  }
+  .face-label {
+    position: absolute;
+    bottom: 40px;
+    left: 28px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    box-shadow: 0 0 20px rgba(124,92,252,0.7), 0 0 40px rgba(124,92,252,0.3);
+    z-index: 4;
+  }
+
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 52px;
+  }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 0 0 12px rgba(124,92,252,0.7);
+  }
+  .hero-copy h1 {
+    font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+    text-shadow: 0 0 40px rgba(124,92,252,0.2);
+  }
+  .hero-copy h1 em {
+    font-style: normal;
+    color: var(--cyan);
+    text-shadow: 0 0 30px rgba(0,200,255,0.8), 0 0 60px rgba(0,200,255,0.4);
+  }
+  .hero-copy p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 36px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    padding: 15px 36px;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.15s;
+    align-self: flex-start;
+    box-shadow: 0 0 24px rgba(124,92,252,0.5), 0 0 48px rgba(124,92,252,0.25);
+  }
+  .cta-btn:hover {
+    box-shadow: 0 0 36px rgba(124,92,252,0.85), 0 0 70px rgba(124,92,252,0.4);
+    transform: translateY(-2px);
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: rgba(8,8,15,0.8);
+  }
+  .stat {
+    flex: 1;
+    text-align: center;
+    padding: 32px 20px;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.03em;
+    text-shadow: 0 0 20px rgba(124,92,252,0.7), 0 0 40px rgba(124,92,252,0.3);
+  }
+  .stat-num.cyan {
+    color: var(--cyan);
+    text-shadow: 0 0 20px rgba(0,200,255,0.7), 0 0 40px rgba(0,200,255,0.3);
+  }
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── PROBLEM STRIP ── */
+  .problem-strip {
+    background: rgba(8,8,15,0.9);
+    border-bottom: 1px solid var(--border);
+    padding: 52px 40px;
+    text-align: center;
+  }
+  .problem-strip p {
+    max-width: 680px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  .problem-strip strong { color: var(--text); }
+
+  /* ── MODULES ── */
+  .modules-wrap {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .modules-wrap > .section-label { margin-bottom: 12px; }
+  .modules-wrap > h2 {
+    font-size: clamp(1.8rem, 2.8vw, 2.7rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 56px;
+    max-width: 560px;
+    line-height: 1.12;
+    text-shadow: 0 0 40px rgba(124,92,252,0.15);
+  }
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(124,92,252,0.1);
+  }
+  .module {
+    background: var(--surface);
+    padding: 36px 32px;
+    border: 1px solid rgba(124,92,252,0.08);
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+  }
+  .module:hover {
+    border-color: rgba(124,92,252,0.4);
+    box-shadow: 0 0 30px rgba(124,92,252,0.1), inset 0 0 30px rgba(124,92,252,0.03);
+    background: rgba(124,92,252,0.04);
+  }
+  .module-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    text-shadow: 0 0 10px rgba(124,92,252,0.5);
+  }
+  .module-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .module-body {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* ── QUOTE ── */
+  .quote-wrap {
+    background: rgba(8,8,15,0.95);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 90px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(124,92,252,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  blockquote {
+    font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+    font-weight: 700;
+    color: var(--text);
+    max-width: 740px;
+    margin: 0 auto 20px;
+    line-height: 1.45;
+    letter-spacing: -0.015em;
+    position: relative;
+    text-shadow: 0 0 30px rgba(124,92,252,0.15);
+  }
+  blockquote em {
+    color: var(--cyan);
+    font-style: normal;
+    text-shadow: 0 0 20px rgba(0,200,255,0.6);
+  }
+  cite {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  /* ── REGISTER ── */
+  .register-wrap {
+    padding: 100px 40px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+  .register-inner { max-width: 480px; margin: 0 auto; }
+  .register-inner h2 {
+    font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    margin-bottom: 14px;
+    text-shadow: 0 0 40px rgba(124,92,252,0.2);
+  }
+  .register-inner > p { color: var(--muted); font-size: 15px; margin-bottom: 36px; }
+  .form-row { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+  .form-input {
+    background: rgba(8,8,15,0.9);
+    border: 1px solid rgba(124,92,252,0.15);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+  }
+  .form-input::placeholder { color: #252540; }
+  .form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 16px rgba(124,92,252,0.2);
+  }
+  .form-btn {
+    display: block;
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 16px 32px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.15s;
+    letter-spacing: 0.03em;
+    box-shadow: 0 0 24px rgba(124,92,252,0.4), 0 0 48px rgba(124,92,252,0.2);
+  }
+  .form-btn:hover {
+    box-shadow: 0 0 36px rgba(124,92,252,0.75), 0 0 72px rgba(124,92,252,0.35);
+    transform: translateY(-1px);
+  }
+  .cta-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: rgba(3,3,9,0.9);
+  }
+  footer p { font-size: 13px; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+  footer a:hover { color: var(--accent); text-shadow: 0 0 10px rgba(124,92,252,0.5); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-image { height: 60vw; }
+    .hero-copy { padding: 40px 24px; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat { flex: 1 1 50%; }
+    .module-grid { grid-template-columns: 1fr; }
+    .modules-wrap { padding: 60px 24px; }
+    .register-wrap { padding: 60px 24px; }
+    footer { padding: 24px 20px; }
+    .problem-strip { padding: 36px 24px; }
+    .bg-glow-1, .bg-glow-2, .bg-glow-3 { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND NEON GLOWS -->
+<div class="bg-glows" aria-hidden="true">
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+</div>
+
+<nav>
+  <span class="nav-logo">Zach Kirk · elevate operations</span>
+  <div class="live-pill">
+    <div class="live-dot"></div>
+    Free · Live · No Replay
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-image">
+    <img src="ZACHKIRK_IMG_URL" alt="Zach Kirk">
+    <div class="face-label">Zach Kirk · Live This Week</div>
+  </div>
+  <div class="hero-copy">
+    <p class="section-label">Free live webinar</p>
+    <h1>Build a <em>$10K/Month</em><br>AI Agency<br>From Scratch.</h1>
+    <p>Zach Kirk walks through the complete system live — niche selection, offer architecture, client acquisition, and recurring revenue. One session. No replay. No fluff.</p>
+    <a href="#register" class="cta-btn">Save My Spot &rarr;</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">3–5</div>
+    <div class="stat-label">clients to hit $10K/month. here's how.</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num cyan">4</div>
+    <div class="stat-label">modules. niche to retained client.</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">30</div>
+    <div class="stat-label">days to first paying client. the blueprint.</div>
+  </div>
+</div>
+
+<!-- PROBLEM STRIP -->
+<div class="problem-strip">
+  <p>You've been researching the AI agency model. Watching videos. Learning tools.
+  <strong>The knowledge isn't the problem.</strong>
+  The problem is the sequence — what to do first, second, and third.
+  <strong>Tonight Zach Kirk shows you the exact order of operations.</strong></p>
+</div>
+
+<!-- MODULES -->
+<div class="modules-wrap">
+  <p class="section-label">What you'll learn</p>
+  <h2>Niche to client.<br>In one session.</h2>
+  <div class="module-grid">
+    <div class="module">
+      <div class="module-num">01 / NICHE + POSITIONING</div>
+      <div class="module-title">Pick a niche you can own in 90 days</div>
+      <div class="module-body">The 3-filter method that identifies a niche with volume of pain, ability to pay, and AI leverage. Why generalist agencies fail — and how to position yourself as the most expensive option in the room.</div>
+    </div>
+    <div class="module">
+      <div class="module-num">02 / OFFER ARCHITECTURE</div>
+      <div class="module-title">What to sell and how to price it</div>
+      <div class="module-body">The productised service model that makes $5K–$10K/month achievable with 3–5 clients. The three-tier structure: discovery, delivery, retainer — and the numbers that make it work.</div>
+    </div>
+    <div class="module">
+      <div class="module-num">03 / CLIENT ACQUISITION</div>
+      <div class="module-title">First paying client in 30 days</div>
+      <div class="module-body">The outbound framework that works without an existing audience. Cold outreach structure. The 4 discovery call questions that do 90% of the closing — without hard selling.</div>
+    </div>
+    <div class="module">
+      <div class="module-num">04 / DELIVERY + RETENTION</div>
+      <div class="module-title">Keep clients. Build recurring income.</div>
+      <div class="module-body">How to use AI to deliver 3× faster. The monthly retainer model — what to offer, what to charge, and how to make clients want to stay. Build a business, not a project pipeline.</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-wrap">
+  <blockquote>"You don't have a knowledge problem.<br><em>You have an action sequencing problem.</em><br>The order you do things matters more than almost anything else."</blockquote>
+  <cite>— Zach Kirk</cite>
+</div>
+
+<!-- REGISTER -->
+<div class="register-wrap" id="register">
+  <div class="register-inner">
+    <p class="section-label">Register free</p>
+    <h2>One night.<br>The full blueprint.<br>No replay.</h2>
+    <p>Enter your details and we'll send you the link. Reminder goes out the day before and two hours before we go live.</p>
+    <div class="form-row">
+      <input class="form-input" type="text" placeholder="First name">
+      <input class="form-input" type="email" placeholder="Email address">
+      <input class="form-input" type="tel" placeholder="Phone number (for reminder SMS)">
+    </div>
+    <a href="https://elevateoperations.info/booking" target="_blank" class="form-btn">Save My Spot &rarr;</a>
+    <p class="cta-note" style="margin-top:14px;">No spam. SMS reminder only. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Built by <a href="https://elevateoperations.info" target="_blank">Elevate Operations</a>
+  &nbsp;&middot;&nbsp;
+  <a href="https://www.youtube.com/@zachkirk" target="_blank">Zach Kirk</a></p>
+  <p style="font-size:12px;">Free webinar &middot; Live only &middot; No replay</p>
+</footer>
+
+</body>
+</html>
