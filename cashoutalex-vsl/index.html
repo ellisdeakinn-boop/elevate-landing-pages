@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Built for CashoutAlex by Elevate Operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent:  #1a1a2e;
+      --light:   #16213e;
+      --gold:    #f59e0b;
+      --text:    #1a1a1a;
+      --muted:   #5a5a5a;
+      --bg:      #f7f6f3;
+      --border:  #e0ddd8;
+      --white:   #ffffff;
+      --r:       8px;
+    }
+    body { font-family: 'Inter', -apple-system, sans-serif; color: var(--text); line-height: 1.65; font-size: 17px; background: #0a0f14; }
+    h1, h2, h3 { font-family: 'Syne', -apple-system, sans-serif; }
+
+    /* ── Top bar ── */
+    .topbar {
+      background: #0a0f14;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-logo { font-family: 'Syne', -apple-system, sans-serif; font-size: 17px; color: rgba(255,255,255,0.9); font-weight: 700; }
+    .topbar-tag  { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #f59e0b; }
+
+    /* ── Video section ── */
+    .video-section {
+      background: #0a0f14;
+      padding: 48px 24px 56px;
+      text-align: center;
+    }
+    .video-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #f59e0b;
+      margin-bottom: 16px;
+    }
+    .video-headline {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 800;
+      color: white;
+      max-width: 780px;
+      margin: 0 auto 12px;
+      line-height: 1.1;
+    }
+    .video-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      max-width: 580px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .video-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      position: relative;
+      padding-top: 56.25%;
+      background: #111;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .video-caption {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+    .vsl-placeholder-inner {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      color: rgba(255,255,255,0.35); text-align: center;
+    }
+    .vsl-placeholder-inner svg { width: 64px; height: 64px; }
+    .vsl-placeholder-inner p { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+
+    /* ── Below-fold content ── */
+    .content { background: var(--bg); }
+    .section { padding: 72px 32px; max-width: 860px; margin: 0 auto; }
+    .section-title {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 20px;
+      line-height: 1.15;
+    }
+
+    /* ── Found list ── */
+    .found-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+    .found-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 16px;
+      line-height: 1.6;
+      padding: 16px 20px;
+      background: white;
+      border-radius: var(--r);
+      border-left: 3px solid #f59e0b;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .found-list li::before {
+      content: "!";
+      font-weight: 800;
+      color: #f59e0b;
+      flex-shrink: 0;
+      font-size: 15px;
+      width: 24px;
+      height: 24px;
+      background: #1a1a2e;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    /* ── Cost box ── */
+    .cost-box {
+      background: #1a1a2e;
+      color: white;
+      border-radius: var(--r);
+      padding: 32px 36px;
+      font-size: 17px;
+      line-height: 1.75;
+      margin-top: 8px;
+    }
+
+    /* ── Pitch list ── */
+    .pitch-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .pitch-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .pitch-list li::before {
+      content: "&#10003;";
+      font-weight: 800;
+      color: #f59e0b;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 16px;
+    }
+
+    /* ── Proof bar ── */
+    .proof-bar {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px 28px;
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 32px;
+      border-left: 3px solid #f59e0b;
+    }
+
+    /* ── CTA section ── */
+    .cta-section {
+      background: linear-gradient(150deg, #1a1a2e 0%, #16213e 100%);
+      padding: 80px 32px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      color: white;
+      margin-bottom: 14px;
+      line-height: 1.12;
+    }
+    .cta-section p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.78);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: #1a1a2e;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 17px 40px;
+      border-radius: 3px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      transition: transform 0.15s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); color: #1a1a2e; }
+    .cta-note { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.45); }
+
+    /* ── Footer ── */
+    footer {
+      background: #080d13;
+      color: #444;
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 12px;
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 2;
+    }
+    footer a { color: #666; text-decoration: none; }
+
+    /* ── Divider ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ── Gen Z overrides: grid bg + neon glow ── */
+    body {
+      background: #050510 !important;
+      background-image:
+        linear-gradient(rgba(168,85,247,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168,85,247,0.07) 1px, transparent 1px) !important;
+      background-size: 50px 50px !important;
+    }
+    .orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(100px); }
+    .orb-1 { width: 500px; height: 500px; background: rgba(168,85,247,0.18); top: -150px; right: -150px; animation: drift 8s ease-in-out infinite alternate; }
+    .orb-2 { width: 350px; height: 350px; background: rgba(6,182,212,0.14); bottom: 100px; left: -150px; animation: drift 10s ease-in-out infinite alternate-reverse; }
+    @keyframes drift { from { transform: translate(0,0); } to { transform: translate(20px,30px); } }
+    .topbar { background: rgba(168,85,247,0.08) !important; border-bottom: 1px solid rgba(168,85,247,0.2) !important; }
+    .topbar-logo { color: #f0f0ff !important; }
+    .topbar-tag { color: #a855f7 !important; }
+    .video-section { background: transparent !important; }
+    .video-eyebrow { color: #a855f7 !important; }
+    .video-headline {
+      background: linear-gradient(135deg, #ffffff 0%, #a855f7 40%, #06b6d4 80%, #ec4899 100%) !important;
+      -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; background-clip: text !important;
+      filter: drop-shadow(0 0 30px rgba(168,85,247,0.4));
+    }
+    .video-wrapper { box-shadow: 0 0 60px rgba(168,85,247,0.3), 0 24px 80px rgba(0,0,0,0.6) !important; border: 1px solid rgba(168,85,247,0.3) !important; }
+    .vsl-placeholder-inner { color: #a855f7 !important; }
+    .content { background: transparent !important; }
+    .section { position: relative; z-index: 1; }
+    .section-title {
+      background: linear-gradient(90deg, #a855f7, #06b6d4) !important;
+      -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; background-clip: text !important;
+    }
+    .found-list li {
+      background: rgba(255,255,255,0.03) !important;
+      border: 1px solid rgba(168,85,247,0.2) !important;
+      border-left: 3px solid #a855f7 !important;
+      box-shadow: none !important; color: #d0d0f0 !important;
+      backdrop-filter: blur(10px);
+    }
+    .found-list li::before { background: linear-gradient(135deg, #a855f7, #06b6d4) !important; }
+    .cost-box {
+      background: rgba(168,85,247,0.08) !important;
+      border: 1px solid rgba(168,85,247,0.25) !important;
+      backdrop-filter: blur(10px) !important; color: #d0d0f0 !important;
+    }
+    .pitch-list li { color: #d0d0f0 !important; }
+    .pitch-list li::before { color: #06b6d4 !important; }
+    .proof-bar {
+      background: rgba(6,182,212,0.06) !important;
+      border: 1px solid rgba(6,182,212,0.25) !important;
+      border-left: 3px solid #06b6d4 !important; color: #9090cc !important;
+    }
+    .cta-section { background: rgba(168,85,247,0.08) !important; border-top: 1px solid rgba(168,85,247,0.2) !important; }
+    .cta-section h2 {
+      background: linear-gradient(135deg, #a855f7, #06b6d4, #ec4899) !important;
+      -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; background-clip: text !important;
+    }
+    .cta-section p { color: #8888aa !important; }
+    .cta-btn {
+      background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%) !important;
+      color: #fff !important; border-radius: 12px !important;
+      box-shadow: 0 0 40px rgba(168,85,247,0.5), 0 0 80px rgba(6,182,212,0.2) !important;
+    }
+    .cta-btn:hover { box-shadow: 0 0 60px rgba(168,85,247,0.8), 0 0 120px rgba(6,182,212,0.4) !important; transform: translateY(-3px) scale(1.01) !important; }
+    .divider { border-color: rgba(168,85,247,0.1) !important; }
+    footer { background: #030308 !important; color: #5555aa !important; }
+    footer a { color: #a855f7 !important; }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+
+  
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="topbar-logo">CashoutAlex</div>
+    <div class="topbar-tag">Built by Elevate Operations</div>
+  </header>
+
+  <!-- VIDEO -->
+  <section class="video-section">
+    <div class="video-eyebrow">Recorded specifically for CashoutAlex</div>
+    <h1 class="video-headline">I looked at CashoutAlex's website and content before recording this.</h1>
+    <p class="video-sub">Here is what I found about your current enrollment funnel, what it is costing in missed program applications, and what a full acquisition system looks like built for your coaching business.</p>
+    <div class="video-wrapper">
+      <div class="vsl-placeholder-inner"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="39" stroke="currentColor" stroke-width="2" opacity="0.4"/><path d="M32 26l24 14-24 14V26z" fill="currentColor"/></svg><p>VSL dropping soon</p></div>
+    </div>
+    <p class="video-caption">Watch time: approx. 4&#8211;5 minutes &#x2022; Recorded by Ellis, Elevate Operations</p>
+  </section>
+
+  <!-- BELOW FOLD -->
+  <div class="content">
+
+    <!-- WHAT WE FOUND -->
+    <section class="section">
+      <h2 class="section-title">What I Found on CashoutAlex's Website</h2>
+      <ul class="found-list">
+        <li>I reviewed CashoutAlex's full digital presence before putting this together.</li>
+      </ul>
+    </section>
+
+    <hr class="divider">
+
+    <!-- WHAT IT'S COSTING -->
+    <section class="section">
+      <h2 class="section-title">What This Is Costing CashoutAlex</h2>
+      <div class="cost-box">At a $6,500 average ticket and no paid acquisition system, every program sale depends on the algorithm, your posting schedule, or referrals. 41 qualified applications in 45 days at $180 per application is a scalable, predictable pipeline — not a content grind.</div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- THE PITCH -->
+    <section class="section">
+      <h2 class="section-title">What We Build for CashoutAlex</h2>
+      <p style="color:var(--muted);font-size:17px;margin-bottom:28px;line-height:1.7;">
+        A complete paid acquisition system, built around your specific gaps and your market in .
+      </p>
+      <ul class="pitch-list">
+        <li>Meta ads targeting buyers who have already tried e-commerce — they convert 2x faster than complete beginners</li><li>A VSL landing page for CashoutAlex centred on student transformation and specific revenue milestones, not lifestyle claims</li><li>Automated application funnel: interested prospects qualify themselves before the strategy call</li><li>7-touch email and SMS follow-up from click to booked call</li><li>Meta retargeting for anyone who visited the application page but did not complete it</li>
+      </ul>
+      <div class="proof-bar">41 qualified program applications in 45 days. $6,500 average ticket. Cost per application: $180.</div>
+    </section>
+
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to Talk?</h2>
+    <p>15 minutes. No pitch deck. Just a direct conversation about what this looks like for CashoutAlex.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn">Book a 15-Min Call With Ellis &#8594;</a>
+    <p class="cta-note">Book directly &#x2014; no assistant, no form, no wait.</p>
+  </section>
+
+  <footer>
+    Built for CashoutAlex by <a href="https://elevateoperations.info">Elevate Operations</a>
+    &#x2022; 
+  </footer>
+
+</body>
+</html>
