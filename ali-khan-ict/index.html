@@ -10,30 +10,42 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --accent:       #0f2742;
-      --accent-light: #1a3f6b;
-      --gold:         #22c55e;
-      --text:         #1a1a1a;
-      --muted:        #5a5a5a;
-      --light-bg:     #f7f6f3;
-      --border:       #e0ddd8;
-      --white:        #ffffff;
-      --radius:       8px;
+      --cyan:   #00d4ff;
+      --green:  #22c55e;
+      --dark:   #040d1a;
+      --darker: #020810;
+      --card:   rgba(0,212,255,0.05);
+      --border: rgba(0,212,255,0.15);
+      --text:   rgba(255,255,255,0.92);
+      --muted:  rgba(255,255,255,0.52);
+      --radius: 10px;
     }
     body {
       font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--dark);
       color: var(--text);
       line-height: 1.65;
       font-size: 17px;
+      overflow-x: hidden;
     }
     h1, h2, h3 { font-family: 'Syne', -apple-system, sans-serif; }
-    a { color: var(--accent); text-decoration: none; }
+    a { color: var(--cyan); text-decoration: none; }
 
-    /* ── Nav ── */
+    /* Grid background */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    /* Nav */
     .nav {
-      background: var(--white);
+      background: rgba(4,13,26,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      padding: 18px 40px;
+      padding: 16px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -43,380 +55,471 @@
     }
     .nav-logo {
       font-family: 'Syne', -apple-system, sans-serif;
-      font-weight: 700;
-      font-size: 19px;
-      color: var(--accent);
-      letter-spacing: -0.2px;
+      font-weight: 800;
+      font-size: 18px;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .nav-badge {
-      background: var(--accent);
-      color: white;
-      font-family: 'Inter', -apple-system, sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 5px 13px;
-      border-radius: 2px;
-      letter-spacing: 0.8px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.28);
+      color: var(--cyan);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
     }
 
-    /* ── Hero ── */
+    /* Hero */
     .hero {
-      background: linear-gradient(150deg, #0f2742 0%, #1a3f6b 100%);
-      color: white;
-      padding: 96px 40px 84px;
+      position: relative;
+      padding: 104px 40px 92px;
       text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 520px at 50% -10%, rgba(0,212,255,0.14) 0%, transparent 65%),
+        radial-gradient(ellipse 600px 400px at 80% 100%, rgba(34,197,94,0.08) 0%, transparent 60%);
+      pointer-events: none;
     }
     .hero-eyebrow {
-      font-family: 'Inter', -apple-system, sans-serif;
       font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2.5px;
+      font-weight: 700;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      opacity: 0.6;
-      margin-bottom: 28px;
+      color: var(--cyan);
+      opacity: 0.7;
+      margin-bottom: 26px;
     }
     .hero h1 {
-      font-size: clamp(30px, 5.5vw, 56px);
+      font-size: clamp(28px, 5.5vw, 58px);
       font-weight: 800;
-      line-height: 1.1;
-      max-width: 880px;
-      margin: 0 auto 24px;
+      line-height: 1.07;
+      max-width: 900px;
+      margin: 0 auto 26px;
+      background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 55%, var(--green) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .hero-sub {
-      font-family: 'Inter', -apple-system, sans-serif;
-      font-size: clamp(16px, 2.5vw, 20px);
-      opacity: 0.86;
-      max-width: 660px;
-      margin: 0 auto 44px;
-      line-height: 1.65;
+      font-size: clamp(15px, 2.4vw, 19px);
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 50px;
+      line-height: 1.7;
+    }
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(0,212,255,0.45), 0 0 40px rgba(0,212,255,0.18); }
+      50%       { box-shadow: 0 0 28px rgba(34,197,94,0.55), 0 0 60px rgba(34,197,94,0.22); }
     }
     .cta-btn {
       display: inline-block;
-      background: white;
-      color: #0f2742;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      color: #040d1a;
       font-family: 'Inter', -apple-system, sans-serif;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 16px;
-      padding: 17px 40px;
-      border-radius: 3px;
+      padding: 17px 44px;
+      border-radius: 6px;
       text-decoration: none;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
-      transition: transform 0.15s, box-shadow 0.15s;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.3px;
+      animation: glowPulse 3s ease-in-out infinite;
+      transition: transform 0.15s;
     }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.24); color: #0f2742; }
+    .cta-btn:hover { transform: translateY(-2px); color: #040d1a; }
     .hero-urgency {
-      font-family: 'Inter', -apple-system, sans-serif;
-      margin-top: 18px;
+      margin-top: 16px;
       font-size: 12px;
-      opacity: 0.58;
+      color: var(--muted);
       letter-spacing: 0.3px;
     }
 
-    /* ── Section ── */
-    .section { padding: 84px 40px; max-width: 940px; margin: 0 auto; }
-    .section-title {
-      font-size: clamp(26px, 4vw, 40px);
-      font-weight: 800;
-      letter-spacing: -0.3px;
-      margin-bottom: 16px;
-      line-height: 1.12;
-      color: var(--accent);
-    }
-    .section-sub {
-      color: var(--muted);
-      font-size: 17px;
-      margin-bottom: 48px;
-      max-width: 680px;
-      line-height: 1.65;
-    }
-
-    /* ── Lead-in ── */
+    /* Lead-in */
     .lead-in-wrap {
-      background: var(--light-bg);
-      padding: 52px 40px;
+      padding: 56px 40px;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
     .lead-in {
-      background: white;
-      border-left: 3px solid var(--gold);
+      background: rgba(0,212,255,0.04);
+      border-left: 3px solid var(--cyan);
       padding: 28px 36px;
       border-radius: 0 var(--radius) var(--radius) 0;
       font-size: 18px;
       font-style: italic;
-      line-height: 1.75;
+      line-height: 1.8;
       max-width: 860px;
       margin: 0 auto;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      color: rgba(255,255,255,0.78);
+      box-shadow: 0 0 40px rgba(0,212,255,0.05) inset;
     }
 
-    /* ── Pain ── */
-    .pain-section {
-      background: #0f2742;
-      color: white;
-      padding: 84px 40px;
+    /* Section */
+    .section { padding: 88px 40px; max-width: 960px; margin: 0 auto; }
+    .section-title {
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 14px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ffffff, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .pain-section .section-title { color: white; margin-bottom: 40px; }
+    .section-sub {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 48px;
+      max-width: 660px;
+      line-height: 1.7;
+    }
+
+    /* Pain */
+    .pain-section {
+      background: var(--darker);
+      padding: 88px 40px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .pain-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+    .pain-inner { max-width: 960px; margin: 0 auto; position: relative; }
+    .pain-section .section-title { margin-bottom: 40px; }
     .pain-grid {
-      max-width: 940px;
-      margin: 0 auto;
       display: grid;
-      gap: 20px;
+      gap: 18px;
       grid-template-columns: 1fr;
     }
     @media(min-width:640px) { .pain-grid { grid-template-columns: 1fr 1fr; } }
     .pain-card {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,212,255,0.04);
+      border: 1px solid rgba(0,212,255,0.1);
+      border-left: 3px solid var(--cyan);
       border-radius: var(--radius);
       padding: 28px;
       display: flex;
       gap: 20px;
       align-items: flex-start;
+      transition: box-shadow 0.3s, border-left-color 0.3s;
+    }
+    .pain-card:hover {
+      border-left-color: var(--green);
+      box-shadow: 0 0 28px rgba(0,212,255,0.08);
     }
     .pain-num {
       font-family: 'Syne', -apple-system, sans-serif;
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 800;
-      color: #22c55e;
+      color: var(--cyan);
       flex-shrink: 0;
       line-height: 1;
-      margin-top: 0;
       min-width: 44px;
     }
-    .pain-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; font-family: 'Inter', -apple-system, sans-serif; }
-    .pain-body  { font-size: 14px; opacity: 0.80; line-height: 1.65; font-family: 'Inter', -apple-system, sans-serif; }
+    .pain-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; color: white; }
+    .pain-body  { font-size: 14px; color: var(--muted); line-height: 1.7; }
 
-    /* ── Solution ── */
-    .solution-body { font-size: 18px; line-height: 1.8; color: var(--muted); }
+    /* Solution */
+    .solution-body { font-size: 18px; line-height: 1.85; color: rgba(255,255,255,0.68); }
 
-    /* ── Steps ── */
+    /* Steps */
     .steps { display: flex; flex-direction: column; gap: 32px; }
     .step { display: flex; gap: 24px; align-items: flex-start; }
     .step-num {
-      background: var(--accent);
-      color: white;
-      font-family: 'Inter', -apple-system, sans-serif;
+      background: linear-gradient(135deg, rgba(0,212,255,0.14), rgba(34,197,94,0.14));
+      border: 1px solid rgba(0,212,255,0.3);
+      color: var(--cyan);
       font-weight: 700;
-      font-size: 13px;
+      font-size: 12px;
       width: 44px; height: 44px;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
+      box-shadow: 0 0 12px rgba(0,212,255,0.18);
     }
-    .step-title { font-weight: 700; font-size: 17px; margin-bottom: 6px; font-family: 'Inter', -apple-system, sans-serif; }
-    .step-body  { color: var(--muted); font-size: 16px; line-height: 1.65; }
+    .step-title { font-weight: 700; font-size: 17px; margin-bottom: 6px; color: white; }
+    .step-body  { color: var(--muted); font-size: 15px; line-height: 1.65; }
 
-    /* ── Testimonials ── */
+    /* Testimonials */
     .testimonials-bg {
-      background: var(--light-bg);
-      padding: 84px 40px;
+      padding: 88px 40px;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+      background: var(--darker);
     }
     .testimonials-grid {
-      max-width: 940px;
+      max-width: 960px;
       margin: 40px auto 0;
       display: grid;
-      gap: 20px;
+      gap: 18px;
       grid-template-columns: 1fr;
     }
     @media(min-width:700px) { .testimonials-grid { grid-template-columns: 1fr 1fr 1fr; } }
     .testimonial {
-      background: white;
+      background: rgba(0,212,255,0.04);
+      border: 1px solid rgba(0,212,255,0.12);
       border-radius: var(--radius);
       padding: 28px;
-      border: 1px solid var(--border);
-      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+      transition: box-shadow 0.3s;
     }
-    .testimonial-quote  { font-size: 15px; line-height: 1.7; color: var(--text); font-style: italic; margin-bottom: 16px; }
-    .testimonial-author { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.8px; text-transform: uppercase; }
+    .testimonial:hover { box-shadow: 0 0 28px rgba(0,212,255,0.1); }
+    .testimonial-quote  { font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.76); font-style: italic; margin-bottom: 16px; }
+    .testimonial-author { font-size: 11px; font-weight: 700; color: var(--cyan); letter-spacing: 1px; text-transform: uppercase; }
 
-    /* ── Offer ── */
+    /* Offer box */
     .offer-box {
-      background: var(--light-bg);
-      border: 2px solid var(--accent);
+      background: rgba(0,212,255,0.04);
+      border: 1px solid rgba(0,212,255,0.24);
       border-radius: var(--radius);
       padding: 40px;
       max-width: 640px;
       margin: 0 auto;
+      box-shadow: 0 0 60px rgba(0,212,255,0.06);
     }
     .offer-title {
       font-family: 'Syne', -apple-system, sans-serif;
       font-weight: 800;
       font-size: 22px;
       margin-bottom: 24px;
-      color: var(--accent);
+      background: linear-gradient(135deg, white, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .offer-box ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .offer-box li { display: flex; gap: 12px; font-size: 16px; align-items: flex-start; line-height: 1.5; }
+    .offer-box li { display: flex; gap: 12px; font-size: 15px; align-items: flex-start; line-height: 1.55; color: rgba(255,255,255,0.8); }
     .offer-box li::before {
-      content: "&#10003;";
-      font-weight: 800;
-      color: #22c55e;
+      content: "\2713";
+      font-weight: 900;
+      color: var(--green);
       flex-shrink: 0;
       margin-top: 1px;
+      font-size: 15px;
     }
     .offer-value {
       margin-top: 24px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--muted);
       text-align: center;
       padding-top: 20px;
-      border-top: 1px solid var(--border);
-      letter-spacing: 0.3px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      letter-spacing: 0.5px;
     }
-
-    /* ── Elevate Operations section ── */
-    .elevate-section {
-      background: #0d1520;
-      color: white;
-      padding: 88px 40px;
-    }
-    .elevate-inner { max-width: 940px; margin: 0 auto; }
-    .elevate-eyebrow {
+    .offer-cta-btn {
+      display: block;
+      margin-top: 28px;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      color: #040d1a;
       font-family: 'Inter', -apple-system, sans-serif;
-      font-size: 11px;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 15px 32px;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      animation: glowPulse 3s ease-in-out infinite;
+      transition: transform 0.15s;
+    }
+    .offer-cta-btn:hover { transform: translateY(-2px); color: #040d1a; }
+
+    /* Elevate */
+    .elevate-section {
+      background: #020810;
+      padding: 92px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .elevate-inner { max-width: 960px; margin: 0 auto; }
+    .elevate-eyebrow {
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: #22c55e;
-      margin-bottom: 14px;
+      color: var(--green);
+      margin-bottom: 12px;
     }
     .elevate-section h2 {
       font-family: 'Syne', -apple-system, sans-serif;
-      font-size: clamp(26px, 4vw, 40px);
+      font-size: clamp(24px, 4vw, 38px);
       font-weight: 800;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       line-height: 1.12;
+      background: linear-gradient(135deg, white, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .elevate-intro {
-      font-family: 'Inter', -apple-system, sans-serif;
-      font-size: 17px;
-      opacity: 0.72;
+      font-size: 16px;
+      color: var(--muted);
       max-width: 720px;
-      line-height: 1.75;
+      line-height: 1.8;
       margin-bottom: 56px;
     }
     .elevate-stats {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      gap: 18px;
       margin-bottom: 64px;
     }
     @media(min-width:700px) { .elevate-stats { grid-template-columns: repeat(4, 1fr); } }
-    .elevate-stat { border-top: 2px solid #22c55e; padding-top: 18px; }
+    .elevate-stat {
+      background: rgba(0,212,255,0.04);
+      border: 1px solid rgba(0,212,255,0.12);
+      border-top: 2px solid var(--cyan);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
     .elevate-stat-num {
       font-family: 'Syne', -apple-system, sans-serif;
-      font-size: 38px;
+      font-size: 36px;
       font-weight: 800;
-      color: white;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       line-height: 1;
       margin-bottom: 8px;
     }
-    .elevate-stat-label {
-      font-family: 'Inter', -apple-system, sans-serif;
-      font-size: 13px;
-      opacity: 0.58;
-      line-height: 1.45;
-    }
+    .elevate-stat-label { font-size: 12px; color: var(--muted); line-height: 1.5; }
     .elevate-process-label {
-      font-family: 'Inter', -apple-system, sans-serif;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #22c55e;
+      color: var(--cyan);
       margin-bottom: 28px;
     }
-    .elevate-steps { display: flex; flex-direction: column; gap: 24px; margin-bottom: 52px; }
+    .elevate-steps { display: flex; flex-direction: column; gap: 22px; margin-bottom: 52px; }
     .elevate-step { display: flex; gap: 20px; align-items: flex-start; }
     .elevate-step-num {
-      font-family: 'Inter', -apple-system, sans-serif;
       font-weight: 700;
-      font-size: 12px;
-      color: #22c55e;
-      border: 1px solid #22c55e;
-      width: 36px; height: 36px;
+      font-size: 11px;
+      color: var(--cyan);
+      border: 1px solid rgba(0,212,255,0.3);
+      width: 34px; height: 34px;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(0,212,255,0.15);
     }
-    .elevate-step-title { font-family: 'Inter', -apple-system, sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 4px; }
-    .elevate-step-body  { font-family: 'Inter', -apple-system, sans-serif; font-size: 14px; opacity: 0.65; line-height: 1.65; }
+    .elevate-step-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; color: white; }
+    .elevate-step-body  { font-size: 13px; color: var(--muted); line-height: 1.65; }
     .elevate-cta-btn {
       display: inline-block;
-      background: #22c55e;
-      color: #0d1520;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
       font-family: 'Inter', -apple-system, sans-serif;
       font-weight: 700;
-      font-size: 16px;
-      padding: 16px 36px;
-      border-radius: 3px;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 6px;
       text-decoration: none;
-      transition: opacity 0.15s;
-      letter-spacing: 0.2px;
+      transition: background 0.2s, color 0.2s;
     }
-    .elevate-cta-btn:hover { opacity: 0.88; color: #0d1520; }
+    .elevate-cta-btn:hover { background: var(--cyan); color: #020810; }
 
-    /* ── Final CTA ── */
+    /* Final CTA */
     .final-cta {
-      background: linear-gradient(150deg, #0f2742 0%, #1a3f6b 100%);
-      color: white;
-      padding: 96px 40px;
+      position: relative;
+      padding: 104px 40px;
       text-align: center;
+      overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 800px 500px at 50% 50%, rgba(34,197,94,0.11) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 20% 100%, rgba(0,212,255,0.08) 0%, transparent 60%);
+      pointer-events: none;
     }
     .final-cta h2 {
-      font-size: clamp(26px, 4vw, 44px);
+      font-size: clamp(24px, 4vw, 44px);
       font-weight: 800;
       letter-spacing: -0.3px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, white, var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .final-cta p {
-      font-family: 'Inter', -apple-system, sans-serif;
-      font-size: 18px;
-      opacity: 0.86;
-      max-width: 580px;
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 560px;
       margin: 0 auto 44px;
-      line-height: 1.65;
+      line-height: 1.7;
     }
     .cta-btn-dark {
       display: inline-block;
-      background: white;
-      color: #0f2742;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      color: #040d1a;
       font-family: 'Inter', -apple-system, sans-serif;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 16px;
-      padding: 17px 40px;
-      border-radius: 3px;
+      padding: 17px 44px;
+      border-radius: 6px;
       text-decoration: none;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
-      transition: transform 0.15s, box-shadow 0.15s;
+      animation: glowPulse 3s ease-in-out infinite;
+      transition: transform 0.15s;
     }
-    .cta-btn-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.26); color: #0f2742; }
-    .final-urgency { font-family: 'Inter', -apple-system, sans-serif; margin-top: 20px; font-size: 12px; opacity: 0.55; letter-spacing: 0.3px; }
+    .cta-btn-dark:hover { transform: translateY(-2px); color: #040d1a; }
+    .final-urgency { margin-top: 18px; font-size: 12px; color: var(--muted); letter-spacing: 0.3px; }
 
-    /* ── Footer ── */
+    /* Footer */
     footer {
-      background: #080d13;
-      color: #555;
+      background: #020810;
+      color: rgba(255,255,255,0.28);
       padding: 36px 40px;
       text-align: center;
-      font-family: 'Inter', -apple-system, sans-serif;
       font-size: 13px;
       line-height: 2.3;
+      border-top: 1px solid rgba(0,212,255,0.08);
     }
-    footer strong { color: #999; }
-    footer a { color: #777; }
+    footer strong { color: rgba(255,255,255,0.58); }
+    footer a { color: rgba(0,212,255,0.58); }
 
-    /* ── Divider ── */
-    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+    /* Scroll animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Responsive */
+    @media(max-width:600px) {
+      .nav { padding: 14px 20px; }
+      .hero { padding: 72px 20px 64px; }
+      .section { padding: 64px 20px; }
+      .pain-section, .testimonials-bg, .elevate-section { padding: 64px 20px; }
+      .final-cta { padding: 72px 20px; }
+      .lead-in { padding: 22px 24px; font-size: 16px; }
+    }
   </style>
 </head>
-<body>
+<body class="grid-bg">
 
   <!-- NAV -->
   <nav class="nav">
@@ -425,23 +528,23 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-eyebrow">Ali Khan ICT &nbsp;&middot;&nbsp; 183K, IG</div>
-    <h1>Still Losing Accounts? You're Not Missing Discipline — You're Missing the Right System.</h1>
-    <p class="hero-sub">Inside Ali Khan ICT, serious traders get the methodology, the signals, and the community to pass prop firm challenges and build real, consistent funded accounts — without figuring it out alone.</p>
-    <a href="https://elevateoperations.info/booking" class="cta-btn">Apply for a Free Strategy Call &rarr;</a>
-    <p class="hero-urgency">Strategy calls are capped at 10 per week. Serious traders only.</p>
+  <section class="hero grid-bg">
+    <div class="hero-eyebrow fade-up">Ali Khan ICT &nbsp;&middot;&nbsp; Prop-Funded Trader Program</div>
+    <h1 class="fade-up">Still Losing Accounts? You're Not Missing Discipline — You're Missing the Right System.</h1>
+    <p class="hero-sub fade-up">Inside Ali Khan ICT, serious traders get the methodology, the signals, and the community to pass prop firm challenges and build real, consistent funded accounts — without figuring it out alone.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn fade-up">Apply for a Free Strategy Call &rarr;</a>
+    <p class="hero-urgency fade-up">Strategy calls are capped at 10 per week. Serious traders only.</p>
   </section>
 
   <!-- LEAD-IN -->
-  <div class="lead-in-wrap">
+  <div class="lead-in-wrap fade-up">
     <p class="lead-in">Most traders spend 1 to 3 years blowing accounts, chasing setups on YouTube, and repeating the same mistakes — before they realise the problem isn't effort. It's the absence of a clear, rule-based system and a community that holds them to it. The traders passing challenges and building funded income right now aren't gifted — they have the right framework and the right people around them.</p>
   </div>
 
   <!-- PAIN -->
   <section class="pain-section">
-    <div style="max-width:940px;margin:0 auto;">
-      <h2 class="section-title">Why Most Traders Never Get Consistent — and What the Ones With Funded Accounts Do Differently</h2>
+    <div class="pain-inner">
+      <h2 class="section-title fade-up">Why Most Traders Never Get Consistent — and What the Ones With Funded Accounts Do Differently</h2>
       <div class="pain-grid">
         
         <div class="pain-card">
@@ -478,16 +581,14 @@
 
   <!-- SOLUTION -->
   <section class="section">
-    <h2 class="section-title">Why Students Choose Ali Khan ICT Over Self-Study</h2>
-    <p class="solution-body">Ali Khan ICT is not a course library or a Discord community with a price tag. It is a structured mentorship program built around one outcome: getting students to a specific, measurable result as efficiently as possible. Every student gets direct access to a mentor who is still actively operating in the market — not someone who built results five years ago and now teaches from a distance. The curriculum is built for implementation, not consumption.</p>
+    <h2 class="section-title fade-up">Why Students Choose Ali Khan ICT Over Self-Study</h2>
+    <p class="solution-body fade-up">Ali Khan ICT is not a course library or a Discord community with a price tag. It is a structured mentorship program built around one outcome: getting students to a specific, measurable result as efficiently as possible. Every student gets direct access to a mentor who is still actively operating in the market — not someone who built results five years ago and now teaches from a distance. The curriculum is built for implementation, not consumption.</p>
   </section>
 
-  <hr class="divider">
-
   <!-- HOW IT WORKS -->
-  <section class="section">
-    <h2 class="section-title">Here Is What Happens When You Work With Ali Khan ICT</h2>
-    <p class="section-sub">A clear, simple process &#8212; from first conversation to real results.</p>
+  <section class="section" style="padding-top:0;">
+    <h2 class="section-title fade-up">Here Is What Happens When You Apply</h2>
+    <p class="section-sub fade-up">A clear, simple process &#8212; from application to funded account.</p>
     <div class="steps">
       
         <div class="step">
@@ -523,8 +624,8 @@
 
   <!-- TESTIMONIALS -->
   <div class="testimonials-bg">
-    <div style="max-width:940px;margin:0 auto;">
-      <h2 class="section-title">What 183K Clients Are Saying</h2>
+    <div style="max-width:960px;margin:0 auto;">
+      <h2 class="section-title fade-up">What Traders Inside the Community Are Saying</h2>
       <div class="testimonials-grid">
         
         <div class="testimonial">
@@ -545,22 +646,22 @@
 
   <!-- OFFER -->
   <section class="section" style="text-align:center;">
-    <h2 class="section-title">What Is Included</h2>
-    <p class="section-sub" style="margin:0 auto 40px;">Everything you need to make the right decision &#8212; at zero cost.</p>
-    <div class="offer-box">
+    <h2 class="section-title fade-up">What Is Included</h2>
+    <p class="section-sub fade-up" style="margin:0 auto 40px;">Everything you need to make the right decision &#8212; at zero cost.</p>
+    <div class="offer-box fade-up">
       <div class="offer-title">Your Free Strategy Call Includes:</div>
       <ul><li>An honest review of your current approach and where it is breaking down</li><li>Identification of your top 2 to 3 execution mistakes (from your journal or history)</li><li>A clear picture of what the right structure looks like for your level</li><li>An honest answer on whether the program is the right fit for you</li><li>Zero pressure — we only want traders we can genuinely help in the community</li></ul>
       <div class="offer-value">Completely free — 30 minutes, no obligation</div>
+      <a href="https://elevateoperations.info/booking" class="offer-cta-btn">Apply for a Free Strategy Call &rarr;</a>
     </div>
   </section>
 
   <!-- ELEVATE OPERATIONS -->
   <section class="elevate-section">
     <div class="elevate-inner">
-      <div class="elevate-eyebrow">Built by Elevate Operations</div>
-      <h2>The System Behind This Page</h2>
-      <p class="elevate-intro">This student acquisition page was built for Ali Khan ICT by Elevate Operations. We build paid acquisition systems for trading coaches and educators — Meta and YouTube ads driving cold traffic to VSL funnels that pre-qualify serious traders before they reach your application page, plus automated follow-up sequences that book strategy calls without manual outreach.</p>
-
+      <div class="elevate-eyebrow fade-up">Built by Elevate Operations</div>
+      <h2 class="fade-up">The System Behind This Page</h2>
+      <p class="elevate-intro fade-up">This student acquisition page was built for Ali Khan ICT by Elevate Operations. We build paid acquisition systems for trading coaches and educators — Meta and YouTube ads driving cold traffic to VSL funnels that pre-qualify serious traders before they reach your application page, plus automated follow-up sequences that book strategy calls without manual outreach.</p>
       <div class="elevate-stats">
         
           <div class="elevate-stat">
@@ -580,8 +681,7 @@
             <div class="elevate-stat-label">Generated for clients across all niches</div>
           </div>
       </div>
-
-      <div class="elevate-process-label">The Full System &#8212; What We Build</div>
+      <div class="elevate-process-label fade-up">The Full System &#8212; What We Build</div>
       <div class="elevate-steps">
         
           <div class="elevate-step">
@@ -613,26 +713,36 @@
             </div>
           </div>
       </div>
-
-      <a href="https://elevateoperations.info/booking" class="elevate-cta-btn">See What This System Would Do for Your Program &rarr;</a>
+      <a href="https://elevateoperations.info/booking" class="elevate-cta-btn fade-up">See What This System Would Do for Your Program &rarr;</a>
     </div>
   </section>
 
   <!-- FINAL CTA -->
-  <section class="final-cta">
-    <h2>Apply for Your Free Strategy Call</h2>
-    <p>Limited to 10 calls per week. If you are serious about reaching consistency and passing your first funded challenge, apply now.</p>
-    <a href="https://elevateoperations.info/booking" class="cta-btn-dark">Apply for a Free Strategy Call &rarr;</a>
-    <p class="final-urgency">Strategy calls are capped at 10 per week. Serious traders only.</p>
+  <section class="final-cta grid-bg">
+    <h2 class="fade-up">Apply for Your Free Strategy Call</h2>
+    <p class="fade-up">Limited to 10 calls per week. If you are serious about reaching consistency and passing your first funded challenge, apply now.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn-dark fade-up">Apply for a Free Strategy Call &rarr;</a>
+    <p class="final-urgency fade-up">Strategy calls are capped at 10 per week. Serious traders only.</p>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <strong>Ali Khan ICT</strong><br>
-    183K, IG<br><br>
+    Prop-Funded Trader Community<br><br>
     <strong>Built by Elevate Operations</strong><br>
     <a href="https://elevateoperations.info">elevateoperations.info</a>
   </footer>
 
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>
