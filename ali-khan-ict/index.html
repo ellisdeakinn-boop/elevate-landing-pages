@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ali Khan ICT &#x2014; Apply for a Free Strategy Call</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent:       #0f2742;
+      --accent-light: #1a3f6b;
+      --gold:         #22c55e;
+      --text:         #1a1a1a;
+      --muted:        #5a5a5a;
+      --light-bg:     #f7f6f3;
+      --border:       #e0ddd8;
+      --white:        #ffffff;
+      --radius:       8px;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 17px;
+    }
+    h1, h2, h3 { font-family: 'Syne', -apple-system, sans-serif; }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* ── Nav ── */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 19px;
+      color: var(--accent);
+      letter-spacing: -0.2px;
+    }
+    .nav-badge {
+      background: var(--accent);
+      color: white;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 13px;
+      border-radius: 2px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(150deg, #0f2742 0%, #1a3f6b 100%);
+      color: white;
+      padding: 96px 40px 84px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(30px, 5.5vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      max-width: 880px;
+      margin: 0 auto 24px;
+    }
+    .hero-sub {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: clamp(16px, 2.5vw, 20px);
+      opacity: 0.86;
+      max-width: 660px;
+      margin: 0 auto 44px;
+      line-height: 1.65;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: #0f2742;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 17px 40px;
+      border-radius: 3px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      transition: transform 0.15s, box-shadow 0.15s;
+      letter-spacing: 0.2px;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.24); color: #0f2742; }
+    .hero-urgency {
+      font-family: 'Inter', -apple-system, sans-serif;
+      margin-top: 18px;
+      font-size: 12px;
+      opacity: 0.58;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Section ── */
+    .section { padding: 84px 40px; max-width: 940px; margin: 0 auto; }
+    .section-title {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 16px;
+      line-height: 1.12;
+      color: var(--accent);
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 48px;
+      max-width: 680px;
+      line-height: 1.65;
+    }
+
+    /* ── Lead-in ── */
+    .lead-in-wrap {
+      background: var(--light-bg);
+      padding: 52px 40px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .lead-in {
+      background: white;
+      border-left: 3px solid var(--gold);
+      padding: 28px 36px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.75;
+      max-width: 860px;
+      margin: 0 auto;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+
+    /* ── Pain ── */
+    .pain-section {
+      background: #0f2742;
+      color: white;
+      padding: 84px 40px;
+    }
+    .pain-section .section-title { color: white; margin-bottom: 40px; }
+    .pain-grid {
+      max-width: 940px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+    @media(min-width:640px) { .pain-grid { grid-template-columns: 1fr 1fr; } }
+    .pain-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .pain-num {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: #22c55e;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 0;
+      min-width: 44px;
+    }
+    .pain-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; font-family: 'Inter', -apple-system, sans-serif; }
+    .pain-body  { font-size: 14px; opacity: 0.80; line-height: 1.65; font-family: 'Inter', -apple-system, sans-serif; }
+
+    /* ── Solution ── */
+    .solution-body { font-size: 18px; line-height: 1.8; color: var(--muted); }
+
+    /* ── Steps ── */
+    .steps { display: flex; flex-direction: column; gap: 32px; }
+    .step { display: flex; gap: 24px; align-items: flex-start; }
+    .step-num {
+      background: var(--accent);
+      color: white;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-title { font-weight: 700; font-size: 17px; margin-bottom: 6px; font-family: 'Inter', -apple-system, sans-serif; }
+    .step-body  { color: var(--muted); font-size: 16px; line-height: 1.65; }
+
+    /* ── Testimonials ── */
+    .testimonials-bg {
+      background: var(--light-bg);
+      padding: 84px 40px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .testimonials-grid {
+      max-width: 940px;
+      margin: 40px auto 0;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+    @media(min-width:700px) { .testimonials-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .testimonial {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    }
+    .testimonial-quote  { font-size: 15px; line-height: 1.7; color: var(--text); font-style: italic; margin-bottom: 16px; }
+    .testimonial-author { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.8px; text-transform: uppercase; }
+
+    /* ── Offer ── */
+    .offer-box {
+      background: var(--light-bg);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .offer-title {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      margin-bottom: 24px;
+      color: var(--accent);
+    }
+    .offer-box ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .offer-box li { display: flex; gap: 12px; font-size: 16px; align-items: flex-start; line-height: 1.5; }
+    .offer-box li::before {
+      content: "&#10003;";
+      font-weight: 800;
+      color: #22c55e;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .offer-value {
+      margin-top: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Elevate Operations section ── */
+    .elevate-section {
+      background: #0d1520;
+      color: white;
+      padding: 88px 40px;
+    }
+    .elevate-inner { max-width: 940px; margin: 0 auto; }
+    .elevate-eyebrow {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #22c55e;
+      margin-bottom: 14px;
+    }
+    .elevate-section h2 {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      margin-bottom: 18px;
+      line-height: 1.12;
+    }
+    .elevate-intro {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 17px;
+      opacity: 0.72;
+      max-width: 720px;
+      line-height: 1.75;
+      margin-bottom: 56px;
+    }
+    .elevate-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+    @media(min-width:700px) { .elevate-stats { grid-template-columns: repeat(4, 1fr); } }
+    .elevate-stat { border-top: 2px solid #22c55e; padding-top: 18px; }
+    .elevate-stat-num {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .elevate-stat-label {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 13px;
+      opacity: 0.58;
+      line-height: 1.45;
+    }
+    .elevate-process-label {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #22c55e;
+      margin-bottom: 28px;
+    }
+    .elevate-steps { display: flex; flex-direction: column; gap: 24px; margin-bottom: 52px; }
+    .elevate-step { display: flex; gap: 20px; align-items: flex-start; }
+    .elevate-step-num {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: #22c55e;
+      border: 1px solid #22c55e;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .elevate-step-title { font-family: 'Inter', -apple-system, sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+    .elevate-step-body  { font-family: 'Inter', -apple-system, sans-serif; font-size: 14px; opacity: 0.65; line-height: 1.65; }
+    .elevate-cta-btn {
+      display: inline-block;
+      background: #22c55e;
+      color: #0d1520;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 36px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      letter-spacing: 0.2px;
+    }
+    .elevate-cta-btn:hover { opacity: 0.88; color: #0d1520; }
+
+    /* ── Final CTA ── */
+    .final-cta {
+      background: linear-gradient(150deg, #0f2742 0%, #1a3f6b 100%);
+      color: white;
+      padding: 96px 40px;
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 18px;
+    }
+    .final-cta p {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 18px;
+      opacity: 0.86;
+      max-width: 580px;
+      margin: 0 auto 44px;
+      line-height: 1.65;
+    }
+    .cta-btn-dark {
+      display: inline-block;
+      background: white;
+      color: #0f2742;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 17px 40px;
+      border-radius: 3px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cta-btn-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.26); color: #0f2742; }
+    .final-urgency { font-family: 'Inter', -apple-system, sans-serif; margin-top: 20px; font-size: 12px; opacity: 0.55; letter-spacing: 0.3px; }
+
+    /* ── Footer ── */
+    footer {
+      background: #080d13;
+      color: #555;
+      padding: 36px 40px;
+      text-align: center;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 2.3;
+    }
+    footer strong { color: #999; }
+    footer a { color: #777; }
+
+    /* ── Divider ── */
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">Ali Khan ICT</div>
+    <div class="nav-badge">Funded Trader Community</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Ali Khan ICT &nbsp;&middot;&nbsp; 183K, IG</div>
+    <h1>Still Losing Accounts? You're Not Missing Discipline — You're Missing the Right System.</h1>
+    <p class="hero-sub">Inside Ali Khan ICT, serious traders get the methodology, the signals, and the community to pass prop firm challenges and build real, consistent funded accounts — without figuring it out alone.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn">Apply for a Free Strategy Call &rarr;</a>
+    <p class="hero-urgency">Strategy calls are capped at 10 per week. Serious traders only.</p>
+  </section>
+
+  <!-- LEAD-IN -->
+  <div class="lead-in-wrap">
+    <p class="lead-in">Most traders spend 1 to 3 years blowing accounts, chasing setups on YouTube, and repeating the same mistakes — before they realise the problem isn't effort. It's the absence of a clear, rule-based system and a community that holds them to it. The traders passing challenges and building funded income right now aren't gifted — they have the right framework and the right people around them.</p>
+  </div>
+
+  <!-- PAIN -->
+  <section class="pain-section">
+    <div style="max-width:940px;margin:0 auto;">
+      <h2 class="section-title">Why Most Traders Never Get Consistent — and What the Ones With Funded Accounts Do Differently</h2>
+      <div class="pain-grid">
+        
+        <div class="pain-card">
+          <div class="pain-num">01</div>
+          <div>
+            <div class="pain-title">Strategy Hopping</div>
+            <div class="pain-body">New indicator every week. New YouTube setup every month. Every system works — until it doesn't. The market doesn't reward the trader who tries the most strategies. It rewards the one who masters one edge and executes it without emotion, over and over.</div>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-num">02</div>
+          <div>
+            <div class="pain-title">Emotional Execution</div>
+            <div class="pain-body">You know the rules. But following them in a live drawdown is a completely different skill. Every blown stop, every revenge trade, every position sized too big after a loss — those are emotional decisions, not market problems. Discipline is a system, not a personality trait.</div>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-num">03</div>
+          <div>
+            <div class="pain-title">Trading Alone With No Accountability</div>
+            <div class="pain-body">Nobody to review your journal. Nobody to call out the pattern you keep repeating. Nobody who's already solved the problem you're stuck on. Solo trading is the hardest version of this game — and the slowest.</div>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-num">04</div>
+          <div>
+            <div class="pain-title">Failing Prop Challenges</div>
+            <div class="pain-body">Passing a funded account challenge without a rule-based process is luck, not skill. Luck doesn't repeat. A proper methodology — with defined risk rules, session limits, and drawdown management — does.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="section">
+    <h2 class="section-title">Why Students Choose Ali Khan ICT Over Self-Study</h2>
+    <p class="solution-body">Ali Khan ICT is not a course library or a Discord community with a price tag. It is a structured mentorship program built around one outcome: getting students to a specific, measurable result as efficiently as possible. Every student gets direct access to a mentor who is still actively operating in the market — not someone who built results five years ago and now teaches from a distance. The curriculum is built for implementation, not consumption.</p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <h2 class="section-title">Here Is What Happens When You Work With Ali Khan ICT</h2>
+    <p class="section-sub">A clear, simple process &#8212; from first conversation to real results.</p>
+    <div class="steps">
+      
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Apply</div>
+            <div class="step-body">Submit your application for a free strategy call with the Ali Khan ICT team. We review every application to make sure the program is right for where you are now.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Free Strategy Call</div>
+            <div class="step-body">A 30-minute call to go through your trading history, pinpoint the specific gaps holding you back, and build a clear plan for your next 60 days. No pitch until we know we're actually the right fit.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">Join the Community</div>
+            <div class="step-body">Accepted traders join Ali Khan ICT: live sessions, real-time signals, trade reviews, journal accountability, and a community of serious funded traders who are actually in the market with you.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <div class="step-title">Funded and Consistent</div>
+            <div class="step-body">Most serious members pass their first prop challenge within 60 to 90 days of implementing the framework. Consistency follows structure — not luck, not talent.</div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials-bg">
+    <div style="max-width:940px;margin:0 auto;">
+      <h2 class="section-title">What 183K Clients Are Saying</h2>
+      <div class="testimonials-grid">
+        
+        <div class="testimonial">
+          <div class="testimonial-quote">&#8220;I passed my first FTMO challenge 47 days after joining. I had been trying alone for two years. The difference was having a process — and people who kept me to it.&#8221;</div>
+          <div class="testimonial-author">&#8212; Community Member</div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">&#8220;I stopped overtrading completely after week three. My win rate went from 38% to 61%. I didn't change my setup. I changed how I managed myself around it.&#8221;</div>
+          <div class="testimonial-author">&#8212; Community Member</div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">&#8220;The live trade reviews are worth more than anything else. Watching how to actually think through a setup — not just entry and exit, but the full decision process — changed how I trade.&#8221;</div>
+          <div class="testimonial-author">&#8212; Community Member</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFER -->
+  <section class="section" style="text-align:center;">
+    <h2 class="section-title">What Is Included</h2>
+    <p class="section-sub" style="margin:0 auto 40px;">Everything you need to make the right decision &#8212; at zero cost.</p>
+    <div class="offer-box">
+      <div class="offer-title">Your Free Strategy Call Includes:</div>
+      <ul><li>An honest review of your current approach and where it is breaking down</li><li>Identification of your top 2 to 3 execution mistakes (from your journal or history)</li><li>A clear picture of what the right structure looks like for your level</li><li>An honest answer on whether the program is the right fit for you</li><li>Zero pressure — we only want traders we can genuinely help in the community</li></ul>
+      <div class="offer-value">Completely free — 30 minutes, no obligation</div>
+    </div>
+  </section>
+
+  <!-- ELEVATE OPERATIONS -->
+  <section class="elevate-section">
+    <div class="elevate-inner">
+      <div class="elevate-eyebrow">Built by Elevate Operations</div>
+      <h2>The System Behind This Page</h2>
+      <p class="elevate-intro">This student acquisition page was built for Ali Khan ICT by Elevate Operations. We build paid acquisition systems for trading coaches and educators — Meta and YouTube ads driving cold traffic to VSL funnels that pre-qualify serious traders before they reach your application page, plus automated follow-up sequences that book strategy calls without manual outreach.</p>
+
+      <div class="elevate-stats">
+        
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">34</div>
+            <div class="elevate-stat-label">Qualified strategy calls booked in 60 days for one campaign</div>
+          </div>
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">$8,500</div>
+            <div class="elevate-stat-label">Average program ticket</div>
+          </div>
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">$210</div>
+            <div class="elevate-stat-label">Cost per qualified booked call</div>
+          </div>
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">$1M+</div>
+            <div class="elevate-stat-label">Generated for clients across all niches</div>
+          </div>
+      </div>
+
+      <div class="elevate-process-label">The Full System &#8212; What We Build</div>
+      <div class="elevate-steps">
+        
+          <div class="elevate-step">
+            <div class="elevate-step-num">01</div>
+            <div>
+              <div class="elevate-step-title">Paid Ads</div>
+              <div class="elevate-step-body">Meta campaigns targeting your ideal client in your local market. Built around your niche, your geography, and your minimum case or client value.</div>
+            </div>
+          </div>
+          <div class="elevate-step">
+            <div class="elevate-step-num">02</div>
+            <div>
+              <div class="elevate-step-title">Qualifying Funnel</div>
+              <div class="elevate-step-body">A VSL landing page that educates and pre-qualifies prospects before they reach your calendar. You only talk to people who already understand what you offer and want to move forward.</div>
+            </div>
+          </div>
+          <div class="elevate-step">
+            <div class="elevate-step-num">03</div>
+            <div>
+              <div class="elevate-step-title">Automated Follow-up</div>
+              <div class="elevate-step-body">SMS and email sequences that follow up with every inquiry automatically — 7 to 8 touches without any manual effort. Show-up rates go from 50% to 80%+ with the right reminders in place.</div>
+            </div>
+          </div>
+          <div class="elevate-step">
+            <div class="elevate-step-num">04</div>
+            <div>
+              <div class="elevate-step-title">Retargeting</div>
+              <div class="elevate-step-body">Every person who visits your site or landing page and does not convert is added to a retargeting audience. Your ads follow them until they book. Nothing is wasted.</div>
+            </div>
+          </div>
+      </div>
+
+      <a href="https://elevateoperations.info/booking" class="elevate-cta-btn">See What This System Would Do for Your Program &rarr;</a>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2>Apply for Your Free Strategy Call</h2>
+    <p>Limited to 10 calls per week. If you are serious about reaching consistency and passing your first funded challenge, apply now.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn-dark">Apply for a Free Strategy Call &rarr;</a>
+    <p class="final-urgency">Strategy calls are capped at 10 per week. Serious traders only.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>Ali Khan ICT</strong><br>
+    183K, IG<br><br>
+    <strong>Built by Elevate Operations</strong><br>
+    <a href="https://elevateoperations.info">elevateoperations.info</a>
+  </footer>
+
+</body>
+</html>
