@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Built for Daniel FX | Elevate Operations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #22c55e;
+      --bg: #0c1a0c;
+      --card: #141820;
+      --border: rgba(255,255,255,0.08);
+      --text: #f5f5f7;
+      --muted: #9ca3af;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+    .site-header { background: rgba(20,24,32,0.95); border-bottom: 1px solid var(--border); padding: 0 clamp(20px,4vw,60px); display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: #22c55e; }
+    .tag { font-size: 12px; color: var(--muted); }
+    .hero { max-width: 860px; margin: 0 auto; padding: clamp(48px,8vw,96px) clamp(20px,4vw,40px) clamp(32px,5vw,56px); }
+    .hero-eyebrow { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #22c55e; margin-bottom: 20px; }
+    .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(28px,5vw,52px); font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+    .hero h1 em { color: #22c55e; font-style: normal; }
+    .hero p { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 600px; margin-bottom: 36px; }
+    .stats { display: flex; flex-wrap: wrap; gap: 12px; }
+    .stat-pill { background: var(--card); border: 1px solid var(--border); border-radius: 100px; padding: 8px 18px; font-size: 13px; font-weight: 500; }
+    .stat-pill span { color: #22c55e; }
+    .accordions { max-width: 860px; margin: 0 auto; padding: 0 clamp(20px,4vw,40px) clamp(48px,8vw,80px); display: flex; flex-direction: column; gap: 12px; }
+    .acc-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .acc-header { display: flex; align-items: center; gap: 16px; padding: 20px 24px; cursor: pointer; user-select: none; transition: background 0.2s; }
+    .acc-header:hover { background: rgba(255,255,255,0.03); }
+    .acc-icon { font-size: 20px; flex-shrink: 0; }
+    .acc-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; flex: 1; }
+    .acc-chevron { color: var(--muted); font-size: 18px; transition: transform 0.25s; flex-shrink: 0; }
+    .acc-item.open .acc-chevron { transform: rotate(180deg); }
+    .acc-body { display: none; padding: 0 24px 24px; border-top: 1px solid var(--border); }
+    .acc-item.open .acc-body { display: block; }
+    .acc-body > p { font-size: 14px; line-height: 1.7; color: #d1d5db; margin-top: 16px; }
+    .acc-body h4 { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #22c55e; margin-top: 20px; margin-bottom: 8px; }
+    .acc-body ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+    .acc-body li { font-size: 14px; line-height: 1.6; color: #d1d5db; }
+    .angle-item { background: rgba(255,255,255,0.03); border-left: 3px solid #22c55e; border-radius: 0 8px 8px 0; padding: 14px 16px; margin-top: 10px; }
+    .angle-item strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .angle-item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .script-block { background: rgba(0,0,0,0.35); border-radius: 8px; padding: 16px; margin-top: 12px; font-size: 13px; line-height: 1.8; color: #d1d5db; white-space: pre-wrap; }
+    .script-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #22c55e; margin-bottom: 10px; font-weight: 600; display: block; }
+    .vsl-step { display: flex; gap: 14px; margin-top: 16px; align-items: flex-start; }
+    .vsl-num { background: #22c55e; color: #000; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 12px; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .vsl-content strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .vsl-content p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .landing-link { display: inline-flex; align-items: center; gap: 8px; background: #22c55e; color: #000; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; text-decoration: none; padding: 10px 20px; border-radius: 8px; margin-top: 16px; }
+    .email-preview { background: rgba(0,0,0,0.35); border-radius: 8px; padding: 20px; margin-top: 12px; }
+    .email-subject { font-size: 13px; font-weight: 600; color: #22c55e; margin-bottom: 12px; }
+    .email-body { font-size: 13px; line-height: 1.8; color: #d1d5db; white-space: pre-wrap; }
+    .email-note { font-size: 12px; color: var(--muted); margin-top: 16px; font-style: italic; }
+    .cta-section { background: linear-gradient(160deg, #0c1a0c 0%, rgba(255,255,255,0.04) 100%); border-top: 1px solid var(--border); padding: clamp(56px,8vw,96px) clamp(20px,4vw,40px); text-align: center; }
+    .cta-section h2 { font-family: 'Syne', sans-serif; font-size: clamp(24px,4vw,40px); font-weight: 800; margin-bottom: 16px; }
+    .cta-section p { font-size: 16px; color: var(--muted); margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .cta-btn { display: inline-block; background: #22c55e; color: #000; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; text-decoration: none; padding: 16px 40px; border-radius: 8px; letter-spacing: 0.5px; }
+    footer { background: rgba(0,0,0,0.4); border-top: 1px solid var(--border); padding: 32px clamp(20px,4vw,60px); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-brand { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #22c55e; }
+    .footer-note { font-size: 12px; color: var(--muted); }
+    @media (max-width: 600px) { .stats { flex-direction: column; } footer { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">Elevate Operations</div>
+  <div class="tag">Built Exclusively For Daniel FX</div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Dream 100 · Built by Ellis Deakin</div>
+  <h1>Everything below was built<br>specifically for <em>Daniel FX.</em></h1>
+  <p>I researched Daniel FX's marketing, identified the gaps, and built the full acquisition system. This took time. It is yours to use whether we work together or not.</p>
+  <div class="stats">
+    <div class="stat-pill"><span>6</span> deliverables</div>
+    <div class="stat-pill"><span>3</span> gaps identified</div>
+    <div class="stat-pill">Live landing page inside</div>
+    <div class="stat-pill">Built by Ellis, Elevate Operations</div>
+  </div>
+</section>
+
+<section class="accordions">
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">🔍</div>
+      <div class="acc-title">Research &amp; Bottleneck Analysis</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p>I reviewed Daniel FX's website, social presence, and current marketing setup before building anything. Here is what I found.</p>
+      <h4>Primary Gap</h4>
+      <p>No VSL or optin page visible</p>
+      <h4>Additional Gaps Identified</h4>
+      <ul><li>No dedicated application funnel — interested traders have no clear next step beyond DMing you</li>
+<li>No retargeting system — website visitors and content viewers are never re-engaged</li></ul>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">📣</div>
+      <div class="acc-title">Campaign Angles</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p>3 specific marketing angles written for Daniel FX's audience. Each targets a different buying motivation.</p>
+      <div class="angle-item"><strong>The Audience-to-Revenue Gap</strong><p>Daniel FX has built an audience. Most trading coaches with a similar following convert less than 0.3% to high-ticket clients. A structured funnel changes that number.</p></div>
+<div class="angle-item"><strong>Content to Cash</strong><p>Your content proves you understand the market. A funnel proves you can scale it. Right now, Daniel FX has one without the other.</p></div>
+<div class="angle-item"><strong>Paid Acquisition as a Floor</strong><p>Organic reach is unpredictable. Paid acquisition adds a floor — a consistent number of strategy calls every week that does not depend on the algorithm.</p></div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">🎬</div>
+      <div class="acc-title">Ad Script Previews</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p>2 short ad scripts written for Daniel FX's audience. Ready to record and run as paid ads.</p>
+      <div class="script-block"><div class="script-label">Direct Response (60s)</div>Hook: If you teach trading and your calendar is not full, the problem is not your content.
+
+Most trading educators have audiences. What they do not have is a system that converts that audience into strategy calls. Content builds trust. It does not close high-ticket.
+
+We build the full acquisition funnel for trading coaches. Application page, VSL, paid ads, automated follow-up. Everything between your content and your first call.
+
+I built a version of this specifically for Daniel FX. The link is below.</div>
+<div class="script-block"><div class="script-label">Proof-Led (60s)</div>Hook: 34 strategy calls in 60 days. $8,500 average ticket. $210 cost per call.
+
+That is what we generated for a trading coach last quarter.
+
+The system: paid Meta ads targeting traders who want to go full-time, a VSL that qualifies before the call, and automated follow-up that books the ones who need a nudge.
+
+We built a version of this for Daniel FX. It is live at the link below.</div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">🎥</div>
+      <div class="acc-title">VSL Outline</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p>A 5-section Video Sales Letter framework built around Daniel FX's offer and audience.</p>
+      <div class="vsl-step"><div class="vsl-num">1</div><div class="vsl-content"><strong>Hook <span style="font-weight:400;color:#6b7280;font-size:12px;">(0–15s)</span></strong><p>If you teach trading and you have an audience, but your coaching program is not full — the problem is not your content. It is the system connecting your content to paying clients.</p></div></div>
+<div class="vsl-step"><div class="vsl-num">2</div><div class="vsl-content"><strong>Problem <span style="font-weight:400;color:#6b7280;font-size:12px;">(15–45s)</span></strong><p>Most trading educators grow a following and expect the sales to follow. They do not. Content builds awareness. It does not close high-ticket. You need a funnel between your content and your calendar.</p></div></div>
+<div class="vsl-step"><div class="vsl-num">3</div><div class="vsl-content"><strong>Solution <span style="font-weight:400;color:#6b7280;font-size:12px;">(45–90s)</span></strong><p>We build the full acquisition system for trading coaches. Paid ads targeting traders who want to go full-time or funded, a VSL that qualifies them, an application page, and automated follow-up that books the ones who need a nudge.</p></div></div>
+<div class="vsl-step"><div class="vsl-num">4</div><div class="vsl-content"><strong>Proof <span style="font-weight:400;color:#6b7280;font-size:12px;">(90–120s)</span></strong><p>We generated 34 strategy calls for a trading coach in 60 days at $210 per call. $8,500 average ticket. The system runs while you are teaching, not while you are prospecting.</p></div></div>
+<div class="vsl-step"><div class="vsl-num">5</div><div class="vsl-content"><strong>CTA <span style="font-weight:400;color:#6b7280;font-size:12px;">(120–150s)</span></strong><p>I built a version of this funnel specifically for Daniel FX. You can see it at the link below this video. If you want to talk about implementing it, book a 15-minute call. I will walk you through exactly how it works for your program.</p></div></div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">🌐</div>
+      <div class="acc-title">High-Converting Landing Page</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p style="margin-bottom:12px;">Built and deployed to GitHub Pages. Mobile-responsive, niche-specific design with your positioning and offer framework.</p><a href="https://ellisdeakinn-boop.github.io/elevate-landing-pages/daniel-fx/" class="landing-link" target="_blank">View Live Page →</a>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">✉️</div>
+      <div class="acc-title">10-Email Outreach Sequence Preview</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p>A full 37-day email sequence written for Daniel FX. Email 1 is below. The complete sequence is available on request.</p>
+      <p>Email sequence available on request. 10 emails over 37 days.</p>
+    </div>
+  </div>
+
+</section>
+
+<section class="cta-section">
+  <h2>Want to implement this?</h2>
+  <p>If you want to talk about building this out for Daniel FX, book a 15-minute call. No pitch. Just the numbers and a clear next step.</p>
+  <a href="https://elevateoperations.info/booking" class="cta-btn">Book a Call With Ellis →</a>
+</section>
+
+<footer>
+  <div class="footer-brand">Elevate Operations</div>
+  <div class="footer-note">Built exclusively for Daniel FX by Ellis Deakin &middot; Not for distribution</div>
+</footer>
+
+<script>
+function toggle(header) {
+  var item = header.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
