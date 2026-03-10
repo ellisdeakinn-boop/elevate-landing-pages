@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Built for Etele Lorincz | Elevate Operations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #7c3aed;
+      --accent-light: #9d5cf6;
+      --bg: #0a0a0e;
+      --card: #111118;
+      --border: rgba(255,255,255,0.08);
+      --text: #f5f5f7;
+      --muted: #9ca3af;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+    .site-header { background: rgba(17,17,24,0.95); border-bottom: 1px solid var(--border); padding: 0 clamp(20px,4vw,60px); display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-light); }
+    .tag { font-size: 12px; color: var(--muted); }
+    .hero { max-width: 860px; margin: 0 auto; padding: clamp(48px,8vw,96px) clamp(20px,4vw,40px) clamp(32px,5vw,56px); }
+    .hero-eyebrow { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-light); margin-bottom: 20px; }
+    .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(28px,5vw,52px); font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+    .hero h1 em { color: var(--accent-light); font-style: normal; }
+    .hero p { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 600px; margin-bottom: 36px; }
+    .stats { display: flex; flex-wrap: wrap; gap: 12px; }
+    .stat-pill { background: var(--card); border: 1px solid var(--border); border-radius: 100px; padding: 8px 18px; font-size: 13px; font-weight: 500; }
+    .stat-pill span { color: var(--accent-light); }
+    .accordions { max-width: 860px; margin: 0 auto; padding: 0 clamp(20px,4vw,40px) clamp(48px,8vw,80px); display: flex; flex-direction: column; gap: 12px; }
+    .acc-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .acc-header { display: flex; align-items: center; gap: 16px; padding: 20px 24px; cursor: pointer; user-select: none; transition: background 0.2s; }
+    .acc-header:hover { background: rgba(255,255,255,0.03); }
+    .acc-icon { font-size: 20px; flex-shrink: 0; }
+    .acc-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; flex: 1; }
+    .acc-chevron { color: var(--muted); font-size: 18px; transition: transform 0.25s; flex-shrink: 0; }
+    .acc-item.open .acc-chevron { transform: rotate(180deg); }
+    .acc-body { display: none; padding: 0 24px 24px; border-top: 1px solid var(--border); }
+    .acc-item.open .acc-body { display: block; }
+    .acc-body > p { font-size: 14px; line-height: 1.7; color: #d1d5db; margin-top: 16px; }
+    .acc-body h4 { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-light); margin-top: 20px; margin-bottom: 8px; }
+    .acc-body ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+    .acc-body li { font-size: 14px; line-height: 1.6; color: #d1d5db; }
+    .angle-item { background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-light); border-radius: 0 8px 8px 0; padding: 14px 16px; margin-top: 10px; }
+    .angle-item strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .angle-item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .script-block { background: rgba(0,0,0,0.35); border-radius: 8px; padding: 16px; margin-top: 12px; font-size: 13px; line-height: 1.8; color: #d1d5db; white-space: pre-wrap; }
+    .script-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-light); margin-bottom: 10px; font-weight: 600; display: block; }
+    .vsl-step { display: flex; gap: 14px; margin-top: 16px; align-items: flex-start; }
+    .vsl-num { background: var(--accent); color: #fff; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 12px; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .vsl-content strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .vsl-content p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .landing-link { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; text-decoration: none; padding: 10px 20px; border-radius: 8px; margin-top: 16px; transition: background 0.2s; }
+    .landing-link:hover { background: var(--accent-light); }
+    .email-preview { background: rgba(0,0,0,0.35); border-radius: 8px; padding: 20px; margin-top: 12px; }
+    .email-subject { font-size: 13px; font-weight: 600; color: var(--accent-light); margin-bottom: 12px; }
+    .email-body { font-size: 13px; line-height: 1.8; color: #d1d5db; white-space: pre-wrap; }
+    .email-note { font-size: 12px; color: var(--muted); margin-top: 16px; font-style: italic; }
+    .doc-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-light); text-decoration: none; border: 1px solid var(--accent); border-radius: 6px; padding: 7px 14px; transition: background 0.2s; }
+    .doc-link:hover { background: rgba(124,58,237,0.1); }
+    .cta-section { background: linear-gradient(160deg, #0a0a0e 0%, rgba(124,58,237,0.06) 100%); border-top: 1px solid var(--border); padding: clamp(56px,8vw,96px) clamp(20px,4vw,40px); text-align: center; }
+    .cta-section h2 { font-family: 'Syne', sans-serif; font-size: clamp(24px,4vw,40px); font-weight: 800; margin-bottom: 16px; }
+    .cta-section p { font-size: 16px; color: var(--muted); margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .cta-btn { display: inline-block; background: var(--accent); color: #fff; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; text-decoration: none; padding: 16px 40px; border-radius: 8px; letter-spacing: 0.5px; transition: background 0.2s; }
+    .cta-btn:hover { background: var(--accent-light); }
+    footer { background: rgba(0,0,0,0.4); border-top: 1px solid var(--border); padding: 32px clamp(20px,4vw,60px); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-brand { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--accent-light); }
+    .footer-note { font-size: 12px; color: var(--muted); }
+    @media (max-width: 600px) { .stats { flex-direction: column; } footer { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">Elevate Operations</div>
+  <div class="tag">Built Exclusively For Etele Lorincz</div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Dream 100 · Built by Ellis Deakin</div>
+  <h1>Everything below was built<br>specifically for <em>Etele Lorincz.</em></h1>
+  <p>I researched Etele's brand, identified the infrastructure gaps, and built the full acquisition system for Brandzey. This took time. It is yours to use whether we work together or not.</p>
+  <div class="stats">
+    <div class="stat-pill"><span>6</span> deliverables</div>
+    <div class="stat-pill"><span>6</span> gaps identified</div>
+    <div class="stat-pill">Live landing page inside</div>
+    <div class="stat-pill">Built by Ellis, Elevate Operations</div>
+  </div>
+</section>
+
+<section class="accordions">
+
+  <!-- 1. RESEARCH -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">🔍</div>
+      <div class="acc-title">Research &amp; Bottleneck Analysis</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p>I went through Etele's Instagram (@etelelorincz), YouTube (@brandsbyetele), Brandzey.io, and his Skool community before building anything. Here is what I found.</p>
+      <h4>Primary Finding</h4>
+      <p>120,000 Instagram followers, 300M+ views generated — entire acquisition running through DM automation with no funnel, no email backend, and a broken agency website.</p>
+      <h4>Additional Gaps Identified</h4>
+      <ul>
+        <li>Brandzey.io is returning 404 errors — the agency website is effectively down</li>
+        <li>No VSL or video funnel to convert warm Instagram and YouTube traffic</li>
+        <li>DM-only acquisition ("SOS" keyword trigger) — fully algorithm-dependent and unscalable</li>
+        <li>No Meta Pixel or retargeting infrastructure — warm audience from 300M views is uncaptured</li>
+        <li>No email list or automated follow-up sequences — all follow-up is manual</li>
+        <li>Young Wealth Skool community (~185 members) has no structured ascension path into Brandzey</li>
+      </ul>
+      <a href="DRIVE_GROWTH_AUDIT_LINK" target="_blank" rel="noopener" class="doc-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        View Growth Audit →
+      </a>
+    </div>
+  </div>
+
+  <!-- 2. CAMPAIGN ANGLES -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">📣</div>
+      <div class="acc-title">Campaign Angles</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p>3 specific marketing angles written for Brandzey's offer and audience. Each targets a different buying motivation.</p>
+      <div class="angle-item">
+        <strong>The 404 Credibility Problem</strong>
+        <p>Etele runs a personal branding agency with a broken website. That is the cobbler's shoes problem in full public view. Every warm lead who searches Brandzey.io hits a dead end — the credibility cost is direct and immediate. Fixing this is the first move.</p>
+      </div>
+      <div class="angle-item">
+        <strong>120K Followers, No Funnel</strong>
+        <p>You have spent years building an audience that trusts you. That attention has nowhere to go. No VSL, no application page, no email backend. The system that converts audience into revenue does not exist yet — and every month without it is compounding lost pipeline.</p>
+      </div>
+      <div class="angle-item">
+        <strong>One Algorithm Shift from Zero</strong>
+        <p>The entire Brandzey acquisition model runs through Instagram DM automation. One platform restriction, one algorithm update, one shadow ban — and the lead flow stops entirely. An owned email list, a VSL funnel, and retargeting infrastructure make the business immune to any single platform decision.</p>
+      </div>
+      <a href="DRIVE_FOLDER_LINK" target="_blank" rel="noopener" class="doc-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        View All Docs in Drive →
+      </a>
+    </div>
+  </div>
+
+  <!-- 3. AD SCRIPT PREVIEWS -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">🎬</div>
+      <div class="acc-title">Ad Script Previews</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p>2 of 19 ad scripts written for Brandzey's audience. Ready to record and run as paid Meta/Instagram ads.</p>
+      <div class="script-block"><span class="script-label">Pain — "The DM Trap" (60s)</span>Hook: If every client you close starts with a DM, you're one algorithm change away from losing your business.
+
+Your DM funnel works — until it doesn't. Until your reach gets throttled. Until the platform changes how keyword automation works.
+
+And when it breaks, you have no email list. No retargeting. No backend running independent of Instagram.
+
+The fix isn't to DM harder. It's to build a real funnel that captures leads into an email list, runs automated sequences, and retargets your warm audience with paid ads.
+
+If you're building a personal brand and you want real infrastructure behind it, apply at the link below.</div>
+      <div class="script-block"><span class="script-label">Proof-Led — "34 Calls in 60 Days" (60s)</span>Hook: 34 booked strategy calls in 60 days. Here's how the funnel worked.
+
+The client had a strong audience, a proven offer, everything running through Instagram DMs. No email list. No funnel. No retargeting.
+
+We built a VSL landing page, installed tracking, built the Meta retargeting campaign, and set up the email backend.
+
+34 booked strategy calls at $210 cost per lead. Average ticket $8,500. The system paid for itself in the first two closed clients.
+
+The audience was already there. The system just gave it somewhere to go.
+
+If you want this built for your brand, apply at the link below.</div>
+      <a href="DRIVE_AD_SCRIPTS_LINK" target="_blank" rel="noopener" class="doc-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        View All 19 Ad Scripts →
+      </a>
+    </div>
+  </div>
+
+  <!-- 4. VSL OUTLINE -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">🎥</div>
+      <div class="acc-title">VSL Outline</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p>A 5–7 minute Video Sales Letter framework built around Brandzey's offer, Etele's proof points, and the exact audience visiting from Instagram and YouTube.</p>
+      <div class="vsl-step">
+        <div class="vsl-num">1</div>
+        <div class="vsl-content">
+          <strong>Hook <span style="font-weight:400;color:#6b7280;font-size:12px;">(0–15s)</span></strong>
+          <p>How long have you been trying to build a personal brand that generates real revenue? Six months? A year? And honestly — what is the real reason you haven't got there yet?</p>
+        </div>
+      </div>
+      <div class="vsl-step">
+        <div class="vsl-num">2</div>
+        <div class="vsl-content">
+          <strong>Problem <span style="font-weight:400;color:#6b7280;font-size:12px;">(15–60s)</span></strong>
+          <p>The creators who scale do it because they built a system behind the content — a VSL, retargeting, an email backend. Most creators only have the content. The gap between the two is where the money goes missing.</p>
+        </div>
+      </div>
+      <div class="vsl-step">
+        <div class="vsl-num">3</div>
+        <div class="vsl-content">
+          <strong>Credibility + Solution <span style="font-weight:400;color:#6b7280;font-size:12px;">(60–150s)</span></strong>
+          <p>800,000 followers and 300 million views generated. The Personal Brand Revenue System — VSL funnel, retargeting infrastructure, email backend, CRM pipeline. Done-for-you, live in 4 weeks.</p>
+        </div>
+      </div>
+      <div class="vsl-step">
+        <div class="vsl-num">4</div>
+        <div class="vsl-content">
+          <strong>Proof <span style="font-weight:400;color:#6b7280;font-size:12px;">(150–240s)</span></strong>
+          <p>34 strategy calls in 60 days at $210 CPL for an operator in a similar position. 19 discovery calls in 45 days at $6,500 average contract for an agency owner. Content didn't change. Infrastructure did.</p>
+        </div>
+      </div>
+      <div class="vsl-step">
+        <div class="vsl-num">5</div>
+        <div class="vsl-content">
+          <strong>Offer + CTA <span style="font-weight:400;color:#6b7280;font-size:12px;">(240–360s)</span></strong>
+          <p>5–8 new builds per quarter, intentionally limited. Guaranteed qualified applications in the pipeline within 30 days of go-live. Apply using the button below. Takes 3 minutes.</p>
+        </div>
+      </div>
+      <a href="DRIVE_VSL_SCRIPT_LINK" target="_blank" rel="noopener" class="doc-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        View Full VSL Script →
+      </a>
+    </div>
+  </div>
+
+  <!-- 5. LANDING PAGE -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">🌐</div>
+      <div class="acc-title">High-Converting Landing Page</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p style="margin-bottom:12px;">Built and deployed to GitHub Pages. Personalised to Etele's exact setup — gaps identified, proof points used, booking CTA at every fold. Mobile-responsive.</p>
+      <a href="https://ellisdeakinn-boop.github.io/elevate-landing-pages/etele-lorincz/" class="landing-link" target="_blank">View Live Landing Page →</a>
+    </div>
+  </div>
+
+  <!-- 6. EMAIL OUTREACH PREVIEW -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggle(this)">
+      <div class="acc-icon">✉️</div>
+      <div class="acc-title">Outreach Sequence Preview</div>
+      <div class="acc-chevron">▾</div>
+    </div>
+    <div class="acc-body">
+      <p>A full 28-email sequence written across 4 automations: post-booking (12), applied-no-book (5), no-show (4), post-call no-close (7). DM outreach with a 7-touch D100 follow-up cadence. Email 1 is below.</p>
+      <div class="email-preview">
+        <div class="email-subject">DM — Version 1 (Instagram)</div>
+        <div class="email-body">Hey Etele — saw your content on Instagram. Specific question:
+
+You've got 120K followers and a clear offer with Brandzey. But your website is returning 404s and the whole acquisition runs through DM automation — which means one algorithm shift and the pipeline stops.
+
+I build the funnel infrastructure behind personal brand operators like you: VSL page, retargeting campaigns, email backend. The kind of system that converts your warm audience while you're creating content.
+
+We've done 34 strategy calls in 60 days for a similar operator at $210 CPL. The setup takes about 4 weeks.
+
+Built a page specifically for you here: https://ellisdeakinn-boop.github.io/elevate-landing-pages/etele-lorincz-hub/
+
+Worth 30 minutes?
+
+— Ellis, Elevate Operations</div>
+      </div>
+      <p class="email-note">Full sequences (28 emails across 4 automations) available in Drive.</p>
+      <a href="DRIVE_EMAIL_SEQUENCES_LINK" target="_blank" rel="noopener" class="doc-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        View Full Email Sequences →
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<section class="cta-section">
+  <h2>Want to implement this?</h2>
+  <p>If you want to talk about building this out for Brandzey, book a 30-minute call. No pitch. Just the numbers and a clear next step.</p>
+  <a href="https://elevateoperations.info/booking" class="cta-btn">Book a Call With Ellis →</a>
+</section>
+
+<footer>
+  <div class="footer-brand">Elevate Operations</div>
+  <div class="footer-note">Built exclusively for Etele Lorincz (@etelelorincz) by Ellis Deakin &middot; Not for distribution</div>
+</footer>
+
+<script>
+function toggle(header) {
+  var item = header.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
