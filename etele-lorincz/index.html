@@ -1,525 +1,622 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Etele — Your Next Conversation | Elevate Operations</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brandzey — Apply for a Free Brand Strategy Call</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:         #0a0a0c;
-      --bg-card:    #111116;
-      --bg-card-2:  #17171e;
-      --border:     rgba(255,255,255,0.07);
-      --accent:     #7c3aed;
-      --accent-2:   #9d5cf6;
-      --accent-glow:rgba(124,58,237,0.25);
-      --gold:       #d4a017;
-      --text:       #f0f0f4;
-      --text-muted: #8b8b99;
-      --text-dim:   #5a5a6a;
-      --red:        #ef4444;
-      --green:      #22c55e;
+      --purple:  #7c3aed;
+      --violet:  #a855f7;
+      --gold:    #d4a017;
+      --dark:    #09090e;
+      --darker:  #060608;
+      --card:    rgba(124,58,237,0.05);
+      --border:  rgba(124,58,237,0.15);
+      --text:    rgba(255,255,255,0.92);
+      --muted:   rgba(255,255,255,0.52);
+      --radius:  10px;
     }
-
-    html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--bg);
+      background: var(--dark);
       color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      line-height: 1.65;
+      font-size: 17px;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 { font-family: 'Syne', -apple-system, sans-serif; }
+    a { color: var(--violet); text-decoration: none; }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
     }
 
-    /* ── LAYOUT ── */
-    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
-
-    section { padding: 80px 0; }
-    section + section { border-top: 1px solid var(--border); }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(10,10,12,0.92);
-      backdrop-filter: blur(12px);
+    /* Nav */
+    .nav {
+      background: rgba(9,9,14,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
-      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    .nav-brand {
-      font-size: 13px; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--text-muted);
-    }
-    .nav-cta {
-      font-size: 13px; font-weight: 600;
-      color: var(--accent-2); text-decoration: none;
-      border: 1px solid rgba(124,58,237,0.4);
-      padding: 8px 16px; border-radius: 6px;
-      transition: all 0.2s;
-    }
-    .nav-cta:hover { background: rgba(124,58,237,0.1); border-color: var(--accent-2); }
-
-    /* ── HERO ── */
-    .hero { padding: 140px 0 80px; }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent-2);
-      background: rgba(124,58,237,0.12);
-      border: 1px solid rgba(124,58,237,0.3);
-      padding: 6px 14px; border-radius: 100px;
-      margin-bottom: 32px;
-    }
-    .eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--accent-2); border-radius: 50%; }
-
-    h1 {
-      font-size: clamp(32px, 5vw, 52px);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: #ffffff;
-      margin-bottom: 24px;
-    }
-    h1 .highlight {
-      background: linear-gradient(135deg, var(--accent-2), #c084fc);
+    .nav-logo {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      background: linear-gradient(135deg, #fff, var(--violet));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-badge {
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.3);
+      color: var(--violet);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
     }
 
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 104px 40px 92px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 520px at 50% -10%, rgba(124,58,237,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 600px 400px at 80% 100%, rgba(168,85,247,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--violet);
+      opacity: 0.8;
+      margin-bottom: 26px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5.5vw, 58px);
+      font-weight: 800;
+      line-height: 1.07;
+      max-width: 900px;
+      margin: 0 auto 26px;
+      background: linear-gradient(135deg, #ffffff 0%, var(--violet) 60%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     .hero-sub {
-      font-size: 18px; color: var(--text-muted);
-      line-height: 1.7; max-width: 620px;
-      margin-bottom: 40px;
+      font-size: clamp(15px, 2.4vw, 19px);
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 50px;
+      line-height: 1.7;
     }
-
-    .hero-sub strong { color: var(--text); }
-
-    .cta-group { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-
-    .btn-primary {
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(124,58,237,0.5), 0 0 40px rgba(124,58,237,0.2); }
+      50%       { box-shadow: 0 0 28px rgba(168,85,247,0.6), 0 0 60px rgba(168,85,247,0.22); }
+    }
+    .cta-btn {
       display: inline-block;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #fff; font-size: 15px; font-weight: 700;
+      background: linear-gradient(135deg, var(--purple), var(--violet));
+      color: #fff;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 17px 44px;
+      border-radius: 6px;
       text-decoration: none;
-      padding: 14px 28px; border-radius: 8px;
-      box-shadow: 0 0 32px var(--accent-glow);
-      transition: all 0.2s;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.3px;
+      animation: glowPulse 3s ease-in-out infinite;
+      transition: transform 0.15s;
     }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 0 48px rgba(124,58,237,0.4); }
+    .cta-btn:hover { transform: translateY(-2px); color: #fff; }
+    .hero-urgency {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+    }
 
-    .btn-secondary {
-      font-size: 14px; color: var(--text-muted); text-decoration: none;
-      display: flex; align-items: center; gap: 6px;
-      transition: color 0.2s;
-    }
-    .btn-secondary:hover { color: var(--text); }
-    .btn-secondary::after { content: '→'; }
-
-    /* ── STAT BAR ── */
-    .stat-bar {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border); border-radius: 10px;
-      overflow: hidden; margin-top: 60px;
-    }
-    .stat-item {
-      background: var(--bg-card); padding: 24px 28px;
-    }
-    .stat-num {
-      font-size: 28px; font-weight: 900; letter-spacing: -0.03em;
-      color: #fff; line-height: 1;
-    }
-    .stat-num span { color: var(--accent-2); }
-    .stat-label { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
-
-    /* ── SECTION HEADINGS ── */
-    .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--accent-2);
-      margin-bottom: 16px;
-    }
-    h2 {
-      font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800; letter-spacing: -0.025em;
-      color: #fff; line-height: 1.2;
-      margin-bottom: 20px;
-    }
-    .section-body {
-      font-size: 16px; color: var(--text-muted);
-      line-height: 1.75; margin-bottom: 40px;
-    }
-    .section-body strong { color: var(--text); }
-
-    /* ── GAP LIST ── */
-    .gap-list { display: flex; flex-direction: column; gap: 12px; }
-    .gap-item {
-      display: flex; align-items: flex-start; gap: 14px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px; padding: 18px 20px;
-    }
-    .gap-item.critical { border-color: rgba(239,68,68,0.25); background: rgba(239,68,68,0.04); }
-    .gap-icon {
-      width: 32px; height: 32px; border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 15px; flex-shrink: 0; margin-top: 2px;
-      background: rgba(239,68,68,0.12);
-    }
-    .gap-icon.warn { background: rgba(245,158,11,0.12); }
-    .gap-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-    .gap-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
-
-    /* ── WHAT WE BUILD ── */
-    .build-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width: 540px) { .build-grid { grid-template-columns: 1fr; } }
-
-    .build-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 24px;
-      transition: border-color 0.2s;
-    }
-    .build-card:hover { border-color: rgba(124,58,237,0.3); }
-    .build-num {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
-      color: var(--accent-2); margin-bottom: 12px;
-    }
-    .build-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-    .build-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
-
-    /* ── PROOF ── */
-    .proof-grid { display: flex; flex-direction: column; gap: 16px; }
-    .proof-card {
-      background: var(--bg-card-2); border: 1px solid var(--border);
-      border-radius: 10px; padding: 28px 28px 24px;
-      position: relative; overflow: hidden;
-    }
-    .proof-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0;
-      height: 2px; background: linear-gradient(90deg, var(--accent), transparent);
-    }
-    .proof-result {
-      font-size: 22px; font-weight: 900; letter-spacing: -0.02em;
-      color: #fff; margin-bottom: 6px;
-    }
-    .proof-context { font-size: 13px; color: var(--text-muted); }
-
-    /* ── HOW IT WORKS ── */
-    .steps { display: flex; flex-direction: column; gap: 0; }
-    .step {
-      display: flex; gap: 20px;
-      padding: 28px 0;
+    /* Lead-in */
+    .lead-in-wrap {
+      padding: 56px 40px;
+      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-    .step:last-child { border-bottom: none; }
-    .step-num {
-      width: 36px; height: 36px; border-radius: 8px;
-      background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 700; color: var(--accent-2);
-      flex-shrink: 0;
-    }
-    .step-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-    .step-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
-
-    /* ── CTA SECTION ── */
-    .cta-section {
-      text-align: center; padding: 80px 0;
-    }
-    .cta-box {
-      background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(157,92,246,0.06));
-      border: 1px solid rgba(124,58,237,0.3);
-      border-radius: 16px; padding: 60px 40px;
-    }
-    .cta-box h2 { margin-bottom: 16px; }
-    .cta-box p { font-size: 16px; color: var(--text-muted); margin-bottom: 32px; }
-    .cta-box .btn-primary { font-size: 16px; padding: 16px 36px; }
-
-    .urgency-note {
-      font-size: 12px; color: var(--text-dim);
-      margin-top: 16px; letter-spacing: 0.02em;
+    .lead-in {
+      background: rgba(124,58,237,0.04);
+      border-left: 3px solid var(--violet);
+      padding: 28px 36px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.8;
+      max-width: 860px;
+      margin: 0 auto;
+      color: rgba(255,255,255,0.78);
+      box-shadow: 0 0 40px rgba(124,58,237,0.05) inset;
     }
 
-    /* ── FOOTER ── */
-    footer {
-      padding: 32px 24px;
+    /* Section */
+    .section { padding: 88px 40px; max-width: 960px; margin: 0 auto; }
+    .section-title {
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 14px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ffffff, var(--violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 48px;
+      max-width: 660px;
+      line-height: 1.7;
+    }
+
+    /* Pain */
+    .pain-section {
+      background: var(--darker);
+      padding: 88px 40px;
       border-top: 1px solid var(--border);
-      text-align: center;
-      font-size: 12px; color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
     }
-
-    /* ── MISC ── */
-    .tag {
-      display: inline-block; font-size: 11px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      padding: 3px 10px; border-radius: 4px;
-      background: rgba(124,58,237,0.12);
-      color: var(--accent-2); border: 1px solid rgba(124,58,237,0.2);
-      margin-right: 6px; margin-bottom: 6px;
+    .pain-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(124,58,237,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
     }
-    .tag.red { background: rgba(239,68,68,0.1); color: #f87171; border-color: rgba(239,68,68,0.2); }
-    .tag.green { background: rgba(34,197,94,0.1); color: #4ade80; border-color: rgba(34,197,94,0.2); }
+    .pain-inner { max-width: 960px; margin: 0 auto; position: relative; }
+    .pain-section .section-title { margin-bottom: 40px; }
+    .pain-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media(min-width:640px) { .pain-grid { grid-template-columns: 1fr 1fr; } }
+    .pain-card {
+      background: rgba(124,58,237,0.04);
+      border: 1px solid rgba(124,58,237,0.1);
+      border-left: 3px solid var(--violet);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: box-shadow 0.3s, border-left-color 0.3s;
+    }
+    .pain-card:hover { border-left-color: var(--gold); box-shadow: 0 0 28px rgba(124,58,237,0.1); }
+    .pain-num {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-size: 32px; font-weight: 800;
+      color: var(--violet); flex-shrink: 0; line-height: 1; min-width: 44px;
+    }
+    .pain-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; color: white; }
+    .pain-body  { font-size: 14px; color: var(--muted); line-height: 1.7; }
 
-    @media (max-width: 600px) {
-      .stat-bar { grid-template-columns: 1fr; }
-      nav .nav-brand { font-size: 11px; }
+    /* Solution */
+    .solution-body { font-size: 18px; line-height: 1.85; color: rgba(255,255,255,0.68); }
+
+    /* Steps */
+    .steps { display: flex; flex-direction: column; gap: 32px; }
+    .step { display: flex; gap: 24px; align-items: flex-start; }
+    .step-num {
+      background: linear-gradient(135deg, rgba(124,58,237,0.14), rgba(168,85,247,0.14));
+      border: 1px solid rgba(124,58,237,0.3);
+      color: var(--violet); font-weight: 700; font-size: 12px;
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 0 12px rgba(124,58,237,0.18);
+    }
+    .step-title { font-weight: 700; font-size: 17px; margin-bottom: 6px; color: white; }
+    .step-body  { color: var(--muted); font-size: 15px; line-height: 1.65; }
+
+    /* Testimonials */
+    .testimonials-bg {
+      padding: 88px 40px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--darker);
+    }
+    .testimonials-grid {
+      max-width: 960px; margin: 40px auto 0;
+      display: grid; gap: 18px; grid-template-columns: 1fr;
+    }
+    @media(min-width:700px) { .testimonials-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .testimonial {
+      background: rgba(124,58,237,0.04);
+      border: 1px solid rgba(124,58,237,0.12);
+      border-radius: var(--radius); padding: 28px; transition: box-shadow 0.3s;
+    }
+    .testimonial:hover { box-shadow: 0 0 28px rgba(124,58,237,0.1); }
+    .testimonial-quote  { font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.76); font-style: italic; margin-bottom: 16px; }
+    .testimonial-author { font-size: 11px; font-weight: 700; color: var(--violet); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* Offer box */
+    .offer-box {
+      background: rgba(124,58,237,0.05);
+      border: 1px solid rgba(124,58,237,0.28);
+      border-radius: var(--radius); padding: 40px;
+      max-width: 640px; margin: 0 auto;
+      box-shadow: 0 0 60px rgba(124,58,237,0.07);
+    }
+    .offer-title {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-weight: 800; font-size: 22px; margin-bottom: 24px;
+      background: linear-gradient(135deg, white, var(--violet));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .offer-box ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .offer-box li { display: flex; gap: 12px; font-size: 15px; align-items: flex-start; line-height: 1.55; color: rgba(255,255,255,0.8); }
+    .offer-box li::before { content: "\2713"; font-weight: 900; color: var(--violet); flex-shrink: 0; margin-top: 1px; font-size: 15px; }
+    .offer-value {
+      margin-top: 24px; font-size: 12px; font-weight: 600; color: var(--muted);
+      text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); letter-spacing: 0.5px;
+    }
+    .offer-cta-btn {
+      display: block; margin-top: 28px;
+      background: linear-gradient(135deg, var(--purple), var(--violet));
+      color: #fff; font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 800; font-size: 15px; padding: 15px 32px;
+      border-radius: 6px; text-align: center; text-decoration: none;
+      animation: glowPulse 3s ease-in-out infinite; transition: transform 0.15s;
+    }
+    .offer-cta-btn:hover { transform: translateY(-2px); color: #fff; }
+
+    /* Elevate */
+    .elevate-section { background: #060608; padding: 92px 40px; border-top: 1px solid var(--border); }
+    .elevate-inner { max-width: 960px; margin: 0 auto; }
+    .elevate-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+    }
+    .elevate-section h2 {
+      font-family: 'Syne', -apple-system, sans-serif;
+      font-size: clamp(24px, 4vw, 38px); font-weight: 800; margin-bottom: 16px; line-height: 1.12;
+      background: linear-gradient(135deg, white, var(--violet));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .elevate-intro { font-size: 16px; color: var(--muted); max-width: 720px; line-height: 1.8; margin-bottom: 56px; }
+    .elevate-stats {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 64px;
+    }
+    @media(min-width:700px) { .elevate-stats { grid-template-columns: repeat(4, 1fr); } }
+    .elevate-stat {
+      background: rgba(124,58,237,0.04); border: 1px solid rgba(124,58,237,0.12);
+      border-top: 2px solid var(--violet); border-radius: var(--radius); padding: 20px;
+    }
+    .elevate-stat-num {
+      font-family: 'Syne', -apple-system, sans-serif; font-size: 36px; font-weight: 800;
+      background: linear-gradient(135deg, var(--violet), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1; margin-bottom: 8px;
+    }
+    .elevate-stat-label { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .elevate-process-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--violet); margin-bottom: 28px;
+    }
+    .elevate-steps { display: flex; flex-direction: column; gap: 22px; margin-bottom: 52px; }
+    .elevate-step { display: flex; gap: 20px; align-items: flex-start; }
+    .elevate-step-num {
+      font-weight: 700; font-size: 11px; color: var(--violet);
+      border: 1px solid rgba(124,58,237,0.3); width: 34px; height: 34px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 0 8px rgba(124,58,237,0.15);
+    }
+    .elevate-step-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; color: white; }
+    .elevate-step-body  { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .elevate-cta-btn {
+      display: inline-block; border: 1px solid var(--violet); color: var(--violet);
+      font-family: 'Inter', -apple-system, sans-serif; font-weight: 700; font-size: 15px;
+      padding: 14px 32px; border-radius: 6px; text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .elevate-cta-btn:hover { background: var(--violet); color: #060608; }
+
+    /* Final CTA */
+    .final-cta {
+      position: relative; padding: 104px 40px; text-align: center; overflow: hidden;
+    }
+    .final-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 800px 500px at 50% 50%, rgba(124,58,237,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 20% 100%, rgba(168,85,247,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .final-cta h2 {
+      font-size: clamp(24px, 4vw, 44px); font-weight: 800; letter-spacing: -0.3px; margin-bottom: 16px;
+      background: linear-gradient(135deg, white, var(--violet));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .final-cta p { font-size: 17px; color: var(--muted); max-width: 560px; margin: 0 auto 44px; line-height: 1.7; }
+    .cta-btn-dark {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--purple), var(--violet));
+      color: #fff; font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 800; font-size: 16px; padding: 17px 44px;
+      border-radius: 6px; text-decoration: none;
+      animation: glowPulse 3s ease-in-out infinite; transition: transform 0.15s;
+    }
+    .cta-btn-dark:hover { transform: translateY(-2px); color: #fff; }
+    .final-urgency { margin-top: 18px; font-size: 12px; color: var(--muted); letter-spacing: 0.3px; }
+
+    /* Footer */
+    footer {
+      background: #060608; color: rgba(255,255,255,0.28);
+      padding: 36px 40px; text-align: center; font-size: 13px; line-height: 2.3;
+      border-top: 1px solid rgba(124,58,237,0.08);
+    }
+    footer strong { color: rgba(255,255,255,0.58); }
+    footer a { color: rgba(168,85,247,0.6); }
+
+    /* Animations */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media(max-width:600px) {
+      .nav { padding: 14px 20px; }
+      .hero { padding: 72px 20px 64px; }
+      .section { padding: 64px 20px; }
+      .pain-section, .testimonials-bg, .elevate-section { padding: 64px 20px; }
+      .final-cta { padding: 72px 20px; }
+      .lead-in { padding: 22px 24px; font-size: 16px; }
     }
   </style>
 </head>
-<body>
+<body class="grid-bg">
 
   <!-- NAV -->
-  <nav>
-    <span class="nav-brand">Elevate Operations</span>
-    <a href="https://elevateoperations.info/booking" class="nav-cta" target="_blank">Book a Call</a>
+  <nav class="nav">
+    <div class="nav-logo">Brandzey</div>
+    <div class="nav-badge">Personal Brand Agency</div>
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="eyebrow">Prepared for Etele Lorincz</div>
-      <h1>You've Built<br><span class="highlight">120,000 Followers.</span><br>You Don't Have a Funnel.</h1>
-      <p class="hero-sub">
-        The gap between your audience and your revenue isn't content — it's infrastructure.
-        <strong>You're generating real attention with no system to convert it.</strong>
-        Here's exactly what that's costing you, and what we'd build to fix it.
-      </p>
-      <div class="cta-group">
-        <a href="https://elevateoperations.info/booking" class="btn-primary" target="_blank">Book a 30-Minute Call →</a>
-        <a href="#gaps" class="btn-secondary">See the gaps first</a>
-      </div>
-
-      <div class="stat-bar">
-        <div class="stat-item">
-          <div class="stat-num">120<span>K</span></div>
-          <div class="stat-label">Instagram followers with no funnel</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">300<span>M</span></div>
-          <div class="stat-label">Views generated — zero retargeting</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">$0</div>
-          <div class="stat-label">Captured from off-platform traffic</div>
-        </div>
-      </div>
-    </div>
+  <section class="hero grid-bg">
+    <div class="hero-eyebrow fade-up">Brandzey &nbsp;&middot;&nbsp; Done-For-You Personal Branding</div>
+    <h1 class="fade-up">You Have the Knowledge. You Don't Have Time to Build the Brand Around It.</h1>
+    <p class="hero-sub fade-up">Brandzey builds and manages your personal brand from the ground up — content strategy, video production, account growth, and audience monetisation. We guarantee up to 100,000 real followers in 90 days.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn fade-up">Apply for a Free Brand Strategy Call &rarr;</a>
+    <p class="hero-urgency fade-up">Brand strategy calls are capped at 8 per month. Serious founders and entrepreneurs only.</p>
   </section>
 
-  <!-- GAPS -->
-  <section id="gaps">
-    <div class="container">
-      <div class="section-label">The Problem</div>
-      <h2>You're Bleeding Revenue. Here's Exactly Where.</h2>
-      <p class="section-body">
-        This isn't a critique — this is an audit. Every gap below is a direct revenue leak from a
-        business that already has the one thing most people spend years trying to get:
-        <strong>a warm, engaged audience that trusts you.</strong>
-      </p>
+  <!-- LEAD-IN -->
+  <div class="lead-in-wrap fade-up">
+    <p class="lead-in">Most entrepreneurs understand that a personal brand is the highest-ROI asset they can build. The people who are closing deals, attracting investment, and building communities around their business are visible. The ones who are not — no matter how good their product — are leaving real money on the table because nobody knows they exist.</p>
+  </div>
 
-      <div class="gap-list">
-        <div class="gap-item critical">
-          <div class="gap-icon">✕</div>
+  <!-- PAIN -->
+  <section class="pain-section">
+    <div class="pain-inner">
+      <h2 class="section-title fade-up">Why Most Entrepreneurs Never Build the Brand They Know They Should Have</h2>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-num">01</div>
           <div>
-            <div class="gap-title">No VSL or Video Funnel</div>
-            <div class="gap-desc">Your 120K followers watch your content, get interested in Brandzey, and have nowhere to go. No VSL on a landing page means no consistent conversion mechanism. Every sale is manually chased through DMs instead of happening automatically while you sleep.</div>
+            <div class="pain-title">No Time to Create Consistently</div>
+            <div class="pain-body">You know you should be posting. You start, you stop, you start again. Running a business leaves no margin for the consistent, high-volume content output that actually moves the needle on social media. Sporadic posting builds nothing.</div>
           </div>
         </div>
-        <div class="gap-item critical">
-          <div class="gap-icon">✕</div>
+        <div class="pain-card">
+          <div class="pain-num">02</div>
           <div>
-            <div class="gap-title">Brandzey.io Is Returning 404s</div>
-            <div class="gap-desc">Your agency website is effectively down. You're a personal branding agency with a broken website — that's the cobbler's shoes problem at full volume. Anyone who tries to vet you before booking a call hits a dead end. That's a direct credibility cost on every warm lead you're sending there.</div>
+            <div class="pain-title">Content That Gets Views but No Clients</div>
+            <div class="pain-body">Vanity metrics — views, likes, reach — mean nothing if nobody is converting. Most entrepreneurs post without a clear audience strategy, call-to-action architecture, or content funnel. The audience doesn't grow and the revenue doesn't follow.</div>
           </div>
         </div>
-        <div class="gap-item critical">
-          <div class="gap-icon">✕</div>
+        <div class="pain-card">
+          <div class="pain-num">03</div>
           <div>
-            <div class="gap-title">DM-Only Lead Capture (Unscalable)</div>
-            <div class="gap-desc">Your entire acquisition funnel runs through Instagram DM automation — the "SOS" trigger. That means every lead is Instagram-dependent. One algorithm change, one account restriction, or one platform update breaks your entire acquisition pipeline. There's no owned email list catching the overflow.</div>
+            <div class="pain-title">No Clear Positioning or Niche</div>
+            <div class="pain-body">Algorithms reward content that is specific, clear, and consistently targeted. Posting about five different topics to five different audiences grows nothing. A strong personal brand requires a single, clearly articulated message — and most founders have never been forced to define it.</div>
           </div>
         </div>
-        <div class="gap-item">
-          <div class="gap-icon warn">!</div>
+        <div class="pain-card">
+          <div class="pain-num">04</div>
           <div>
-            <div class="gap-title">No Retargeting Infrastructure</div>
-            <div class="gap-desc">Hundreds of thousands of people have seen your content across Instagram and YouTube. None of them are being retargeted. No Pixel, no Google Tag, no warm audience ad campaigns. The people who almost converted — the ones who watched your Reel three times but didn't DM — are just gone.</div>
-          </div>
-        </div>
-        <div class="gap-item">
-          <div class="gap-icon warn">!</div>
-          <div>
-            <div class="gap-title">No Email Nurture System</div>
-            <div class="gap-desc">There's no opt-in sequence, no newsletter, no automated follow-up for leads who don't convert on the first touch. In a high-ticket service like Brandzey, most prospects need 3–7 touchpoints before they close. Right now you're relying on DMs for all of that — manually.</div>
-          </div>
-        </div>
-        <div class="gap-item">
-          <div class="gap-icon warn">!</div>
-          <div>
-            <div class="gap-title">Skool Community is Undermonetised</div>
-            <div class="gap-desc">185 members in Young Wealth with no structured ascension path into Brandzey. That community is an untapped warm audience sitting idle. Without a proper email/SMS backend and an offer ladder inside the community, you're leaving upgrade revenue on the table every single week.</div>
+            <div class="pain-title">Competing Against People Who Started Earlier</div>
+            <div class="pain-body">The social media landscape is crowded. Entering it without a professional content system, a strategic growth approach, and a team behind you means competing at a disadvantage — alone, against operators who aren't.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHAT WE BUILD -->
-  <section id="solution">
-    <div class="container">
-      <div class="section-label">The Solution</div>
-      <h2>What Elevate Builds for You</h2>
-      <p class="section-body">
-        We build and run the full marketing infrastructure behind Brandzey. You keep doing what you're doing
-        on Instagram and YouTube. <strong>We build the system that converts that attention into booked calls
-        and closed clients — on autopilot.</strong>
-      </p>
-
-      <div class="build-grid">
-        <div class="build-card">
-          <div class="build-num">01 — FUNNEL</div>
-          <div class="build-title">VSL + Application Page</div>
-          <div class="build-desc">A full VSL landing page built around your 100K-followers-in-90-days guarantee. Application form, booking flow, thank-you page. Live within 7–10 days of onboarding.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-num">02 — TRACKING</div>
-          <div class="build-title">Pixel + Retargeting Setup</div>
-          <div class="build-desc">Meta Pixel installed, Google Tag Manager configured, conversion events tracked. Every warm body who hits your content gets added to a retargeting pool that runs ads in the background.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-num">03 — EMAIL / SMS</div>
-          <div class="build-title">Automated Sequences</div>
-          <div class="build-desc">Opt-in welcome sequence, post-application nurture, no-show recovery, post-call follow-up. Every touchpoint automated and running while you're creating content.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-num">04 — CRM</div>
-          <div class="build-title">Pipeline + Contact System</div>
-          <div class="build-desc">Full CRM setup in GoHighLevel. Every lead tracked from first touch to closed client. Nothing falls through the cracks. You see your pipeline in real time.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-num">05 — PAID ADS</div>
-          <div class="build-title">Meta Ad Campaign Build</div>
-          <div class="build-desc">Retargeting campaigns first, then cold audiences. Ad creative briefs written, targeting structured, budget allocated. Every dollar tracked against cost-per-application and cost-per-close.</div>
-        </div>
-        <div class="build-card">
-          <div class="build-num">06 — REPORTING</div>
-          <div class="build-title">Weekly Performance Reports</div>
-          <div class="build-desc">CPL, show rate, close rate, ROAS — every week. One clean report, one point of contact. No account managers, no layers. Ellis runs everything directly.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROOF -->
-  <section id="proof">
-    <div class="container">
-      <div class="section-label">Proof</div>
-      <h2>Numbers from Current Clients</h2>
-      <p class="section-body">
-        Every campaign we run is optimised for one metric: <strong>booked calls that close.</strong>
-        Here's what that looks like in practice.
-      </p>
-
-      <div class="proof-grid">
-        <div class="proof-card">
-          <div class="proof-result">34 strategy calls booked in 60 days</div>
-          <div class="proof-context">$210 CPL — online coaching niche. Funnel built from scratch, no existing email list. Fully automated by week 3.</div>
-        </div>
-        <div class="proof-card">
-          <div class="proof-result">41 qualified applications in 45 days</div>
-          <div class="proof-context">$180 CPA — high-ticket education offer. VSL + application page from zero. $8,500 average ticket, 2-touch close rate using our nurture sequences.</div>
-        </div>
-        <div class="proof-card">
-          <div class="proof-result">19 discovery calls in 45 days</div>
-          <div class="proof-context">$6,500/month average contract — agency niche. Paid-plus-organic system running alongside existing content engine.</div>
-        </div>
-      </div>
-
-      <p style="margin-top: 32px; font-size: 13px; color: var(--text-dim);">
-        These clients had the same thing you have: an audience, a proven offer, and no backend infrastructure
-        converting the attention into revenue. We built the backend. They closed the clients.
-      </p>
-    </div>
+  <!-- SOLUTION -->
+  <section class="section">
+    <h2 class="section-title fade-up">Why Founders Choose Brandzey Over Building Their Brand Alone</h2>
+    <p class="solution-body fade-up">Brandzey is not a content course or a strategy consultation. It is a done-for-you system: we build and manage your personal brand as if it were our own — from positioning and content strategy to video production, account management, and audience monetisation. You remain the face. We handle everything else. The result is a personal brand that grows consistently, attracts the right audience, and converts that audience into real business outcomes.</p>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section id="process">
-    <div class="container">
-      <div class="section-label">Process</div>
-      <h2>How This Actually Works</h2>
-      <p class="section-body">
-        One call, one onboarding, and then we build. <strong>You focus on content.
-        We handle everything else.</strong>
-      </p>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <div>
-            <div class="step-title">30-Minute Strategy Call</div>
-            <div class="step-desc">We go over your current setup, your offer structure, your close rate, and where the real leaks are. If there's a fit, we confirm scope and start date on the call.</div>
-          </div>
+  <section class="section" style="padding-top:0;">
+    <h2 class="section-title fade-up">Here Is What Happens When You Apply</h2>
+    <p class="section-sub fade-up">A clear, simple process — from strategy call to a growing personal brand.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Free Brand Strategy Call</div>
+          <div class="step-body">A 30-minute call with the Brandzey team. We go through your current brand, your offer, your target audience, and what you're trying to build toward. We tell you exactly what we'd do and why — no obligation to move forward.</div>
         </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <div>
-            <div class="step-title">Week 1–2: Foundation Build</div>
-            <div class="step-desc">CRM setup, tracking install, VSL page copywritten and live, Pixel and Tag Manager configured. Brandzey.io relaunched with a real funnel behind it.</div>
-          </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Brand Audit and Strategy Build</div>
+          <div class="step-body">We audit your existing presence — every platform, every piece of content, every positioning signal. We identify the gaps and build a full content strategy around your offer and audience. You see the plan before we execute a single piece of content.</div>
         </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <div>
-            <div class="step-title">Week 2–3: Email + SMS Live</div>
-            <div class="step-desc">All automated sequences built and tested. Opt-in flow, post-application nurture, no-show recovery. Your DMs continue generating leads — now they feed a real backend.</div>
-          </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Done-For-You Execution</div>
+          <div class="step-body">Our team handles content production, account management, posting schedules, and engagement strategy — platform-specific for Instagram, TikTok, and YouTube. You film short sessions when needed. We handle the rest.</div>
         </div>
-        <div class="step">
-          <div class="step-num">04</div>
-          <div>
-            <div class="step-title">Week 3–4: Paid Campaigns Launch</div>
-            <div class="step-desc">Retargeting first — capturing warm traffic already watching your content. Then cold audiences. Full campaign build, creative briefs, and ongoing weekly optimisation.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">05</div>
-          <div>
-            <div class="step-title">Ongoing: Weekly Reports + Optimisation</div>
-            <div class="step-desc">Every week: performance report, budget reallocation, sequence tweaks. Monthly strategy call to align on pipeline and adjust targeting. You scale, we manage the system.</div>
-          </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Growth and Monetisation</div>
+          <div class="step-body">As the audience grows, we layer in monetisation strategy — DM funnels, offer architecture, and inbound lead systems that convert your following into real business outcomes. Most clients see 10,000 to 40,000 new real followers in the first 30 days.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-box">
-        <div class="eyebrow" style="margin-bottom: 24px;">For Etele Lorincz</div>
-        <h2>One 30-Minute Call to See if This Makes Sense</h2>
-        <p>
-          No pitch deck. No agency fluff. We look at your actual setup — your offer, your traffic,
-          your current close rate — and tell you exactly what we'd build and what it would return.
-          If the numbers don't work for you, we tell you that too.
-        </p>
-        <a href="https://elevateoperations.info/booking" class="btn-primary" target="_blank">
-          Book Your Strategy Call →
-        </a>
-        <div class="urgency-note">Strategy calls are limited to 5 per week. — Ellis, Elevate Operations</div>
+  <!-- TESTIMONIALS -->
+  <div class="testimonials-bg">
+    <div style="max-width:960px;margin:0 auto;">
+      <h2 class="section-title fade-up">What Clients Say After Working with Brandzey</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <div class="testimonial-quote">&ldquo;I had been putting off building my personal brand for two years. Brandzey had my first piece of content live in week one and 22,000 new followers by the end of month two. I closed three new clients directly from inbound DMs in that period.&rdquo;</div>
+          <div class="testimonial-author">&mdash; E-commerce Founder</div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">&ldquo;The positioning clarity alone was worth it. I had been posting randomly for a year with zero traction. Brandzey defined my niche in the first week, restructured my content, and my reach tripled in 30 days.&rdquo;</div>
+          <div class="testimonial-author">&mdash; Business Coach</div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">&ldquo;I run a company. I don&rsquo;t have time to be a content creator. Brandzey made it so I didn&rsquo;t have to be. I show up on camera when needed. They handle everything else and the results are better than anything I would have done myself.&rdquo;</div>
+          <div class="testimonial-author">&mdash; Agency Owner</div>
+        </div>
       </div>
     </div>
+  </div>
+
+  <!-- OFFER -->
+  <section class="section" style="text-align:center;">
+    <h2 class="section-title fade-up">What You Get on the Strategy Call</h2>
+    <p class="section-sub fade-up" style="margin:0 auto 40px;">Everything you need to make the right decision — at zero cost.</p>
+    <div class="offer-box fade-up">
+      <div class="offer-title">Your Free Brand Strategy Call Includes:</div>
+      <ul>
+        <li>A full audit of your current social presence and positioning</li>
+        <li>Identification of the 2 to 3 specific gaps preventing audience growth</li>
+        <li>A clear picture of the content strategy we would build around your offer</li>
+        <li>Realistic projections for follower growth and inbound lead volume</li>
+        <li>An honest answer on whether Brandzey is the right fit for your goals</li>
+      </ul>
+      <div class="offer-value">Completely free &mdash; 30 minutes, no obligation</div>
+      <a href="https://elevateoperations.info/booking" class="offer-cta-btn">Apply for a Free Brand Strategy Call &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ELEVATE OPERATIONS -->
+  <section class="elevate-section">
+    <div class="elevate-inner">
+      <div class="elevate-eyebrow fade-up">Built by Elevate Operations</div>
+      <h2 class="fade-up">The System Behind This Page</h2>
+      <p class="elevate-intro fade-up">This client acquisition page was built for Brandzey by Elevate Operations. We build paid acquisition infrastructure for personal brand operators and online business owners — VSL funnels, Meta retargeting campaigns, email and SMS automation, and CRM pipelines that convert social audiences into booked strategy calls automatically.</p>
+      <div class="elevate-stats">
+        <div class="elevate-stat">
+          <div class="elevate-stat-num">19</div>
+          <div class="elevate-stat-label">Discovery calls booked in 45 days for one agency owner campaign</div>
+        </div>
+        <div class="elevate-stat">
+          <div class="elevate-stat-num">$6,500</div>
+          <div class="elevate-stat-label">Average monthly contract value from paid acquisition</div>
+        </div>
+        <div class="elevate-stat">
+          <div class="elevate-stat-num">34</div>
+          <div class="elevate-stat-label">Strategy calls booked in 60 days — online coaching niche</div>
+        </div>
+        <div class="elevate-stat">
+          <div class="elevate-stat-num">$210</div>
+          <div class="elevate-stat-label">Cost per qualified booked call</div>
+        </div>
+      </div>
+      <div class="elevate-process-label">What we build for operators like Brandzey</div>
+      <div class="elevate-steps">
+        <div class="elevate-step">
+          <div class="elevate-step-num">01</div>
+          <div>
+            <div class="elevate-step-title">VSL Funnel and Application Page</div>
+            <div class="elevate-step-body">A conversion-focused video sales letter page built around your offer and proof points — with an application flow that pre-qualifies leads before they reach a call.</div>
+          </div>
+        </div>
+        <div class="elevate-step">
+          <div class="elevate-step-num">02</div>
+          <div>
+            <div class="elevate-step-title">Meta Retargeting and Paid Acquisition</div>
+            <div class="elevate-step-body">Pixel installation, custom audience builds from your existing social following, and retargeting campaigns that recapture warm traffic. The highest-ROI paid move for any operator with an existing audience.</div>
+          </div>
+        </div>
+        <div class="elevate-step">
+          <div class="elevate-step-num">03</div>
+          <div>
+            <div class="elevate-step-title">Email and SMS Automation</div>
+            <div class="elevate-step-body">Post-application nurture, pre-call reminders, no-show recovery, and post-call follow-up — all automated. Every lead followed up without manual effort.</div>
+          </div>
+        </div>
+        <div class="elevate-step">
+          <div class="elevate-step-num">04</div>
+          <div>
+            <div class="elevate-step-title">CRM and Weekly Reporting</div>
+            <div class="elevate-step-body">Every lead tracked from first touch to closed. Weekly performance report with CPL, show rate, close rate, and ROAS. One point of contact — Ellis runs everything directly.</div>
+          </div>
+        </div>
+      </div>
+      <a href="https://elevateoperations.info/booking" class="elevate-cta-btn fade-up">Talk to Ellis About Building This for Brandzey &rarr;</a>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2 class="fade-up">Ready to Build the Brand Behind Your Business?</h2>
+    <p class="fade-up">Eight strategy calls available per month. We review every application and only work with founders we can produce real results for.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn-dark fade-up">Apply for Your Free Brand Strategy Call &rarr;</a>
+    <p class="final-urgency fade-up">8 spots available this month &mdash; serious founders only.</p>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>Elevate Operations &nbsp;·&nbsp; Prepared for Etele Lorincz (@etelelorincz) &nbsp;·&nbsp; <a href="https://elevateoperations.info/booking" style="color: var(--accent-2); text-decoration: none;">elevateoperations.info/booking</a></p>
+    <strong>Brandzey</strong> &nbsp;&middot;&nbsp; Done-For-You Personal Branding &nbsp;&middot;&nbsp; by Etele Lorincz<br>
+    This page was built by <a href="https://elevateoperations.info/booking">Elevate Operations</a> as a mock acquisition asset for Brandzey.
   </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
 
 </body>
 </html>
