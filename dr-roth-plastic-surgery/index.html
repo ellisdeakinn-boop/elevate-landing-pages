@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Roth Plastic Surgery &#x2014; Book Your Complimentary Consultation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent:       #3d2645;
+      --accent-light: #6b4a77;
+      --gold:         #C0848A;
+      --text:         #1a1a1a;
+      --muted:        #5a5a5a;
+      --light-bg:     #f7f6f3;
+      --border:       #e0ddd8;
+      --white:        #ffffff;
+      --radius:       8px;
+    }
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 17px;
+    }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* ── Nav ── */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 700;
+      font-size: 19px;
+      color: var(--accent);
+      letter-spacing: -0.2px;
+    }
+    .nav-badge {
+      background: var(--accent);
+      color: white;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 13px;
+      border-radius: 2px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(150deg, #3d2645 0%, #6b4a77 100%);
+      color: white;
+      padding: 96px 40px 84px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(30px, 5.5vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      max-width: 880px;
+      margin: 0 auto 24px;
+    }
+    .hero-sub {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-size: clamp(16px, 2.5vw, 20px);
+      opacity: 0.86;
+      max-width: 660px;
+      margin: 0 auto 44px;
+      line-height: 1.65;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: #3d2645;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 17px 40px;
+      border-radius: 3px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      transition: transform 0.15s, box-shadow 0.15s;
+      letter-spacing: 0.2px;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.24); color: #3d2645; }
+    .hero-urgency {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      margin-top: 18px;
+      font-size: 12px;
+      opacity: 0.58;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Section ── */
+    .section { padding: 84px 40px; max-width: 940px; margin: 0 auto; }
+    .section-title {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 16px;
+      line-height: 1.12;
+      color: var(--accent);
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 48px;
+      max-width: 680px;
+      line-height: 1.65;
+    }
+
+    /* ── Lead-in ── */
+    .lead-in-wrap {
+      background: var(--light-bg);
+      padding: 52px 40px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .lead-in {
+      background: white;
+      border-left: 3px solid var(--gold);
+      padding: 28px 36px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.75;
+      max-width: 860px;
+      margin: 0 auto;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+
+    /* ── Pain ── */
+    .pain-section {
+      background: #3d2645;
+      color: white;
+      padding: 84px 40px;
+    }
+    .pain-section .section-title { color: white; margin-bottom: 40px; }
+    .pain-grid {
+      max-width: 940px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+    @media(min-width:640px) { .pain-grid { grid-template-columns: 1fr 1fr; } }
+    .pain-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .pain-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: #C0848A;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 0;
+      min-width: 44px;
+    }
+    .pain-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; font-family: 'DM Sans', -apple-system, sans-serif; }
+    .pain-body  { font-size: 14px; opacity: 0.80; line-height: 1.65; font-family: 'DM Sans', -apple-system, sans-serif; }
+
+    /* ── Solution ── */
+    .solution-body { font-size: 18px; line-height: 1.8; color: var(--muted); }
+
+    /* ── Steps ── */
+    .steps { display: flex; flex-direction: column; gap: 32px; }
+    .step { display: flex; gap: 24px; align-items: flex-start; }
+    .step-num {
+      background: var(--accent);
+      color: white;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-title { font-weight: 700; font-size: 17px; margin-bottom: 6px; font-family: 'DM Sans', -apple-system, sans-serif; }
+    .step-body  { color: var(--muted); font-size: 16px; line-height: 1.65; }
+
+    /* ── Testimonials ── */
+    .testimonials-bg {
+      background: var(--light-bg);
+      padding: 84px 40px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .testimonials-grid {
+      max-width: 940px;
+      margin: 40px auto 0;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+    @media(min-width:700px) { .testimonials-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .testimonial {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    }
+    .testimonial-quote  { font-size: 15px; line-height: 1.7; color: var(--text); font-style: italic; margin-bottom: 16px; }
+    .testimonial-author { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.8px; text-transform: uppercase; }
+
+    /* ── Offer ── */
+    .offer-box {
+      background: var(--light-bg);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .offer-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 800;
+      font-size: 22px;
+      margin-bottom: 24px;
+      color: var(--accent);
+    }
+    .offer-box ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .offer-box li { display: flex; gap: 12px; font-size: 16px; align-items: flex-start; line-height: 1.5; }
+    .offer-box li::before {
+      content: "\2713";
+      font-weight: 800;
+      color: #C0848A;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .offer-value {
+      margin-top: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Elevate Operations section ── */
+    .elevate-section {
+      background: #0d1520;
+      color: white;
+      padding: 88px 40px;
+    }
+    .elevate-inner { max-width: 940px; margin: 0 auto; }
+    .elevate-eyebrow {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #C0848A;
+      margin-bottom: 14px;
+    }
+    .elevate-section h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      margin-bottom: 18px;
+      line-height: 1.12;
+    }
+    .elevate-intro {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-size: 17px;
+      opacity: 0.72;
+      max-width: 720px;
+      line-height: 1.75;
+      margin-bottom: 56px;
+    }
+    .elevate-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+    @media(min-width:700px) { .elevate-stats { grid-template-columns: repeat(4, 1fr); } }
+    .elevate-stat { border-top: 2px solid #C0848A; padding-top: 18px; }
+    .elevate-stat-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 38px;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .elevate-stat-label {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-size: 13px;
+      opacity: 0.58;
+      line-height: 1.45;
+    }
+    .elevate-process-label {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #C0848A;
+      margin-bottom: 28px;
+    }
+    .elevate-steps { display: flex; flex-direction: column; gap: 24px; margin-bottom: 52px; }
+    .elevate-step { display: flex; gap: 20px; align-items: flex-start; }
+    .elevate-step-num {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: #C0848A;
+      border: 1px solid #C0848A;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .elevate-step-title { font-family: 'DM Sans', -apple-system, sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+    .elevate-step-body  { font-family: 'DM Sans', -apple-system, sans-serif; font-size: 14px; opacity: 0.65; line-height: 1.65; }
+    .elevate-cta-btn {
+      display: inline-block;
+      background: #C0848A;
+      color: #0d1520;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 36px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      letter-spacing: 0.2px;
+    }
+    .elevate-cta-btn:hover { opacity: 0.88; color: #0d1520; }
+
+    /* ── Final CTA ── */
+    .final-cta {
+      background: linear-gradient(150deg, #3d2645 0%, #6b4a77 100%);
+      color: white;
+      padding: 96px 40px;
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 18px;
+    }
+    .final-cta p {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-size: 18px;
+      opacity: 0.86;
+      max-width: 580px;
+      margin: 0 auto 44px;
+      line-height: 1.65;
+    }
+    .cta-btn-dark {
+      display: inline-block;
+      background: white;
+      color: #3d2645;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 17px 40px;
+      border-radius: 3px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cta-btn-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.26); color: #3d2645; }
+    .final-urgency { font-family: 'DM Sans', -apple-system, sans-serif; margin-top: 20px; font-size: 12px; opacity: 0.55; letter-spacing: 0.3px; }
+
+    /* ── Footer ── */
+    footer {
+      background: #080d13;
+      color: #555;
+      padding: 36px 40px;
+      text-align: center;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 2.3;
+    }
+    footer strong { color: #999; }
+    footer a { color: #777; }
+
+    /* ── Divider ── */
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">Dr. Roth Plastic Surgery</div>
+    <div class="nav-badge">Board-Certified Specialist</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Dr. Roth Plastic Surgery &nbsp;&middot;&nbsp; Houston, TX</div>
+    <h1>You've Been Thinking About This Long Enough. One Honest Conversation Changes Everything.</h1>
+    <p class="hero-sub">Most patients who come to Dr. Roth Plastic Surgery in Houston say they had been considering this for over a year before they finally booked a consultation. The consultation was the easiest part.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn">Book Your Complimentary Consultation &rarr;</a>
+    <p class="hero-urgency">Consultation slots at Dr. Roth Plastic Surgery fill 2 to 3 weeks ahead.</p>
+  </section>
+
+  <!-- LEAD-IN -->
+  <div class="lead-in-wrap">
+    <p class="lead-in">How long have you been researching this privately — reading reviews, watching before-and-after results, wondering if you are a good candidate? Most patients in Houston have been thinking about it for 12 to 24 months before they book. They all say the same thing after: 'I wish I had done this sooner.'</p>
+  </div>
+
+  <!-- PAIN -->
+  <section class="pain-section">
+    <div style="max-width:940px;margin:0 auto;">
+      <h2 class="section-title">What Keeps Most People Waiting — and Why It Does Not Have to Be That Way</h2>
+      <div class="pain-grid">
+        
+        <div class="pain-card">
+          <div class="pain-num">01</div>
+          <div>
+            <div class="pain-title">Another Year of the Same Feeling</div>
+            <div class="pain-body">Another year of avoiding certain photos, not quite feeling like yourself in the mirror. That emotional cost compounds quietly. It does not have to.</div>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-num">02</div>
+          <div>
+            <div class="pain-title">Fear of Choosing the Wrong Provider</div>
+            <div class="pain-body">Not every surgeon is board-certified in the specialty relevant to your procedure. The gap in outcomes between a true specialist and a generalist is significant — and not always visible until it is too late to change it.</div>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-num">03</div>
+          <div>
+            <div class="pain-title">Making Decisions From Research Alone</div>
+            <div class="pain-body">You have read every forum thread. You have compared clinics online for hours. But none of that replaces one honest conversation with a specialist who can actually assess your specific anatomy and tell you what is realistic.</div>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-num">04</div>
+          <div>
+            <div class="pain-title">Never Actually Speaking to the Surgeon</div>
+            <div class="pain-body">Most clinics route you through a patient coordinator for the first consultation. You make your decision without ever meeting the person who would perform your procedure.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="section">
+    <h2 class="section-title">What Is Different About a Consultation at Dr. Roth Plastic Surgery</h2>
+    <p class="solution-body">At Dr. Roth Plastic Surgery in Houston, your consultation is with the surgeon — not a coordinator, not a patient liaison. A board-certified specialist who gives you their honest expert assessment based on your specific anatomy and goals. No pressure. No upselling. Just a real conversation about what is actually possible for you — and what is not. You leave knowing exactly where you stand.</p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <h2 class="section-title">Here Is What Happens When You Work With Dr. Roth Plastic Surgery</h2>
+    <p class="section-sub">A clear, simple process &#8212; from first conversation to real results.</p>
+    <div class="steps">
+      
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Complimentary Consultation with the Surgeon</div>
+            <div class="step-body">45 to 60 minutes at Dr. Roth Plastic Surgery in Houston. Your surgeon reviews your anatomy, listens to your goals, and gives you an honest, specialist-level assessment of what is achievable — with zero pressure to move forward.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">A Plan Built for Your Anatomy</div>
+            <div class="step-body">If you choose to move forward, your surgeon designs a treatment plan for your specific anatomy and goals. Not a standard procedure. A plan that makes sense for you.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">The Procedure</div>
+            <div class="step-body">Performed by your surgeon personally in our accredited Houston facility, using current techniques and individualised to your anatomy.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <div class="step-title">Dedicated Aftercare</div>
+            <div class="step-body">Follow-up appointments at 1 week, 1 month, 3 months, and 6 months. We stay with you through the entire process.</div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials-bg">
+    <div style="max-width:940px;margin:0 auto;">
+      <h2 class="section-title">What Houston Clients Are Saying</h2>
+      <div class="testimonials-grid">
+        
+        <div class="testimonial">
+          <div class="testimonial-quote">&#8220;I had been to two other consultations before Dr. Roth Plastic Surgery. The difference was that the surgeon actually came in and talked to me — not a salesperson. I left with a real answer for the first time.&#8221;</div>
+          <div class="testimonial-author">&#8212; Patient, Houston</div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">&#8220;I spent almost two years researching before I booked. After one consultation at Dr. Roth Plastic Surgery, I had the answer I had been trying to find online for 24 months. I wish I had done it sooner.&#8221;</div>
+          <div class="testimonial-author">&#8212; Patient, Houston</div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">&#8220;Six months later, my friends keep asking if I have been on holiday or changed something. Nobody can tell I had anything done. That was the whole point.&#8221;</div>
+          <div class="testimonial-author">&#8212; Patient, Houston</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFER -->
+  <section class="section" style="text-align:center;">
+    <h2 class="section-title">What Is Included</h2>
+    <p class="section-sub" style="margin:0 auto 40px;">Everything you need to make the right decision &#8212; at zero cost.</p>
+    <div class="offer-box">
+      <div class="offer-title">Your Complimentary Consultation Includes:</div>
+      <ul><li>One-on-one time with the surgeon — not a patient coordinator</li><li>Honest specialist assessment of your anatomy and what is realistically achievable</li><li>Straight answers to every question you have been unable to answer from research alone</li><li>A tour of the facility and a chance to meet the full care team</li><li>Zero obligation to proceed — ever</li></ul>
+      <div class="offer-value">Completely free — no cost, no commitment, no obligation to move forward</div>
+    </div>
+  </section>
+
+  <!-- ELEVATE OPERATIONS -->
+  <section class="elevate-section">
+    <div class="elevate-inner">
+      <div class="elevate-eyebrow">Built by Elevate Operations</div>
+      <h2>The System Behind This Page</h2>
+      <p class="elevate-intro">This consultation booking page was built for Dr. Roth Plastic Surgery by Elevate Operations. We build paid patient acquisition systems for cosmetic clinics — Meta and Meta campaigns targeting women 35 to 60 in your local market, procedure-specific VSL funnels, and automated SMS and email reminders that consistently move show-up rates to 80%+.</p>
+
+      <div class="elevate-stats">
+        
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">$67K</div>
+            <div class="elevate-stat-label">In consultation bookings from one 8-week campaign</div>
+          </div>
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">83%</div>
+            <div class="elevate-stat-label">Consultation show-up rate with automated follow-up</div>
+          </div>
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">80%+</div>
+            <div class="elevate-stat-label">Show-up rate consistently achieved across campaigns</div>
+          </div>
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">$1M+</div>
+            <div class="elevate-stat-label">Generated for clients across all niches</div>
+          </div>
+      </div>
+
+      <div class="elevate-process-label">The Full System &#8212; What We Build</div>
+      <div class="elevate-steps">
+        
+          <div class="elevate-step">
+            <div class="elevate-step-num">01</div>
+            <div>
+              <div class="elevate-step-title">Paid Ads</div>
+              <div class="elevate-step-body">Meta campaigns targeting your ideal client in your local market. Built around your niche, your geography, and your minimum case or client value.</div>
+            </div>
+          </div>
+          <div class="elevate-step">
+            <div class="elevate-step-num">02</div>
+            <div>
+              <div class="elevate-step-title">Qualifying Funnel</div>
+              <div class="elevate-step-body">A VSL landing page that educates and pre-qualifies prospects before they reach your calendar. You only talk to people who already understand what you offer and want to move forward.</div>
+            </div>
+          </div>
+          <div class="elevate-step">
+            <div class="elevate-step-num">03</div>
+            <div>
+              <div class="elevate-step-title">Automated Follow-up</div>
+              <div class="elevate-step-body">SMS and email sequences that follow up with every inquiry automatically — 7 to 8 touches without any manual effort. Show-up rates go from 50% to 80%+ with the right reminders in place.</div>
+            </div>
+          </div>
+          <div class="elevate-step">
+            <div class="elevate-step-num">04</div>
+            <div>
+              <div class="elevate-step-title">Retargeting</div>
+              <div class="elevate-step-body">Every person who visits your site or landing page and does not convert is added to a retargeting audience. Your ads follow them until they book. Nothing is wasted.</div>
+            </div>
+          </div>
+      </div>
+
+      <a href="https://elevateoperations.info/booking" class="elevate-cta-btn">See What This System Would Do for Your Practice &rarr;</a>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2>Book Your Complimentary Consultation at Dr. Roth Plastic Surgery</h2>
+    <p>One conversation with a board-certified surgeon in Houston. Free, private, and with zero pressure. The research phase ends here.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn-dark">Book Your Complimentary Consultation &rarr;</a>
+    <p class="final-urgency">Consultation slots at Dr. Roth Plastic Surgery fill 2 to 3 weeks ahead.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>Dr. Roth Plastic Surgery</strong><br>
+    Houston, TX<br><br>
+    <strong>Built by Elevate Operations</strong><br>
+    <a href="https://elevateoperations.info">elevateoperations.info</a>
+  </footer>
+
+</body>
+</html>
