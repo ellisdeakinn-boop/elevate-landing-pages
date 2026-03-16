@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legacy Law Group Colorado &#x2014; Get Your Free Case Evaluation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent:       #7b1c1c;
+      --accent-light: #a83232;
+      --gold:         #C09A50;
+      --text:         #1a1a1a;
+      --muted:        #5a5a5a;
+      --light-bg:     #f7f6f3;
+      --border:       #e0ddd8;
+      --white:        #ffffff;
+      --radius:       8px;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 17px;
+    }
+    h1, h2, h3 { font-family: 'Libre Baskerville', Georgia, serif; }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* ── Nav ── */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-weight: 700;
+      font-size: 19px;
+      color: var(--accent);
+      letter-spacing: -0.2px;
+    }
+    .nav-badge {
+      background: var(--accent);
+      color: white;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 13px;
+      border-radius: 2px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(150deg, #7b1c1c 0%, #a83232 100%);
+      color: white;
+      padding: 96px 40px 84px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(30px, 5.5vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      max-width: 880px;
+      margin: 0 auto 24px;
+    }
+    .hero-sub {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: clamp(16px, 2.5vw, 20px);
+      opacity: 0.86;
+      max-width: 660px;
+      margin: 0 auto 44px;
+      line-height: 1.65;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: #7b1c1c;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 17px 40px;
+      border-radius: 3px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      transition: transform 0.15s, box-shadow 0.15s;
+      letter-spacing: 0.2px;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.24); color: #7b1c1c; }
+    .hero-urgency {
+      font-family: 'Inter', -apple-system, sans-serif;
+      margin-top: 18px;
+      font-size: 12px;
+      opacity: 0.58;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Section ── */
+    .section { padding: 84px 40px; max-width: 940px; margin: 0 auto; }
+    .section-title {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 16px;
+      line-height: 1.12;
+      color: var(--accent);
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 48px;
+      max-width: 680px;
+      line-height: 1.65;
+    }
+
+    /* ── Lead-in ── */
+    .lead-in-wrap {
+      background: var(--light-bg);
+      padding: 52px 40px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .lead-in {
+      background: white;
+      border-left: 3px solid var(--gold);
+      padding: 28px 36px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.75;
+      max-width: 860px;
+      margin: 0 auto;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+
+    /* ── Pain ── */
+    .pain-section {
+      background: #7b1c1c;
+      color: white;
+      padding: 84px 40px;
+    }
+    .pain-section .section-title { color: white; margin-bottom: 40px; }
+    .pain-grid {
+      max-width: 940px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+    @media(min-width:640px) { .pain-grid { grid-template-columns: 1fr 1fr; } }
+    .pain-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .pain-num {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: #C09A50;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 0;
+      min-width: 44px;
+    }
+    .pain-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; font-family: 'Inter', -apple-system, sans-serif; }
+    .pain-body  { font-size: 14px; opacity: 0.80; line-height: 1.65; font-family: 'Inter', -apple-system, sans-serif; }
+
+    /* ── Solution ── */
+    .solution-body { font-size: 18px; line-height: 1.8; color: var(--muted); }
+
+    /* ── Steps ── */
+    .steps { display: flex; flex-direction: column; gap: 32px; }
+    .step { display: flex; gap: 24px; align-items: flex-start; }
+    .step-num {
+      background: var(--accent);
+      color: white;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-title { font-weight: 700; font-size: 17px; margin-bottom: 6px; font-family: 'Inter', -apple-system, sans-serif; }
+    .step-body  { color: var(--muted); font-size: 16px; line-height: 1.65; }
+
+    /* ── Testimonials ── */
+    .testimonials-bg {
+      background: var(--light-bg);
+      padding: 84px 40px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .testimonials-grid {
+      max-width: 940px;
+      margin: 40px auto 0;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+    @media(min-width:700px) { .testimonials-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .testimonial {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    }
+    .testimonial-quote  { font-size: 15px; line-height: 1.7; color: var(--text); font-style: italic; margin-bottom: 16px; }
+    .testimonial-author { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.8px; text-transform: uppercase; }
+
+    /* ── Offer ── */
+    .offer-box {
+      background: var(--light-bg);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .offer-title {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-weight: 800;
+      font-size: 22px;
+      margin-bottom: 24px;
+      color: var(--accent);
+    }
+    .offer-box ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .offer-box li { display: flex; gap: 12px; font-size: 16px; align-items: flex-start; line-height: 1.5; }
+    .offer-box li::before {
+      content: "\2713";
+      font-weight: 800;
+      color: #C09A50;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .offer-value {
+      margin-top: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Elevate Operations section ── */
+    .elevate-section {
+      background: #0d1520;
+      color: white;
+      padding: 88px 40px;
+    }
+    .elevate-inner { max-width: 940px; margin: 0 auto; }
+    .elevate-eyebrow {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #C09A50;
+      margin-bottom: 14px;
+    }
+    .elevate-section h2 {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      margin-bottom: 18px;
+      line-height: 1.12;
+    }
+    .elevate-intro {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 17px;
+      opacity: 0.72;
+      max-width: 720px;
+      line-height: 1.75;
+      margin-bottom: 56px;
+    }
+    .elevate-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+    @media(min-width:700px) { .elevate-stats { grid-template-columns: repeat(4, 1fr); } }
+    .elevate-stat { border-top: 2px solid #C09A50; padding-top: 18px; }
+    .elevate-stat-num {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 38px;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .elevate-stat-label {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 13px;
+      opacity: 0.58;
+      line-height: 1.45;
+    }
+    .elevate-process-label {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #C09A50;
+      margin-bottom: 28px;
+    }
+    .elevate-steps { display: flex; flex-direction: column; gap: 24px; margin-bottom: 52px; }
+    .elevate-step { display: flex; gap: 20px; align-items: flex-start; }
+    .elevate-step-num {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: #C09A50;
+      border: 1px solid #C09A50;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .elevate-step-title { font-family: 'Inter', -apple-system, sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+    .elevate-step-body  { font-family: 'Inter', -apple-system, sans-serif; font-size: 14px; opacity: 0.65; line-height: 1.65; }
+    .elevate-cta-btn {
+      display: inline-block;
+      background: #C09A50;
+      color: #0d1520;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 36px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      letter-spacing: 0.2px;
+    }
+    .elevate-cta-btn:hover { opacity: 0.88; color: #0d1520; }
+
+    /* ── Final CTA ── */
+    .final-cta {
+      background: linear-gradient(150deg, #7b1c1c 0%, #a83232 100%);
+      color: white;
+      padding: 96px 40px;
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 18px;
+    }
+    .final-cta p {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 18px;
+      opacity: 0.86;
+      max-width: 580px;
+      margin: 0 auto 44px;
+      line-height: 1.65;
+    }
+    .cta-btn-dark {
+      display: inline-block;
+      background: white;
+      color: #7b1c1c;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 17px 40px;
+      border-radius: 3px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cta-btn-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.26); color: #7b1c1c; }
+    .final-urgency { font-family: 'Inter', -apple-system, sans-serif; margin-top: 20px; font-size: 12px; opacity: 0.55; letter-spacing: 0.3px; }
+
+    /* ── Footer ── */
+    footer {
+      background: #080d13;
+      color: #555;
+      padding: 36px 40px;
+      text-align: center;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 2.3;
+    }
+    footer strong { color: #999; }
+    footer a { color: #777; }
+
+    /* ── Divider ── */
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">Legacy Law Group Colorado</div>
+    <div class="nav-badge">No Recovery. No Fee.</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Legacy Law Group Colorado &nbsp;&middot;&nbsp; Denver, CO</div>
+    <h1>The Insurance Company Assigned a Team to Your Case the Day It Happened. Have You?</h1>
+    <p class="hero-sub">Accident and injury victims in Denver who work with a personal injury attorney recover an average of 3 to 4 times more than those who negotiate alone.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn">Get Your Free Case Evaluation &rarr;</a>
+    <p class="hero-urgency">Surveillance footage is deleted in 24 to 72 hours. Evidence does not wait.</p>
+  </section>
+
+  <!-- LEAD-IN -->
+  <div class="lead-in-wrap">
+    <p class="lead-in">The moment your accident happened, the insurance company opened a file. Their adjuster started building a record. Their goal — from the first phone call — is to close your case for as little as possible. You deserve someone whose goal is the opposite.</p>
+  </div>
+
+  <!-- PAIN -->
+  <section class="pain-section">
+    <div style="max-width:940px;margin:0 auto;">
+      <h2 class="section-title">What the Insurance Company Is Counting On You Not Knowing</h2>
+      <div class="pain-grid">
+        
+        <div class="pain-card">
+          <div class="pain-num">01</div>
+          <div>
+            <div class="pain-title">Their First Offer Is Not a Fair Offer</div>
+            <div class="pain-body">Insurance adjusters are trained negotiators. Their opening offer is a calculated number — not a reflection of what your case is actually worth. Most people have no idea how much they are leaving on the table.</div>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-num">02</div>
+          <div>
+            <div class="pain-title">Evidence Is Disappearing Right Now</div>
+            <div class="pain-body">Dashcam footage. Surveillance video. Skid marks. Witness memory. Every hour that passes, the physical record of what happened gets weaker. Evidence preservation starts on day one or it does not start at all.</div>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-num">03</div>
+          <div>
+            <div class="pain-title">Unrepresented Victims Recover Far Less</div>
+            <div class="pain-body">Studies consistently show that represented injury victims recover 3 to 4 times more in total compensation. The difference is not the strength of the case — it is who is making the argument.</div>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-num">04</div>
+          <div>
+            <div class="pain-title">The Friendly Adjuster Is Not on Your Side</div>
+            <div class="pain-body">The same adjuster who calls to check on you is writing notes about inconsistencies in your account. Their job is to close your file cheaply. Understanding that changes every conversation.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="section">
+    <h2 class="section-title">How Legacy Law Group Colorado Builds Maximum-Value Cases</h2>
+    <p class="solution-body">At Legacy Law Group Colorado in Denver, we do not settle cases quickly to move volume. We build cases correctly — documenting every dollar of damage, preserving every piece of evidence, and negotiating from a position of strength. We work on pure contingency: you pay nothing unless we win, and we only take cases we believe in.</p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <h2 class="section-title">Here Is What Happens When You Work With Legacy Law Group Colorado</h2>
+    <p class="section-sub">A clear, simple process &#8212; from first conversation to real results.</p>
+    <div class="steps">
+      
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Free Case Evaluation</div>
+            <div class="step-body">A private consultation with a licensed attorney at Legacy Law Group Colorado. We assess the full value of your case — including future medical costs, lost earning capacity, and non-economic damages most people never think to include.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Immediate Evidence Preservation</div>
+            <div class="step-body">From day one we secure surveillance footage, accident reports, black box data, medical records, and witness statements. The window is short. We move fast.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">Full Demand Package</div>
+            <div class="step-body">We build a comprehensive demand that documents every dollar — past and future. Designed to establish the real value of your case, not a convenient number for a quick settlement.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <div class="step-title">Negotiation — or Trial</div>
+            <div class="step-body">We negotiate from a position of documented strength. If the insurance company will not offer what your case is worth, we take it to trial. They know we will. That changes the conversation.</div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials-bg">
+    <div style="max-width:940px;margin:0 auto;">
+      <h2 class="section-title">What Denver Clients Are Saying</h2>
+      <div class="testimonials-grid">
+        
+        <div class="testimonial">
+          <div class="testimonial-quote">&#8220;State Farm offered me $18,500 the week after my accident. I almost took it. Legacy Law Group Colorado recovered $215,000 for me. I had no idea what my case was actually worth.&#8221;</div>
+          <div class="testimonial-author">&#8212; Client, Denver</div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">&#8220;I thought I did not have a real case. Legacy Law Group Colorado disagreed. They recovered $340,000 for injuries I had already dismissed as minor.&#8221;</div>
+          <div class="testimonial-author">&#8212; Client, Denver</div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">&#8220;After a truck hit our car, the insurance company offered $185,000 for our family. Legacy Law Group Colorado took it to trial and recovered $1.6 million. We are forever grateful.&#8221;</div>
+          <div class="testimonial-author">&#8212; Client, Denver</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFER -->
+  <section class="section" style="text-align:center;">
+    <h2 class="section-title">What Is Included</h2>
+    <p class="section-sub" style="margin:0 auto 40px;">Everything you need to make the right decision &#8212; at zero cost.</p>
+    <div class="offer-box">
+      <div class="offer-title">Your Free Case Evaluation Includes:</div>
+      <ul><li>Private consultation with a licensed personal injury attorney</li><li>Honest assessment of your case value — including future medical costs</li><li>Plain-English explanation of your rights and what to say (and not say) to insurers</li><li>Immediate action plan for evidence preservation</li><li>Zero fee unless we recover compensation for you</li></ul>
+      <div class="offer-value">Completely free — no cost, no obligation, no fee unless we win</div>
+    </div>
+  </section>
+
+  <!-- ELEVATE OPERATIONS -->
+  <section class="elevate-section">
+    <div class="elevate-inner">
+      <div class="elevate-eyebrow">Built by Elevate Operations</div>
+      <h2>The System Behind This Page</h2>
+      <p class="elevate-intro">This intake page was built for Legacy Law Group Colorado by Elevate Operations. We build complete case acquisition systems for law firms — Meta ads targeting injury-adjacent audiences, VSL landing pages that qualify cases before they reach your phone, and automated SMS and email sequences that move leads from first click to retained client.</p>
+
+      <div class="elevate-stats">
+        
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">50+</div>
+            <div class="elevate-stat-label">Qualified case consultations per month for one personal injury firm</div>
+          </div>
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">34%</div>
+            <div class="elevate-stat-label">Lead-to-consult rate achieved (from 8% before)</div>
+          </div>
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">78%</div>
+            <div class="elevate-stat-label">Consultation show-up rate with automated follow-up</div>
+          </div>
+          <div class="elevate-stat">
+            <div class="elevate-stat-num">$1M+</div>
+            <div class="elevate-stat-label">Generated for clients across all campaigns</div>
+          </div>
+      </div>
+
+      <div class="elevate-process-label">The Full System &#8212; What We Build</div>
+      <div class="elevate-steps">
+        
+          <div class="elevate-step">
+            <div class="elevate-step-num">01</div>
+            <div>
+              <div class="elevate-step-title">Paid Ads</div>
+              <div class="elevate-step-body">Meta campaigns targeting your ideal client in your local market. Built around your niche, your geography, and your minimum case or client value.</div>
+            </div>
+          </div>
+          <div class="elevate-step">
+            <div class="elevate-step-num">02</div>
+            <div>
+              <div class="elevate-step-title">Qualifying Funnel</div>
+              <div class="elevate-step-body">A VSL landing page that educates and pre-qualifies prospects before they reach your calendar. You only talk to people who already understand what you offer and want to move forward.</div>
+            </div>
+          </div>
+          <div class="elevate-step">
+            <div class="elevate-step-num">03</div>
+            <div>
+              <div class="elevate-step-title">Automated Follow-up</div>
+              <div class="elevate-step-body">SMS and email sequences that follow up with every inquiry automatically — 7 to 8 touches without any manual effort. Show-up rates go from 50% to 80%+ with the right reminders in place.</div>
+            </div>
+          </div>
+          <div class="elevate-step">
+            <div class="elevate-step-num">04</div>
+            <div>
+              <div class="elevate-step-title">Retargeting</div>
+              <div class="elevate-step-body">Every person who visits your site or landing page and does not convert is added to a retargeting audience. Your ads follow them until they book. Nothing is wasted.</div>
+            </div>
+          </div>
+      </div>
+
+      <a href="https://elevateoperations.info/booking" class="elevate-cta-btn">See What This System Would Do for Your Firm &rarr;</a>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2>Find Out What Your Case Is Actually Worth</h2>
+    <p>Book your free case evaluation with Legacy Law Group Colorado in Denver. Private. No cost. No obligation. You pay nothing unless we win.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn-dark">Get Your Free Case Evaluation &rarr;</a>
+    <p class="final-urgency">Surveillance footage is deleted in 24 to 72 hours. Evidence does not wait.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>Legacy Law Group Colorado</strong><br>
+    Denver, CO<br><br>
+    <strong>Built by Elevate Operations</strong><br>
+    <a href="https://elevateoperations.info">elevateoperations.info</a>
+  </footer>
+
+</body>
+</html>
