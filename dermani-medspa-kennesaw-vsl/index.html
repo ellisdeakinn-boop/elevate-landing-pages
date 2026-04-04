@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Built for dermani MEDSPA® Kennesaw by Elevate Operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent:  #3d2645;
+      --light:   #6b4a77;
+      --gold:    #C0848A;
+      --text:    #1a1a1a;
+      --muted:   #5a5a5a;
+      --bg:      #f7f6f3;
+      --border:  #e0ddd8;
+      --white:   #ffffff;
+      --r:       8px;
+    }
+    body { font-family: 'DM Sans', -apple-system, sans-serif; color: var(--text); line-height: 1.65; font-size: 17px; background: #0a0f14; }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+    /* ── Top bar ── */
+    .topbar {
+      background: #0a0f14;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-logo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 17px; color: rgba(255,255,255,0.9); font-weight: 700; }
+    .topbar-tag  { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #C0848A; }
+
+    /* ── Video section ── */
+    .video-section {
+      background: #0a0f14;
+      padding: 48px 24px 56px;
+      text-align: center;
+    }
+    .video-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #C0848A;
+      margin-bottom: 16px;
+    }
+    .video-headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 800;
+      color: white;
+      max-width: 780px;
+      margin: 0 auto 12px;
+      line-height: 1.1;
+    }
+    .video-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      max-width: 580px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .video-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      position: relative;
+      padding-top: 56.25%;
+      background: #111;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .video-caption {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+    .vsl-placeholder-inner {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      color: rgba(255,255,255,0.35); text-align: center;
+    }
+    .vsl-placeholder-inner svg { width: 64px; height: 64px; }
+    .vsl-placeholder-inner p { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+
+    /* ── Below-fold content ── */
+    .content { background: var(--bg); }
+    .section { padding: 72px 32px; max-width: 860px; margin: 0 auto; }
+    .section-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 20px;
+      line-height: 1.15;
+    }
+
+    /* ── Found list ── */
+    .found-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+    .found-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 16px;
+      line-height: 1.6;
+      padding: 16px 20px;
+      background: white;
+      border-radius: var(--r);
+      border-left: 3px solid #C0848A;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .found-list li::before {
+      content: "!";
+      font-weight: 800;
+      color: #C0848A;
+      flex-shrink: 0;
+      font-size: 15px;
+      width: 24px;
+      height: 24px;
+      background: #3d2645;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    /* ── Cost box ── */
+    .cost-box {
+      background: #3d2645;
+      color: white;
+      border-radius: var(--r);
+      padding: 32px 36px;
+      font-size: 17px;
+      line-height: 1.75;
+      margin-top: 8px;
+    }
+
+    /* ── Pitch list ── */
+    .pitch-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .pitch-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .pitch-list li::before {
+      content: "\2713";
+      font-weight: 800;
+      color: #C0848A;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 16px;
+    }
+
+    /* ── Proof bar ── */
+    .proof-bar {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px 28px;
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 32px;
+      border-left: 3px solid #C0848A;
+    }
+
+    /* ── CTA section ── */
+    .cta-section {
+      background: linear-gradient(150deg, #3d2645 0%, #6b4a77 100%);
+      padding: 80px 32px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      color: white;
+      margin-bottom: 14px;
+      line-height: 1.12;
+    }
+    .cta-section p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.78);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: #3d2645;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 17px 40px;
+      border-radius: 3px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      transition: transform 0.15s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); color: #3d2645; }
+    .cta-note { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.45); }
+
+    /* ── Footer ── */
+    footer {
+      background: #080d13;
+      color: #444;
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 12px;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      line-height: 2;
+    }
+    footer a { color: #666; text-decoration: none; }
+
+    /* ── Divider ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  </style>
+</head>
+<body>
+  
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="topbar-logo">dermani MEDSPA® Kennesaw</div>
+    <div class="topbar-tag">Built by Elevate Operations</div>
+  </header>
+
+  <!-- VIDEO -->
+  <section class="video-section">
+    <div class="video-eyebrow">Recorded specifically for dermani MEDSPA® Kennesaw</div>
+    <h1 class="video-headline">I looked at dermani MEDSPA® Kennesaw's website and Instagram before recording this.</h1>
+    <p class="video-sub">Here is what I found, what it is costing in missed consultations, and what a full patient acquisition system looks like.</p>
+    <div class="video-wrapper">
+      <div class="vsl-placeholder-inner"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="39" stroke="currentColor" stroke-width="2" opacity="0.4"/><path d="M32 26l24 14-24 14V26z" fill="currentColor"/></svg><p>VSL dropping soon</p></div>
+    </div>
+    <p class="video-caption">Watch time: approx. 4&#8211;5 minutes &#x2022; Recorded by Ellis, Elevate Operations</p>
+  </section>
+
+  <!-- BELOW FOLD -->
+  <div class="content">
+
+    <!-- WHAT WE FOUND -->
+    <section class="section">
+      <h2 class="section-title">What I Found on dermani MEDSPA® Kennesaw's Website</h2>
+      <ul class="found-list">
+        <li>I reviewed dermani MEDSPA® Kennesaw's full digital presence before putting this together.</li>
+      </ul>
+    </section>
+
+    <hr class="divider">
+
+    <!-- WHAT IT'S COSTING -->
+    <section class="section">
+      <h2 class="section-title">What This Is Costing dermani MEDSPA® Kennesaw</h2>
+      <div class="cost-box">At a 50 to 60% show-up rate and $8,000 average procedure value, a clinic running 20 consultations per month loses roughly $64,000 to $80,000 in potential revenue every month before a single procedure happens. Automated follow-up alone moves show-up rates to 80%+.</div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- THE PITCH -->
+    <section class="section">
+      <h2 class="section-title">What We Build for dermani MEDSPA® Kennesaw</h2>
+      <p style="color:var(--muted);font-size:17px;margin-bottom:28px;line-height:1.7;">
+        A complete paid acquisition system, built around your specific gaps and your market in Kennesaw.
+      </p>
+      <ul class="pitch-list">
+        <li>Meta (Facebook and Instagram) campaigns targeting women 35 to 60 in Kennesaw, segmented by procedure interest</li><li>Procedure-specific VSL landing pages (body vs facial vs injectables)</li><li>Automated SMS and email reminders: show-up rates consistently reach 80%+</li><li>Post-consultation follow-up for prospects who did not book a procedure</li><li>Meta retargeting for Instagram profile visitors and website visitors who did not convert</li>
+      </ul>
+      <div class="proof-bar">$67K in consultation bookings in 8 weeks. Show-up rate moved from 52% to 83%.</div>
+    </section>
+
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to Talk?</h2>
+    <p>15 minutes. No pitch deck. Just a direct conversation about what this looks like for dermani MEDSPA® Kennesaw.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn">Book a 15-Min Call With Ellis &#8594;</a>
+    <p class="cta-note">Book directly &#x2014; no assistant, no form, no wait.</p>
+  </section>
+
+  <footer>
+    Built for dermani MEDSPA® Kennesaw by <a href="https://elevateoperations.info">Elevate Operations</a>
+    &#x2022; Kennesaw
+  </footer>
+
+</body>
+</html>
