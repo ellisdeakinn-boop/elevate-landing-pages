@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cowboy Closers — Sales Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Setup Screen -->
+  <div id="setup-screen" class="screen hidden">
+    <div class="setup-box">
+      <div class="logo">CC</div>
+      <h1>Sales Hub Setup</h1>
+      <p>Enter your API keys to get started. These are stored locally in your browser.</p>
+      <div class="field">
+        <label>Airtable API Key</label>
+        <input type="password" id="setup-airtable-key" placeholder="patXXXXXX..." />
+      </div>
+      <div class="field">
+        <label>Anthropic API Key</label>
+        <input type="password" id="setup-anthropic-key" placeholder="sk-ant-..." />
+      </div>
+      <button class="btn-primary" onclick="saveSetup()">Save and Continue</button>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="hidden">
+    <header>
+      <div class="header-inner">
+        <div class="brand">
+          <span class="logo-sm">CC</span>
+          <span class="brand-name">Sales Hub</span>
+        </div>
+        <nav>
+          <button class="tab-btn active" onclick="switchTab('commissions', this)">Commissions</button>
+          <button class="tab-btn" onclick="switchTab('review', this)">Call Review</button>
+        </nav>
+        <button class="btn-ghost" onclick="showSetup()">Settings</button>
+      </div>
+    </header>
+
+    <!-- Commissions Tab -->
+    <div id="tab-commissions" class="tab-content">
+      <div class="container">
+        <div class="page-header">
+          <div>
+            <h2>Commissions</h2>
+            <p class="sub">Closers 10% · Setters 5% · Based on cash collected</p>
+          </div>
+          <div class="controls">
+            <select id="period-select" onchange="loadCommissions()">
+              <option value="current">This Month</option>
+              <option value="last">Last Month</option>
+              <option value="all">All Time</option>
+            </select>
+            <button class="btn-primary" onclick="loadCommissions()">Refresh</button>
+          </div>
+        </div>
+
+        <div id="commissions-loading" class="loading hidden">Loading...</div>
+        <div id="commissions-error" class="error hidden"></div>
+
+        <div id="commissions-output">
+          <!-- Totals bar -->
+          <div id="totals-bar" class="totals-bar hidden">
+            <div class="total-card">
+              <span class="total-label">Contract Revenue</span>
+              <span class="total-value" id="total-revenue">—</span>
+            </div>
+            <div class="total-card">
+              <span class="total-label">Cash Collected</span>
+              <span class="total-value" id="total-cash">—</span>
+            </div>
+            <div class="total-card highlight">
+              <span class="total-label">Closer Commissions</span>
+              <span class="total-value" id="total-closer-comm">—</span>
+            </div>
+            <div class="total-card highlight">
+              <span class="total-label">Setter Commissions</span>
+              <span class="total-value" id="total-setter-comm">—</span>
+            </div>
+            <div class="total-card accent">
+              <span class="total-label">Total Payroll</span>
+              <span class="total-value" id="total-payroll">—</span>
+            </div>
+          </div>
+
+          <!-- Closers -->
+          <div class="section-title">Closers</div>
+          <div id="closers-table"></div>
+
+          <!-- Setters -->
+          <div class="section-title" style="margin-top:2rem">Setters</div>
+          <div id="setters-table"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call Review Tab -->
+    <div id="tab-review" class="tab-content hidden">
+      <div class="container">
+        <div class="page-header">
+          <div>
+            <h2>Call Review</h2>
+            <p class="sub">Paste a Fathom transcript and get a full scorecard with coaching notes.</p>
+          </div>
+        </div>
+
+        <div class="review-grid">
+          <div class="review-input-panel">
+            <div class="field">
+              <label>Closer Name</label>
+              <input type="text" id="closer-name" placeholder="e.g. Zach Ford" />
+            </div>
+            <div class="field">
+              <label>Transcript</label>
+              <textarea id="transcript-input" placeholder="Paste the full Fathom transcript here..."></textarea>
+            </div>
+            <button class="btn-primary full-width" onclick="reviewCall()">Review Call</button>
+          </div>
+
+          <div class="review-output-panel">
+            <div id="review-loading" class="loading hidden">Reviewing call...</div>
+            <div id="review-error" class="error hidden"></div>
+            <div id="review-output" class="scorecard-output"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

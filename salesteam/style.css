@@ -1,0 +1,353 @@
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0d0f14;
+  --surface:   #161920;
+  --border:    #252830;
+  --text:      #e8eaf0;
+  --muted:     #6b7280;
+  --gold:      #c9a84c;
+  --gold-dim:  #8a6f2f;
+  --green:     #3dbd7a;
+  --red:       #e05252;
+  --radius:    8px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.hidden { display: none !important; }
+
+/* ── Setup Screen ── */
+.screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.setup-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 440px;
+}
+
+.logo {
+  width: 52px;
+  height: 52px;
+  background: var(--gold);
+  color: #000;
+  font-weight: 800;
+  font-size: 18px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.setup-box h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: .4rem;
+}
+
+.setup-box p {
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+}
+
+/* ── Form Fields ── */
+.field {
+  margin-bottom: 1.25rem;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--muted);
+  margin-bottom: .4rem;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 14px;
+  padding: .6rem .85rem;
+  outline: none;
+  transition: border-color .15s;
+  font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--gold-dim);
+}
+
+textarea {
+  min-height: 420px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  background: var(--gold);
+  color: #000;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: var(--radius);
+  padding: .65rem 1.25rem;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.btn-primary:hover { opacity: .85; }
+.btn-primary.full-width { width: 100%; padding: .85rem; font-size: 15px; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .45rem .9rem;
+  cursor: pointer;
+  transition: color .15s, border-color .15s;
+}
+.btn-ghost:hover { color: var(--text); border-color: var(--muted); }
+
+/* ── Header ── */
+header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.brand { display: flex; align-items: center; gap: .6rem; }
+
+.logo-sm {
+  width: 32px;
+  height: 32px;
+  background: var(--gold);
+  color: #000;
+  font-weight: 800;
+  font-size: 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-name { font-weight: 700; font-size: 15px; }
+
+nav { display: flex; gap: .25rem; margin-left: .5rem; }
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: color .15s, background .15s;
+}
+
+.tab-btn:hover { color: var(--text); background: var(--border); }
+.tab-btn.active { color: var(--text); background: var(--border); font-weight: 600; }
+
+header .btn-ghost { margin-left: auto; }
+
+/* ── Layout ── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.page-header h2 { font-size: 1.25rem; font-weight: 700; }
+.sub { color: var(--muted); font-size: 13px; margin-top: .2rem; }
+
+.controls { display: flex; gap: .75rem; align-items: center; }
+
+select {
+  width: auto;
+  padding: .55rem .8rem;
+  cursor: pointer;
+}
+
+/* ── State Messages ── */
+.loading { color: var(--muted); padding: 2rem 0; text-align: center; }
+.error {
+  background: rgba(224, 82, 82, .1);
+  border: 1px solid rgba(224, 82, 82, .3);
+  color: var(--red);
+  border-radius: var(--radius);
+  padding: .75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+/* ── Totals Bar ── */
+.totals-bar {
+  display: flex;
+  gap: .75rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.total-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .9rem 1.25rem;
+  flex: 1;
+  min-width: 150px;
+}
+
+.total-card.highlight { border-color: var(--gold-dim); }
+.total-card.accent { background: rgba(201, 168, 76, .08); border-color: var(--gold); }
+
+.total-label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: .3rem; }
+.total-value { font-size: 1.35rem; font-weight: 700; }
+.total-card.accent .total-value { color: var(--gold); }
+
+/* ── Rep Tables ── */
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  margin-bottom: .75rem;
+}
+
+.rep-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: .75rem;
+  overflow: hidden;
+}
+
+.rep-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .9rem 1.25rem;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.rep-header:hover { background: rgba(255,255,255,.02); }
+
+.rep-name { font-weight: 600; font-size: 15px; }
+.rep-owed { font-weight: 700; font-size: 15px; color: var(--gold); }
+
+.rep-meta { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.rep-meta span { font-size: 12px; color: var(--muted); }
+
+.rep-deals {
+  border-top: 1px solid var(--border);
+  padding: .5rem 0;
+}
+
+.deal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 1.25rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.deal-row:hover { background: rgba(255,255,255,.02); }
+
+.deal-lead { font-size: 13px; }
+.deal-nums { display: flex; gap: 1.5rem; font-size: 12px; color: var(--muted); text-align: right; flex-wrap: wrap; }
+.deal-nums span { white-space: nowrap; }
+.deal-commission { color: var(--green) !important; font-weight: 600; }
+
+/* ── Call Review ── */
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.review-input-panel,
+.review-output-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.scorecard-output {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.scorecard-output h2 { font-size: 1.1rem; margin-bottom: 1rem; }
+.scorecard-output h3 { font-size: .9rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 1.25rem 0 .6rem; }
+.scorecard-output table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+.scorecard-output th { text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: .4rem .6rem; border-bottom: 1px solid var(--border); }
+.scorecard-output td { padding: .5rem .6rem; border-bottom: 1px solid rgba(255,255,255,.04); font-size: 13px; }
+.scorecard-output tr:last-child td { border-bottom: none; }
+.scorecard-output ul, .scorecard-output ol { padding-left: 1.25rem; margin-bottom: .75rem; }
+.scorecard-output li { margin-bottom: .35rem; font-size: 13px; }
+.scorecard-output strong { font-weight: 600; color: #fff; }
+.scorecard-output p { margin-bottom: .75rem; font-size: 13px; }
+.scorecard-output hr { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
+.scorecard-output blockquote { border-left: 3px solid var(--gold-dim); padding-left: .75rem; color: var(--muted); font-style: italic; margin: .5rem 0; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .review-grid { grid-template-columns: 1fr; }
+  .totals-bar { flex-direction: column; }
+  .header-inner { gap: .75rem; }
+  .brand-name { display: none; }
+}
