@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch This First | Karie Hall Homes by Karie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #080500;
+    background-image:
+      linear-gradient(rgba(245,158,11,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,158,11,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    color: #f5f0e8;
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+  }
+  .container { max-width: 820px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  .orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(120px); }
+  .orb-1 { width: 500px; height: 500px; background: rgba(245,158,11,0.15); top: -200px; right: -150px; animation: drift 9s ease-in-out infinite alternate; }
+  .orb-2 { width: 350px; height: 350px; background: rgba(234,88,12,0.12); bottom: 80px; left: -150px; animation: drift 11s ease-in-out infinite alternate-reverse; }
+  @keyframes drift { from { transform: translate(0,0); } to { transform: translate(25px,35px); } }
+  .topbar { background: rgba(245,158,11,0.07); border-bottom: 1px solid rgba(245,158,11,0.2); padding: 14px 0; text-align: center; }
+  .topbar p { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #f59e0b; }
+  .video-section { padding: 72px 0 56px; text-align: center; }
+  .video-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #f59e0b; margin-bottom: 20px; }
+  .video-headline {
+    font-family: 'Syne', sans-serif; font-size: clamp(26px, 4.5vw, 48px);
+    font-weight: 800; line-height: 1.12; margin-bottom: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #f59e0b 40%, #ef4444 90%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(245,158,11,0.35));
+  }
+  .video-sub { font-size: 16px; color: #a89060; max-width: 600px; margin: 0 auto 40px; }
+  .video-wrapper {
+    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+    border-radius: 16px; max-width: 760px; margin: 0 auto;
+    border: 1px solid rgba(245,158,11,0.25);
+    box-shadow: 0 0 60px rgba(245,158,11,0.2), 0 24px 80px rgba(0,0,0,0.7);
+  }
+  .video-wrapper iframe, .vsl-placeholder-inner { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  .vsl-placeholder-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; color: #f59e0b; font-size: 16px; font-weight: 600; background: rgba(245,158,11,0.05); }
+  .vsl-placeholder-inner svg { width: 64px; height: 64px; }
+  .content { padding: 0 0 80px; }
+  .section { margin-bottom: 64px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 24px; background: linear-gradient(90deg, #f59e0b, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .pain-card { background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); border: 1px solid rgba(245,158,11,0.15); border-left: 3px solid #f59e0b; border-radius: 12px; padding: 20px; color: #c4a060; font-size: 14px; font-weight: 500; }
+  .pain-card strong { display: block; color: #f5f0e8; font-size: 15px; margin-bottom: 6px; }
+  .steps { display: flex; flex-direction: column; gap: 20px; }
+  .step { display: flex; gap: 20px; align-items: flex-start; background: rgba(255,255,255,0.025); border: 1px solid rgba(245,158,11,0.12); border-radius: 14px; padding: 22px; }
+  .step-num { width: 36px; height: 36px; background: linear-gradient(135deg, #f59e0b, #ef4444); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; color: #080500; flex-shrink: 0; box-shadow: 0 0 20px rgba(245,158,11,0.4); }
+  .step-body h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #f5f0e8; }
+  .step-body p { font-size: 14px; color: #a89060; }
+  .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .testimonial { background: rgba(255,255,255,0.03); border: 1px solid rgba(245,158,11,0.15); border-radius: 14px; padding: 22px; }
+  .testimonial p { font-size: 14px; color: #c4a060; margin-bottom: 12px; font-style: italic; }
+  .testimonial .name { font-size: 13px; font-weight: 700; color: #f59e0b; }
+  .cta-section { background: rgba(245,158,11,0.06); border-top: 1px solid rgba(245,158,11,0.2); padding: 72px 0; text-align: center; }
+  .cta-section h2 { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 14px; background: linear-gradient(135deg, #f59e0b, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .cta-section p { font-size: 16px; color: #a89060; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); color: #080500; font-size: 17px; font-weight: 800; padding: 20px 48px; border-radius: 12px; text-decoration: none; box-shadow: 0 0 40px rgba(245,158,11,0.5), 0 0 80px rgba(239,68,68,0.2); transition: all 0.3s ease; }
+  .cta-btn:hover { box-shadow: 0 0 60px rgba(245,158,11,0.8); transform: translateY(-3px) scale(1.02); }
+  .elevate-bar { background: rgba(0,0,0,0.4); border-top: 1px solid rgba(245,158,11,0.1); padding: 32px 0; text-align: center; }
+  .elevate-bar p { font-size: 13px; color: #7a6040; }
+  .elevate-bar a { color: #f59e0b; text-decoration: none; }
+  .divider { border: none; border-top: 1px solid rgba(245,158,11,0.1); margin: 48px 0; }
+</style>
+</head>
+<body>
+<div class="orb orb-1"></div><div class="orb orb-2"></div>
+
+<div class="topbar"><p>Karie Hall Homes by Karie &times; Elevate Operations — Student Acquisition System</p></div>
+
+<section class="video-section">
+  <div class="container">
+    <p class="video-eyebrow">Watch Before You Scroll</p>
+    <h1 class="video-headline">Why Most People Never Close Their First Real Estate Deal — And What the Ones Who Do, Do Differently</h1>
+    <p class="video-sub">A message from the Karie Hall Homes by Karie team — specifically for people who are serious about getting their first deal done.</p>
+    <div class="video-wrapper"><div class="vsl-placeholder-inner"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="39" stroke="currentColor" stroke-width="2" opacity="0.4"/><path d="M32 26l24 14-24 14V26z" fill="currentColor"/></svg><p>VSL dropping soon</p></div></div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container">
+    <div class="section">
+      <p class="section-title">The 4 Reasons Most Aspiring Investors Never Get Off the Ground</p>
+      <div class="pain-grid">
+        <div class="pain-card"><strong>Analysis Paralysis</strong>Spending months studying markets without ever making a move — waiting for the "perfect" deal that never comes.</div>
+        <div class="pain-card"><strong>No Deal Flow System</strong>Looking on the MLS like everyone else, competing on price with investors who have 10x your experience and capital.</div>
+        <div class="pain-card"><strong>Wrong Financing Approach</strong>Thinking you need your own money or perfect credit. The right structure eliminates both as requirements.</div>
+        <div class="pain-card"><strong>No Accountability</strong>Trying to figure it out alone with YouTube and podcasts, without a coach who's closed deals in today's market.</div>
+      </div>
+    </div>
+    <hr class="divider">
+    <div class="section">
+      <p class="section-title">The Karie Hall Homes by Karie Method</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Apply and Get Evaluated</h4><p>Tell us where you are and what you want to achieve. We'll assess whether you're a fit for the program — and be honest if you're not ready yet.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Get Your Deal Blueprint</h4><p>Your first strategy call maps out your first deal — the specific type, market, and structure that fits your situation. No generic advice.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Execute With Accountability</h4><p>Weekly coaching, direct access to the team, and a community of active investors pushing each other toward that first close.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Close Your First Deal</h4><p>The students who commit to the process close their first deal. Then they start building — because the first one proves the system works.</p></div></div>
+      </div>
+    </div>
+    <hr class="divider">
+    <div class="section">
+      <p class="section-title">What Students Are Saying</p>
+      <div class="testimonials">
+        <div class="testimonial"><p>"I spent 14 months watching YouTube and reading books. I joined, got my first deal under contract in week 6. The accountability alone was worth it."</p><div class="name">— Community Member</div></div>
+        <div class="testimonial"><p>"I came in thinking I needed $50K to get started. The program showed me three ways to do it with zero of my own money. First deal done in 90 days."</p><div class="name">— Community Member</div></div>
+        <div class="testimonial"><p>"The market feels impossible from the outside. From inside the program, with the right systems and someone who's done it in this market, it's actually doable."</p><div class="name">— Community Member</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Get Your First Deal Done?</h2>
+    <p>Apply for a free strategy call. We'll map out exactly what your first deal looks like and tell you honestly if the program is the right fit.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn">Apply for a Free Strategy Call &rarr;</a>
+  </div>
+</section>
+
+<div class="elevate-bar">
+  <div class="container">
+    <p>Built by <a href="https://elevateoperations.info">Elevate Operations</a> — Student acquisition systems for online coaching businesses.</p>
+  </div>
+</div>
+
+</body>
+</html>
