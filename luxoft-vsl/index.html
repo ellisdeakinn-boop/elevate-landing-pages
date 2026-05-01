@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch This First | Luxoft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #050510;
+    background-image:
+      linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px);
+    background-size: 50px 50px;
+    color: #f0f0ff;
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+  }
+  .container { max-width: 820px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  .orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(120px); }
+  .orb-1 { width: 500px; height: 500px; background: rgba(99,102,241,0.18); top: -200px; right: -150px; animation: drift 9s ease-in-out infinite alternate; }
+  .orb-2 { width: 350px; height: 350px; background: rgba(6,182,212,0.12); bottom: 80px; left: -150px; animation: drift 11s ease-in-out infinite alternate-reverse; }
+  @keyframes drift { from { transform: translate(0,0); } to { transform: translate(25px,35px); } }
+  .topbar { background: rgba(99,102,241,0.08); border-bottom: 1px solid rgba(99,102,241,0.2); padding: 14px 0; text-align: center; }
+  .topbar p { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #818cf8; }
+  .video-section { padding: 72px 0 56px; text-align: center; }
+  .video-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #818cf8; margin-bottom: 20px; }
+  .video-headline {
+    font-family: 'Syne', sans-serif; font-size: clamp(26px, 4.5vw, 48px);
+    font-weight: 800; line-height: 1.12; margin-bottom: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #818cf8 40%, #06b6d4 90%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(99,102,241,0.4));
+  }
+  .video-sub { font-size: 16px; color: #7070a0; max-width: 600px; margin: 0 auto 40px; }
+  .video-wrapper {
+    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+    border-radius: 16px; max-width: 760px; margin: 0 auto;
+    border: 1px solid rgba(99,102,241,0.25);
+    box-shadow: 0 0 60px rgba(99,102,241,0.25), 0 24px 80px rgba(0,0,0,0.7);
+  }
+  .video-wrapper iframe, .vsl-placeholder-inner { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  .vsl-placeholder-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; color: #818cf8; font-size: 16px; font-weight: 600; background: rgba(99,102,241,0.05); }
+  .vsl-placeholder-inner svg { width: 64px; height: 64px; }
+  .content { padding: 0 0 80px; }
+  .section { margin-bottom: 64px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 24px; background: linear-gradient(90deg, #818cf8, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .pain-card { background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); border: 1px solid rgba(99,102,241,0.15); border-left: 3px solid #818cf8; border-radius: 12px; padding: 20px; color: #7070a0; font-size: 14px; font-weight: 500; }
+  .pain-card strong { display: block; color: #f0f0ff; font-size: 15px; margin-bottom: 6px; }
+  .steps { display: flex; flex-direction: column; gap: 20px; }
+  .step { display: flex; gap: 20px; align-items: flex-start; background: rgba(255,255,255,0.025); border: 1px solid rgba(99,102,241,0.12); border-radius: 14px; padding: 22px; }
+  .step-num { width: 36px; height: 36px; background: linear-gradient(135deg, #6366f1, #06b6d4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; color: #fff; flex-shrink: 0; box-shadow: 0 0 20px rgba(99,102,241,0.4); }
+  .step-body h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #f0f0ff; }
+  .step-body p { font-size: 14px; color: #7070a0; }
+  .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .testimonial { background: rgba(255,255,255,0.03); border: 1px solid rgba(99,102,241,0.15); border-radius: 14px; padding: 22px; }
+  .testimonial p { font-size: 14px; color: #8080b0; margin-bottom: 12px; font-style: italic; }
+  .testimonial .name { font-size: 13px; font-weight: 700; color: #818cf8; }
+  .cta-section { background: rgba(99,102,241,0.07); border-top: 1px solid rgba(99,102,241,0.2); padding: 72px 0; text-align: center; }
+  .cta-section h2 { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 14px; background: linear-gradient(135deg, #818cf8, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .cta-section p { font-size: 16px; color: #7070a0; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%); color: #fff; font-size: 17px; font-weight: 800; padding: 20px 48px; border-radius: 12px; text-decoration: none; box-shadow: 0 0 40px rgba(99,102,241,0.5), 0 0 80px rgba(6,182,212,0.2); transition: all 0.3s ease; }
+  .cta-btn:hover { box-shadow: 0 0 60px rgba(99,102,241,0.8); transform: translateY(-3px) scale(1.02); }
+  .elevate-bar { background: rgba(0,0,0,0.4); border-top: 1px solid rgba(99,102,241,0.1); padding: 32px 0; text-align: center; }
+  .elevate-bar p { font-size: 13px; color: #4040a0; }
+  .elevate-bar a { color: #818cf8; text-decoration: none; }
+  .divider { border: none; border-top: 1px solid rgba(99,102,241,0.1); margin: 48px 0; }
+</style>
+</head>
+<body>
+<div class="orb orb-1"></div><div class="orb orb-2"></div>
+
+<div class="topbar"><p>Luxoft &times; Elevate Operations — Client Acquisition System</p></div>
+
+<section class="video-section">
+  <div class="container">
+    <p class="video-eyebrow">Watch Before You Scroll</p>
+    <h1 class="video-headline">Why Most AI Agencies Struggle to Land Clients — And How the Ones Closing $5K–$15K/Month Contracts Actually Do It</h1>
+    <p class="video-sub">A message from the Luxoft team — specifically for AI service providers serious about building a real, scalable client base.</p>
+    <div class="video-wrapper"><div class="vsl-placeholder-inner"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="39" stroke="currentColor" stroke-width="2" opacity="0.4"/><path d="M32 26l24 14-24 14V26z" fill="currentColor"/></svg><p>VSL dropping soon</p></div></div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container">
+    <div class="section">
+      <p class="section-title">The 4 Reasons Most AI Agencies Can't Scale Past Their First Few Clients</p>
+      <div class="pain-grid">
+        <div class="pain-card"><strong>No Positioning</strong>Offering "AI automation" to everyone is offering it to no one. Commoditized messaging gets ignored at the inbox level.</div>
+        <div class="pain-card"><strong>Cold Outreach Burnout</strong>Manual LinkedIn DMs and cold emails work until they don't. You can't build a $100K/month agency on daily prospecting alone.</div>
+        <div class="pain-card"><strong>No Inbound System</strong>Without a VSL and retargeting stack, prospects forget you the moment they close your tab. Every competitor who runs ads wins by default.</div>
+        <div class="pain-card"><strong>Wrong ICP</strong>Selling to businesses that can't afford you or don't feel the pain of the problem you solve. Niching down to the right buyer changes everything.</div>
+      </div>
+    </div>
+    <hr class="divider">
+    <div class="section">
+      <p class="section-title">How Luxoft Teaches You to Build a Real Pipeline</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Apply and Get Evaluated</h4><p>We assess your current positioning, niche, and offer. If there's a gap, we tell you before you waste more time on the wrong approach.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Build Your Acquisition System</h4><p>VSL, offer stack, case study framework, and an outbound approach that converts without burning every contact in your network.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Close Your First High-Ticket Client</h4><p>With the right positioning and a scripted sales process, closing a $5K–$10K/month contract becomes a repeatable event — not a lucky one.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Scale With Inbound + Paid Traffic</h4><p>Once the offer converts cold, add paid traffic. Your agency becomes a system — not a hustle.</p></div></div>
+      </div>
+    </div>
+    <hr class="divider">
+    <div class="section">
+      <p class="section-title">What Members Are Saying</p>
+      <div class="testimonials">
+        <div class="testimonial"><p>"I had been cold DMing for 6 months. After joining, I repositioned my offer and closed a $7,500/month retainer in 3 weeks. The difference was the framework."</p><div class="name">— Community Member</div></div>
+        <div class="testimonial"><p>"The niche clarity alone was worth the program fee. Once I stopped trying to serve everyone, the right clients started showing up."</p><div class="name">— Community Member</div></div>
+        <div class="testimonial"><p>"I thought I needed more case studies to close bigger contracts. I needed a better VSL and a real follow-up sequence. This program showed me both."</p><div class="name">— Community Member</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Build a Real Agency Client Pipeline?</h2>
+    <p>Apply for a free discovery call. We'll assess your current positioning and tell you exactly what needs to change to start closing consistently.</p>
+    <a href="https://elevateoperations.info/booking" class="cta-btn">Apply for a Free Discovery Call &rarr;</a>
+  </div>
+</section>
+
+<div class="elevate-bar">
+  <div class="container">
+    <p>Built by <a href="https://elevateoperations.info">Elevate Operations</a> — Client acquisition systems for online coaching businesses.</p>
+  </div>
+</div>
+
+</body>
+</html>
