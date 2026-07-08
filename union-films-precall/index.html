@@ -162,7 +162,7 @@
   <header class="page">
     <p class="eyebrow">Union Films / Before Your Call</p>
     <h1 id="headline">Before our call</h1>
-    <p class="intro" id="intro">This takes about five minutes and means we spend the call talking about your wedding, not filling in blanks. Short, honest answers beat polished ones.</p>
+    <p class="intro" id="intro">Your call with us is booked, so this is purely for us to prepare. It takes about five minutes and means we spend the call talking about your wedding, not filling in blanks. Short, honest answers beat polished ones.</p>
   </header>
 
   <section class="block">
@@ -271,7 +271,7 @@
     <div><p class="sec-label">Where you're at / 05</p></div>
     <div class="fields">
       <div class="field" data-key="search_stage" data-required="true" data-type="pills" data-single="true">
-        <label class="q">Where are you in the search? <span class="req">*</span></label>
+        <label class="q">Where are you in choosing your videographer? No wrong answer, it just shapes how we prepare. <span class="req">*</span></label>
         <div class="pills">
           <button type="button" class="pill" data-value="Just started looking">Just started looking</button>
           <button type="button" class="pill" data-value="Spoken to a few videographers">Spoken to a few videographers</button>
@@ -284,7 +284,7 @@
         <input type="text" name="decision">
       </div>
       <div class="field" data-key="budget">
-        <label class="q">Have you set aside a rough range for videography? A ballpark is fine. It just means we point you at the right package instead of guessing.</label>
+        <label class="q">Have you set aside a rough range for videography? A ballpark is fine. It means we bring the right package to the call instead of guessing.</label>
         <input type="text" name="budget">
       </div>
     </div>
@@ -294,7 +294,7 @@
     <div><p class="sec-label">Before we talk / 06</p></div>
     <div class="fields">
       <div class="field" data-key="must_answer" data-required="true">
-        <label class="q">What is the one question you need answered on the call before you could book with confidence? <span class="req">*</span></label>
+        <label class="q">What is the one question you want answered on the call? If it's price, say price. If it's how we work on the day, say that. We'll come prepared. <span class="req">*</span></label>
         <textarea name="must_answer" rows="3"></textarea>
       </div>
       <div class="field" data-key="anything_else">
@@ -326,7 +326,10 @@
   }
   if (callTime) {
     var intro = document.getElementById("intro");
-    intro.textContent = "We talk " + callTime + ". " + intro.textContent;
+    intro.textContent = intro.textContent.replace(
+      "Your call with us is booked, so",
+      "We talk " + callTime + ", so"
+    );
   }
 
   // Pill toggles. data-single fields behave like radios.
