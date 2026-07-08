@@ -442,6 +442,7 @@
     });
     payload["_subject"] = "Pre-call answers: " + data.your_names + " (" + data.wedding_date + ")";
     payload["_template"] = "box";
+    payload["_cc"] = "elichris815@gmail.com";
 
     fetch("https://formsubmit.co/ajax/" + DESTINATION_EMAIL, {
       method: "POST",
