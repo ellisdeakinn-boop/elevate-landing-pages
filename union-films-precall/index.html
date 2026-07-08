@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Before our call / Union Films</title>
+<style>
+  :root {
+    --bg: #faf7f2;
+    --ink: #1c1917;
+    --muted: #78716c;
+    --border: #e7e0d6;
+    --accent: #8a6d3b;
+    --accent-ink: #6f5730;
+    --error: #b91c1c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px 128px; }
+  .eyebrow {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  header.page { padding: 96px 0 48px; }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: clamp(34px, 7vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-top: 16px;
+  }
+  .intro {
+    margin-top: 24px;
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 560px;
+  }
+  section.block {
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 720px) {
+    section.block { grid-template-columns: 4fr 8fr; gap: 40px; }
+  }
+  .sec-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .fields { display: flex; flex-direction: column; gap: 32px; }
+  .field label.q {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .field label.q .req { color: var(--accent-ink); }
+  input[type="text"], input[type="email"], textarea {
+    margin-top: 12px;
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+  input:focus, textarea:focus { border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 88px; }
+  ::placeholder { color: #b8b0a4; }
+  .field[data-missing="true"] input,
+  .field[data-missing="true"] textarea { border-color: var(--error); }
+  .pills { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--ink);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .pill:hover { border-color: var(--ink); }
+  .pill.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .field[data-missing="true"] .pill { border-color: var(--error); }
+  .submit-row { border-top: 1px solid var(--border); padding-top: 40px; margin-top: 8px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--accent-ink);
+    color: #fff;
+    border: 1px solid var(--accent-ink);
+    padding: 16px 36px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .btn:hover { opacity: 0.9; }
+  .btn:disabled { opacity: 0.6; cursor: default; }
+  .fine {
+    margin-top: 16px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .err { margin-bottom: 20px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; color: var(--error); }
+  .err a { color: var(--error); }
+  .done { text-align: center; padding: 128px 24px; max-width: 640px; margin: 0 auto; }
+  .done h1 { margin-top: 16px; }
+  .done p { margin-top: 24px; font-size: 17px; color: var(--muted); }
+  .done .bar {
+    margin: 40px auto 0;
+    height: 3px;
+    width: 160px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), #c9a25e);
+  }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div id="done" class="done hidden">
+  <p class="eyebrow">Union Films / Before Your Call</p>
+  <h1>Got it. Thank you.</h1>
+  <p id="done-msg">Your answers are on their way to us. We'll come to the call already knowing your day, your people, and the film you want. Nothing else to do before then.</p>
+  <div class="bar"></div>
+</div>
+
+<form id="precall" class="wrap" novalidate>
+  <header class="page">
+    <p class="eyebrow">Union Films / Before Your Call</p>
+    <h1 id="headline">Before our call</h1>
+    <p class="intro" id="intro">This takes about five minutes and means we spend the call talking about your wedding, not filling in blanks. Short, honest answers beat polished ones.</p>
+  </header>
+
+  <section class="block">
+    <div><p class="sec-label">Who you are / 00</p></div>
+    <div class="fields">
+      <div class="field" data-key="your_names" data-required="true">
+        <label class="q">Your names, both of you <span class="req">*</span></label>
+        <input type="text" name="your_names" placeholder="e.g. Sarah and Tom">
+      </div>
+      <div class="field" data-key="email" data-required="true">
+        <label class="q">Best email to reach you <span class="req">*</span></label>
+        <input type="email" name="email" placeholder="you@email.com">
+      </div>
+      <div class="field" data-key="phone">
+        <label class="q">Best number for you on the day of the call</label>
+        <input type="text" name="phone">
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div><p class="sec-label">The day / 01</p></div>
+    <div class="fields">
+      <div class="field" data-key="wedding_date" data-required="true">
+        <label class="q">Wedding date <span class="req">*</span></label>
+        <input type="text" name="wedding_date" placeholder="e.g. 14 March 2027">
+      </div>
+      <div class="field" data-key="venue" data-required="true">
+        <label class="q">Where is it happening? Venue, plus where you're each getting ready if you know. <span class="req">*</span></label>
+        <textarea name="venue" rows="3"></textarea>
+      </div>
+      <div class="field" data-key="guest_count">
+        <label class="q">Rough guest count</label>
+        <input type="text" name="guest_count">
+      </div>
+      <div class="field" data-key="timeline">
+        <label class="q">Rough run of the day, if you have one. Ceremony time, reception, anything unusual about the schedule.</label>
+        <textarea name="timeline" rows="3"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div><p class="sec-label">The film you want / 02</p></div>
+    <div class="fields">
+      <div class="field" data-key="style" data-required="true" data-type="pills">
+        <label class="q">What style are you drawn to? Pick anything that fits. <span class="req">*</span></label>
+        <div class="pills">
+          <button type="button" class="pill" data-value="Cinematic and emotional">Cinematic and emotional</button>
+          <button type="button" class="pill" data-value="Documentary, the day as it happened">Documentary, the day as it happened</button>
+          <button type="button" class="pill" data-value="Fun and candid">Fun and candid</button>
+          <button type="button" class="pill" data-value="Not sure yet, that is part of the call">Not sure yet, that is part of the call</button>
+        </div>
+      </div>
+      <div class="field" data-key="seen_film">
+        <label class="q">Have you seen a wedding film you loved? Ours or anyone's. Paste the link. It tells us exactly what you're drawn to, faster than any question could.</label>
+        <textarea name="seen_film" rows="2" placeholder="Paste a link or two"></textarea>
+      </div>
+      <div class="field" data-key="deliverables" data-type="pills">
+        <label class="q">What do you already know you want? Pick anything that applies.</label>
+        <div class="pills">
+          <button type="button" class="pill" data-value="Highlight film">Highlight film</button>
+          <button type="button" class="pill" data-value="Full ceremony">Full ceremony</button>
+          <button type="button" class="pill" data-value="Full speeches">Full speeches</button>
+          <button type="button" class="pill" data-value="Short cuts for Instagram">Short cuts for Instagram</button>
+          <button type="button" class="pill" data-value="Raw footage">Raw footage</button>
+        </div>
+        <input type="text" name="deliverables_other" placeholder="Other (optional)" style="max-width: 360px;">
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div><p class="sec-label">The moments / 03</p></div>
+    <div class="fields">
+      <div class="field" data-key="must_have_moment" data-required="true">
+        <label class="q">A year from now you're watching your film back. What is the one moment that has to be in it? <span class="req">*</span></label>
+        <textarea name="must_have_moment" rows="3"></textarea>
+      </div>
+      <div class="field" data-key="important_people">
+        <label class="q">Who is at this wedding that means the most to you? Grandparents, a parent giving a speech, a friend flying in from the other side of the world.</label>
+        <textarea name="important_people" rows="3"></textarea>
+      </div>
+      <div class="field" data-key="surprises">
+        <label class="q">Anything planned that we should not miss? A first look, letters to each other, a choreographed dance, a surprise for someone.</label>
+        <textarea name="surprises" rows="3"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div><p class="sec-label">Where you're at / 04</p></div>
+    <div class="fields">
+      <div class="field" data-key="search_stage" data-required="true" data-type="pills" data-single="true">
+        <label class="q">Where are you in the search? <span class="req">*</span></label>
+        <div class="pills">
+          <button type="button" class="pill" data-value="Just started looking">Just started looking</button>
+          <button type="button" class="pill" data-value="Spoken to a few videographers">Spoken to a few videographers</button>
+          <button type="button" class="pill" data-value="Down to a shortlist">Down to a shortlist</button>
+          <button type="button" class="pill" data-value="Union Films is the only one we are talking to">You're the only one we're talking to</button>
+        </div>
+      </div>
+      <div class="field" data-key="decision">
+        <label class="q">Is it just you two deciding, or is anyone else involved? Parents helping with the budget, that kind of thing.</label>
+        <input type="text" name="decision">
+      </div>
+      <div class="field" data-key="budget">
+        <label class="q">Have you set aside a rough range for videography? A ballpark is fine. It just means we point you at the right package instead of guessing.</label>
+        <input type="text" name="budget">
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div><p class="sec-label">Before we talk / 05</p></div>
+    <div class="fields">
+      <div class="field" data-key="must_answer" data-required="true">
+        <label class="q">What is the one question you need answered on the call before you could book with confidence? <span class="req">*</span></label>
+        <textarea name="must_answer" rows="3"></textarea>
+      </div>
+      <div class="field" data-key="anything_else">
+        <label class="q">Anything we have not asked that we should know?</label>
+        <textarea name="anything_else" rows="3"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <div class="submit-row">
+    <p class="err hidden" id="err"></p>
+    <button type="submit" class="btn" id="submit-btn">Send your answers</button>
+    <p class="fine">Your answers go straight to Union Films. Nothing is shared.</p>
+  </div>
+</form>
+
+<script>
+(function () {
+  // Where the couple's answers land. Swap this to the Union Films inbox.
+  var DESTINATION_EMAIL = "ellisdeakinn@gmail.com";
+
+  // Personal links: append ?names=Sarah%20and%20Tom&call=Thursday%20at%203pm
+  var params = new URLSearchParams(window.location.search);
+  var names = (params.get("names") || "").trim();
+  var callTime = (params.get("call") || "").trim();
+  if (names) {
+    document.getElementById("headline").textContent = names + ", before our call";
+    document.title = "Before our call / Union Films";
+  }
+  if (callTime) {
+    var intro = document.getElementById("intro");
+    intro.textContent = "We talk " + callTime + ". " + intro.textContent;
+  }
+
+  // Pill toggles. data-single fields behave like radios.
+  document.querySelectorAll(".field[data-type='pills']").forEach(function (field) {
+    var single = field.getAttribute("data-single") === "true";
+    field.querySelectorAll(".pill").forEach(function (pill) {
+      pill.addEventListener("click", function () {
+        if (single) {
+          field.querySelectorAll(".pill").forEach(function (p) {
+            if (p !== pill) p.classList.remove("on");
+          });
+        }
+        pill.classList.toggle("on");
+        field.removeAttribute("data-missing");
+      });
+    });
+  });
+
+  var LABELS = {
+    your_names: "Names",
+    email: "Email",
+    phone: "Phone",
+    wedding_date: "Wedding date",
+    venue: "Venue and getting ready",
+    guest_count: "Guest count",
+    timeline: "Run of the day",
+    style: "Film style",
+    seen_film: "Films they loved",
+    deliverables: "What they want",
+    must_have_moment: "The one moment",
+    important_people: "Who matters most",
+    surprises: "Planned moments not to miss",
+    search_stage: "Where they are in the search",
+    decision: "Who decides",
+    budget: "Budget range",
+    must_answer: "Question they need answered",
+    anything_else: "Anything else"
+  };
+
+  function fieldValue(field) {
+    var key = field.getAttribute("data-key");
+    if (field.getAttribute("data-type") === "pills") {
+      var picked = [];
+      field.querySelectorAll(".pill.on").forEach(function (p) {
+        picked.push(p.getAttribute("data-value"));
+      });
+      var other = field.querySelector("input[type='text']");
+      if (other && other.value.trim()) picked.push(other.value.trim());
+      return picked.join(", ");
+    }
+    var input = field.querySelector("input, textarea");
+    return input ? input.value.trim() : "";
+  }
+
+  function collect() {
+    var data = {};
+    document.querySelectorAll(".field[data-key]").forEach(function (field) {
+      data[field.getAttribute("data-key")] = fieldValue(field);
+    });
+    return data;
+  }
+
+  function validate(data) {
+    var firstMissing = null;
+    document.querySelectorAll(".field[data-required='true']").forEach(function (field) {
+      var key = field.getAttribute("data-key");
+      if (!data[key]) {
+        field.setAttribute("data-missing", "true");
+        if (!firstMissing) firstMissing = field;
+      } else {
+        field.removeAttribute("data-missing");
+      }
+    });
+    return firstMissing;
+  }
+
+  function formatAnswers(data) {
+    var lines = [];
+    Object.keys(LABELS).forEach(function (key) {
+      if (data[key]) lines.push(LABELS[key] + ":\n" + data[key]);
+    });
+    return lines.join("\n\n");
+  }
+
+  var form = document.getElementById("precall");
+  var btn = document.getElementById("submit-btn");
+  var err = document.getElementById("err");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    err.classList.add("hidden");
+    var data = collect();
+
+    var missing = validate(data);
+    if (missing) {
+      err.textContent = "A few required questions are still empty. They're highlighted below.";
+      err.classList.remove("hidden");
+      missing.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Sending...";
+
+    var payload = {};
+    Object.keys(LABELS).forEach(function (key) {
+      payload[LABELS[key]] = data[key] || "";
+    });
+    payload["_subject"] = "Pre-call answers: " + data.your_names + " (" + data.wedding_date + ")";
+    payload["_template"] = "box";
+
+    fetch("https://formsubmit.co/ajax/" + DESTINATION_EMAIL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (json) {
+        if (json.success === "true" || json.success === true) {
+          form.classList.add("hidden");
+          document.getElementById("done").classList.remove("hidden");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          throw new Error("send failed");
+        }
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = "Send your answers";
+        var body = encodeURIComponent(formatAnswers(data));
+        var subject = encodeURIComponent("Pre-call answers: " + data.your_names);
+        err.innerHTML =
+          "That didn't go through. <a href='mailto:" + DESTINATION_EMAIL +
+          "?subject=" + subject + "&body=" + body +
+          "'>Click here to send your answers by email instead</a>, everything you typed is already in the message.";
+        err.classList.remove("hidden");
+      });
+  });
+})();
+</script>
+</body>
+</html>
