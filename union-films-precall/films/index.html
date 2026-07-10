@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The Work / Union Films</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Work / Union Films">
+<meta property="og:description" content="Three weddings, the finished films, and what each couple invested.">
+<meta property="og:image" content="https://unionfilms.vercel.app/films/img/kj-lesley.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --ink: #1c1917;
+    --muted: #78716c;
+    --border: #e7e0d6;
+    --accent: #8a6d3b;
+    --accent-ink: #6f5730;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px 96px; }
+  .eyebrow {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  header.page { padding: 96px 0 48px; }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: clamp(34px, 7vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-top: 16px;
+  }
+  .intro {
+    margin-top: 24px;
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 600px;
+  }
+  section.block {
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    margin-top: 8px;
+    margin-bottom: 48px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 720px) {
+    section.block { grid-template-columns: 4fr 8fr; gap: 40px; }
+  }
+  .sec-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .block p.body { font-size: 16px; color: var(--ink); }
+  .block p.body + p.body { margin-top: 16px; }
+  section.film {
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    margin-bottom: 56px;
+  }
+  .film a.frame { display: block; margin-top: 24px; }
+  .film img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .film-meta {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .film h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: clamp(24px, 4.5vw, 34px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .film-date {
+    margin-top: 6px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .invest { text-align: right; }
+  .invest-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .invest-amt {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(24px, 4.5vw, 34px);
+    line-height: 1.1;
+    color: var(--accent-ink);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--accent-ink);
+    color: #fff;
+    border: 1px solid var(--accent-ink);
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+    margin-top: 20px;
+  }
+  .btn:hover { opacity: 0.9; }
+  .advice { display: flex; flex-direction: column; gap: 28px; }
+  .advice .item p.lead {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .advice .item p.detail {
+    margin-top: 6px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .fine {
+    margin-top: 16px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  footer {
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="page">
+  <p class="eyebrow">Union Films / The Work</p>
+  <h1 id="headline">The work, and what it cost</h1>
+  <p class="intro">Below are three weddings we filmed, the finished work, and the exact price each couple paid. Most videographers make you ask. We would rather you see the films and the numbers side by side, so when we talk it is about your day, not our rate card.</p>
+</header>
+
+<section class="block">
+  <div><p class="sec-label">How to watch these / 00</p></div>
+  <div>
+    <p class="body">Anyone can make thirty seconds of a wedding look good. Watch longer than that. Listen to whether the vows come through clean. Notice whether the speeches make you feel something even though you have never met these people. And watch the couple. If they never look aware of the camera, that is not luck. That is the job done right.</p>
+  </div>
+</section>
+
+<section class="film">
+  <p class="sec-label">KJ &amp; Lesley / 01</p>
+  <a class="frame" href="https://galleries.vidflow.co/jijhiuwj" target="_blank" rel="noopener">
+    <img src="img/kj-lesley.jpg" alt="KJ and Lesley laughing as they walk together under the trees at golden hour" width="1600" height="900">
+  </a>
+  <div class="film-meta">
+    <div>
+      <h2>KJ &amp; Lesley</h2>
+    </div>
+    <div class="invest">
+      <p class="invest-label">Their investment</p>
+      <p class="invest-amt">$11,000</p>
+    </div>
+  </div>
+  <a class="btn" href="https://galleries.vidflow.co/jijhiuwj" target="_blank" rel="noopener">Watch their film</a>
+</section>
+
+<section class="film">
+  <p class="sec-label">DeMarco &amp; Maricela / 02</p>
+  <a class="frame" href="https://galleries.vidflow.co/jwf7or04" target="_blank" rel="noopener">
+    <img src="img/demarco-maricela.jpg" alt="Maricela holding DeMarco's arm and smiling at him in the garden" width="1400" height="934" loading="lazy">
+  </a>
+  <div class="film-meta">
+    <div>
+      <h2>DeMarco &amp; Maricela</h2>
+    </div>
+    <div class="invest">
+      <p class="invest-label">Their investment</p>
+      <p class="invest-amt">$7,000</p>
+    </div>
+  </div>
+  <a class="btn" href="https://galleries.vidflow.co/jwf7or04" target="_blank" rel="noopener">Watch their film</a>
+</section>
+
+<section class="film">
+  <p class="sec-label">Christian &amp; Matia / 03</p>
+  <a class="frame" href="https://galleries.vidflow.co/bcfr4pja" target="_blank" rel="noopener">
+    <img src="img/christian-matia.jpg" alt="Christian kissing Matia's hand under an overcast desert sky" width="1600" height="900" loading="lazy">
+  </a>
+  <div class="film-meta">
+    <div>
+      <h2>Christian &amp; Matia</h2>
+      <p class="film-date">March 14, 2025</p>
+    </div>
+    <div class="invest">
+      <p class="invest-label">Their investment</p>
+      <p class="invest-amt">$4,000</p>
+    </div>
+  </div>
+  <a class="btn" href="https://galleries.vidflow.co/bcfr4pja" target="_blank" rel="noopener">Watch their film</a>
+</section>
+
+<section class="block">
+  <div><p class="sec-label">What moves the number / 04</p></div>
+  <div>
+    <p class="body">Every wedding we quote lands somewhere in the range above. Where yours lands comes down to three things: how many hours we are with you, how much of the day we cover, and what you take home when it is done. A highlight film, the full ceremony, every speech, short cuts for Instagram, the raw footage. Each of those is a decision we make together, and your number gets built from those decisions on the call.</p>
+    <p class="body">If these numbers are outside what you had planned, say so on the call anyway. Sometimes there is a version that fits. If there is not, you will hear it from us straight, and nobody wastes an afternoon.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div><p class="sec-label">Before your day / 05</p></div>
+  <div>
+    <p class="body" style="margin-bottom: 28px;">Most of a great wedding film is decided before anyone presses record. Whoever you end up hiring, these six decisions will make your film better.</p>
+    <div class="advice">
+      <div class="item">
+        <p class="lead">Leave room in the timeline.</p>
+        <p class="detail">Rushed couples look rushed on camera. Thirty unscheduled minutes between the ceremony and the reception is where the best candid footage of the whole day tends to happen.</p>
+      </div>
+      <div class="item">
+        <p class="lead">Protect twenty minutes at sunset.</p>
+        <p class="detail">It is the best light of the entire day. Couples who hold that window get the shots that end up printed on the wall.</p>
+      </div>
+      <div class="item">
+        <p class="lead">Ask guests to put phones away for the ceremony.</p>
+        <p class="detail">One guest leaning into the aisle with a phone can sit in the middle of a moment you only get once. Your officiant can handle it in one sentence, and nobody minds.</p>
+      </div>
+      <div class="item">
+        <p class="lead">Put the important words on paper.</p>
+        <p class="detail">Vows, letters, your dad's speech. Spoken words carry a wedding film, and when we know they are coming we mic them properly instead of hoping the room stays quiet.</p>
+      </div>
+      <div class="item">
+        <p class="lead">Tell us who matters.</p>
+        <p class="detail">The grandmother at table two, the friend who flew in from overseas. We film the people you point us to. That is the difference between footage of guests and footage of your people.</p>
+      </div>
+      <div class="item">
+        <p class="lead">Do not perform.</p>
+        <p class="detail">The moments couples cry at when they watch their film back are almost never the staged ones. Our job is to be close enough to catch the real ones and quiet enough not to change them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="next-step">
+  <div><p class="sec-label">The next step / 06</p></div>
+  <div>
+    <p class="body" id="next-default">You have seen the work and you have seen the numbers. The next call is where it gets specific: your date, your venue, what you want to walk away with, and the exact quote for your day.</p>
+    <p class="body hidden" id="next-booked"></p>
+    <div id="next-cta">
+      <a class="btn" href="mailto:elichris815@gmail.com?subject=Our%20wedding%20film">Set up the follow-up call</a>
+      <p class="fine">Or just reply wherever this page was sent to you. Either way reaches us.</p>
+    </div>
+  </div>
+</section>
+
+<footer>Union Films</footer>
+
+</div>
+
+<script>
+(function () {
+  // Personal links, same pattern as the precall page:
+  // /films/?names=Jessica%20and%20David&call=Thursday%20at%203pm
+  var params = new URLSearchParams(window.location.search);
+  var names = (params.get("names") || "").trim();
+  var callTime = (params.get("call") || "").trim();
+
+  if (names) {
+    document.getElementById("headline").textContent = names + ", this is the work";
+  }
+
+  // If the follow-up call is already booked, the CTA flips from
+  // "set up the call" to "come ready for it".
+  if (callTime) {
+    var booked = document.getElementById("next-booked");
+    booked.textContent = "We talk " + callTime + ". Bring the one question that matters most to you and we will answer it straight. Nothing else to do before then.";
+    booked.classList.remove("hidden");
+    document.getElementById("next-default").classList.add("hidden");
+    document.getElementById("next-cta").classList.add("hidden");
+  }
+})();
+</script>
+</body>
+</html>
