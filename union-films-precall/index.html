@@ -146,6 +146,22 @@
     border-radius: 999px;
     background: linear-gradient(90deg, var(--accent), #c9a25e);
   }
+  .fallback {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .fallback .fb-title { font-weight: 600; font-size: 15px; }
+  .fallback .fb-steps { margin-top: 6px; font-size: 14px; color: var(--muted); }
+  .fallback textarea {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    background: var(--bg);
+  }
+  .fb-actions { margin-top: 16px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .fb-mail { color: var(--accent-ink); font-size: 14px; }
   .hidden { display: none; }
 </style>
 </head>
@@ -165,7 +181,7 @@
     <p class="intro" id="intro">Your call with us is booked, so this is purely for us to prepare. It takes about five minutes and means we spend the call talking about your wedding, not filling in blanks. Short, honest answers beat polished ones.</p>
   </header>
 
-  <section class="block">
+  <section class="block" data-sec="00">
     <div><p class="sec-label">Who you are / 00</p></div>
     <div class="fields">
       <div class="field" data-key="your_names" data-required="true">
@@ -183,7 +199,7 @@
     </div>
   </section>
 
-  <section class="block">
+  <section class="block" data-sec="01">
     <div><p class="sec-label">The day / 01</p></div>
     <div class="fields">
       <div class="field" data-key="wedding_date" data-required="true">
@@ -205,7 +221,7 @@
     </div>
   </section>
 
-  <section class="block">
+  <section class="block" data-sec="02">
     <div><p class="sec-label">The film you want / 02</p></div>
     <div class="fields">
       <div class="field" data-key="style" data-required="true" data-type="pills">
@@ -235,7 +251,7 @@
     </div>
   </section>
 
-  <section class="block">
+  <section class="block" data-sec="03">
     <div><p class="sec-label">What you don't want / 03</p></div>
     <div class="fields">
       <div class="field" data-key="dont_want">
@@ -249,7 +265,7 @@
     </div>
   </section>
 
-  <section class="block">
+  <section class="block" data-sec="04">
     <div><p class="sec-label">The moments / 04</p></div>
     <div class="fields">
       <div class="field" data-key="must_have_moment" data-required="true">
@@ -267,7 +283,7 @@
     </div>
   </section>
 
-  <section class="block">
+  <section class="block" data-sec="05">
     <div><p class="sec-label">Where you're at / 05</p></div>
     <div class="fields">
       <div class="field" data-key="search_stage" data-required="true" data-type="pills" data-single="true">
@@ -290,7 +306,7 @@
     </div>
   </section>
 
-  <section class="block">
+  <section class="block" data-sec="06">
     <div><p class="sec-label">Before we talk / 06</p></div>
     <div class="fields">
       <div class="field" data-key="must_answer" data-required="true">
@@ -306,6 +322,15 @@
 
   <div class="submit-row">
     <p class="err hidden" id="err"></p>
+    <div id="fallback" class="fallback hidden">
+      <p class="fb-title">That didn't go through, but nothing you typed is lost.</p>
+      <p class="fb-steps">Tap copy, then tap the email button, then paste into the email and send. Ten seconds.</p>
+      <textarea id="fallback-text" readonly rows="8"></textarea>
+      <div class="fb-actions">
+        <button type="button" class="btn" id="fallback-copy">Copy your answers</button>
+        <a id="fallback-mailto" class="fb-mail" href="#">Open email to send them</a>
+      </div>
+    </div>
     <button type="submit" class="btn" id="submit-btn">Send your answers</button>
     <p class="fine">Your answers go straight to Union Films. Nothing is shared.</p>
   </div>
@@ -330,6 +355,22 @@
       "Your call with us is booked, so",
       "We talk " + callTime + ", so"
     );
+  }
+
+  // Prefill from the link so nobody retypes what we already know.
+  var emailParam = (params.get("email") || "").trim();
+  if (names) document.querySelector("input[name='your_names']").value = names;
+  if (emailParam) document.querySelector("input[name='email']").value = emailParam;
+
+  // Part 2 mode: only the back half of the questions, for when a couple's
+  // first submission arrived incomplete. ?part=2
+  var partTwo = params.get("part") === "2";
+  if (partTwo) {
+    document.querySelectorAll("[data-sec='01'], [data-sec='02']").forEach(function (s) {
+      s.classList.add("hidden");
+    });
+    document.getElementById("intro").textContent =
+      "Part two. Your first answers came through but the second half was cut off in transit, sorry about that. These are just the remaining questions. Two minutes at most.";
   }
 
   // Pill toggles. data-single fields behave like radios.
@@ -397,6 +438,8 @@
   function validate(data) {
     var firstMissing = null;
     document.querySelectorAll(".field[data-required='true']").forEach(function (field) {
+      var sec = field.closest("section");
+      if (sec && sec.classList.contains("hidden")) return;
       var key = field.getAttribute("data-key");
       if (!data[key]) {
         field.setAttribute("data-missing", "true");
@@ -420,6 +463,22 @@
   var btn = document.getElementById("submit-btn");
   var err = document.getElementById("err");
 
+  document.getElementById("fallback-copy").addEventListener("click", function () {
+    var ta = document.getElementById("fallback-text");
+    var self = this;
+    function done() {
+      self.textContent = "Copied";
+      setTimeout(function () { self.textContent = "Copy your answers"; }, 2000);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(ta.value).then(done, function () {
+        ta.select(); document.execCommand("copy"); done();
+      });
+    } else {
+      ta.select(); document.execCommand("copy"); done();
+    }
+  });
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     err.classList.add("hidden");
@@ -440,35 +499,49 @@
     Object.keys(LABELS).forEach(function (key) {
       payload[LABELS[key]] = data[key] || "";
     });
-    payload["_subject"] = "Pre-call answers: " + data.your_names + " (" + data.wedding_date + ")";
+    var subject = "Pre-call answers" + (partTwo ? " (part 2)" : "") + ": " + data.your_names +
+      (data.wedding_date ? " (" + data.wedding_date + ")" : "");
+    payload["_subject"] = subject;
     payload["_template"] = "box";
     payload["_cc"] = "elichris815@gmail.com";
 
-    fetch("https://formsubmit.co/ajax/" + DESTINATION_EMAIL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(payload)
-    })
-      .then(function (res) { return res.json(); })
-      .then(function (json) {
-        if (json.success === "true" || json.success === true) {
-          form.classList.add("hidden");
-          document.getElementById("done").classList.remove("hidden");
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        } else {
-          throw new Error("send failed");
-        }
+    function send(attempt) {
+      return fetch("https://formsubmit.co/ajax/" + DESTINATION_EMAIL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (json) {
+          if (!(json.success === "true" || json.success === true)) throw new Error("send failed");
+        })
+        .catch(function (e) {
+          if (attempt < 3) {
+            return new Promise(function (r) { setTimeout(r, 1500); }).then(function () {
+              return send(attempt + 1);
+            });
+          }
+          throw e;
+        });
+    }
+
+    send(1)
+      .then(function () {
+        form.classList.add("hidden");
+        document.getElementById("done").classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
       })
       .catch(function () {
+        // Lossless fallback: never put the answers in a mailto URL, browsers
+        // truncate long ones. Copy-paste keeps every word.
         btn.disabled = false;
-        btn.textContent = "Send your answers";
-        var body = encodeURIComponent(formatAnswers(data));
-        var subject = encodeURIComponent("Pre-call answers: " + data.your_names);
-        err.innerHTML =
-          "That didn't go through. <a href='mailto:" + DESTINATION_EMAIL +
-          "?subject=" + subject + "&body=" + body +
-          "'>Click here to send your answers by email instead</a>, everything you typed is already in the message.";
-        err.classList.remove("hidden");
+        btn.textContent = "Try sending again";
+        document.getElementById("fallback-text").value = formatAnswers(data);
+        document.getElementById("fallback-mailto").href =
+          "mailto:" + DESTINATION_EMAIL + "?subject=" + encodeURIComponent(subject) +
+          "&body=" + encodeURIComponent("Our answers are pasted below this line.\n\n");
+        document.getElementById("fallback").classList.remove("hidden");
+        document.getElementById("fallback").scrollIntoView({ behavior: "smooth", block: "center" });
       });
   });
 })();
