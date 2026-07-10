@@ -495,25 +495,32 @@
     btn.disabled = true;
     btn.textContent = "Sending...";
 
-    var payload = {};
+    var answers = {};
     Object.keys(LABELS).forEach(function (key) {
-      payload[LABELS[key]] = data[key] || "";
+      answers[LABELS[key]] = data[key] || "";
     });
     var subject = "Pre-call answers" + (partTwo ? " (part 2)" : "") + ": " + data.your_names +
       (data.wedding_date ? " (" + data.wedding_date + ")" : "");
-    payload["_subject"] = subject;
-    payload["_template"] = "box";
-    payload["_cc"] = "elichris815@gmail.com";
+    // Storage-first backend on the Vercel project. It commits the answers to
+    // a private repo before attempting email/Telegram delivery, so a downed
+    // email service can no longer lose a submission.
+    var ENDPOINT = "https://unionfilms.vercel.app/api/submit";
+    var body = JSON.stringify({
+      subject: subject,
+      to: DESTINATION_EMAIL,
+      cc: "elichris815@gmail.com",
+      answers: answers
+    });
 
     function send(attempt) {
-      return fetch("https://formsubmit.co/ajax/" + DESTINATION_EMAIL, {
+      return fetch(ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(payload)
+        body: body
       })
         .then(function (res) { return res.json(); })
         .then(function (json) {
-          if (!(json.success === "true" || json.success === true)) throw new Error("send failed");
+          if (!json.ok) throw new Error("send failed");
         })
         .catch(function (e) {
           if (attempt < 3) {
