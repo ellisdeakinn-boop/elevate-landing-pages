@@ -307,6 +307,299 @@
     header.masthead { padding-top: 48px; }
   }
 </style>
+<title>The Howitzer VSL</title>
+<style>
+  :root {
+    --ground: #E7E7DF;
+    --surface: #F3F3ED;
+    --surface-2: #DEDED4;
+    --ink: #1B1E17;
+    --ink-2: #4A4F42;
+    --muted: #6E7365;
+    --rule: #C6C7BA;
+    --rule-soft: #D8D9CD;
+    --brass: #8A6712;
+    --brass-2: #6E520C;
+    --oxide: #9E3A1E;
+    --shade: rgba(138, 103, 18, 0.13);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #13150E;
+      --surface: #1B1E15;
+      --surface-2: #23261B;
+      --ink: #E8E9DE;
+      --ink-2: #BCC0AF;
+      --muted: #8E937F;
+      --rule: #343829;
+      --rule-soft: #282C1F;
+      --brass: #D3A63F;
+      --brass-2: #E8C071;
+      --oxide: #D9694A;
+      --shade: rgba(211, 166, 63, 0.14);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #13150E;
+    --surface: #1B1E15;
+    --surface-2: #23261B;
+    --ink: #E8E9DE;
+    --ink-2: #BCC0AF;
+    --muted: #8E937F;
+    --rule: #343829;
+    --rule-soft: #282C1F;
+    --brass: #D3A63F;
+    --brass-2: #E8C071;
+    --oxide: #D9694A;
+    --shade: rgba(211, 166, 63, 0.14);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: Charter, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 20px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 780px; margin: 0 auto; }
+
+  .cond {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", "Liberation Sans Narrow", sans-serif;
+  }
+  .mono {
+    font-family: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+
+  .eyebrow {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* ---------- masthead ---------- */
+  header.masthead {
+    padding: 72px 0 34px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  header.masthead h1 {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", sans-serif;
+    font-weight: 700;
+    font-size: clamp(46px, 10vw, 88px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin: 0;
+    text-wrap: balance;
+  }
+  header.masthead .standfirst {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 34em;
+    margin: 0;
+  }
+  .specline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+  }
+  .specline div {
+    flex: 1 1 190px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .specline span:last-child {
+    font-size: 15px;
+    color: var(--ink);
+  }
+</style>
+<style>
+  /* ---------- generic blocks ---------- */
+  section { padding: 46px 0; border-bottom: 1px solid var(--rule-soft); }
+  section:last-of-type { border-bottom: 0; }
+
+  h2.section-title {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    font-size: clamp(26px, 4.4vw, 36px);
+    line-height: 1.05;
+    margin: 10px 0 20px;
+    text-wrap: balance;
+  }
+  h3 {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--muted);
+    margin: 0;
+  }
+  p { margin: 0 0 16px; }
+  p:last-child { margin-bottom: 0; }
+  .lede { font-size: 19px; color: var(--ink-2); }
+  strong { font-weight: 600; }
+  em.term { font-style: italic; color: var(--ink); }
+
+  ul.plain { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  ul.plain > li { padding-left: 22px; position: relative; }
+  ul.plain > li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.63em;
+    width: 9px; height: 2px;
+    background: var(--brass);
+  }
+
+  ol.beats { counter-reset: b; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  ol.beats > li { counter-increment: b; padding-left: 40px; position: relative; }
+  ol.beats > li::before {
+    content: counter(b, decimal-leading-zero);
+    position: absolute; left: 0; top: 0.18em;
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 13px;
+    color: var(--brass);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- part cards ---------- */
+  article.part {
+    border-top: 1px solid var(--rule);
+    padding: 34px 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  article.part:first-of-type { border-top: 2px solid var(--ink); }
+  .part-head { display: flex; flex-direction: column; gap: 6px; }
+  .part-index {
+    display: flex; align-items: baseline; gap: 12px;
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--brass);
+    font-variant-numeric: tabular-nums;
+  }
+  .part-index .clock {
+    color: var(--muted);
+    border-left: 1px solid var(--rule);
+    padding-left: 12px;
+  }
+  .part-head h2 {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: clamp(30px, 5.2vw, 44px);
+    line-height: 1;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .job {
+    font-size: 18px;
+    color: var(--ink-2);
+    border-left: 2px solid var(--brass);
+    padding-left: 16px;
+    margin: 0;
+  }
+  .block { display: flex; flex-direction: column; gap: 10px; }
+
+  pre.template {
+    font-family: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    line-height: 1.72;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--brass);
+    padding: 18px 20px;
+    margin: 0;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    color: var(--ink-2);
+  }
+  pre.template b { color: var(--ink); font-weight: 600; }
+  .slot { color: var(--oxide); }
+
+  blockquote.example {
+    margin: 0;
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    padding: 20px 22px;
+    font-size: 16.5px;
+    color: var(--ink);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  blockquote.example p { margin: 0; }
+  blockquote.example .src {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed", sans-serif;
+    text-transform: uppercase; letter-spacing: 0.14em; font-size: 11px; color: var(--muted);
+  }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--oxide);
+    padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .callout h3 { color: var(--oxide); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--rule); }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  th {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed", sans-serif;
+    text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; color: var(--muted);
+    background: var(--surface);
+  }
+  tr:last-child td { border-bottom: 0; }
+  td.num { font-family: "SF Mono", ui-monospace, Menlo, monospace; font-variant-numeric: tabular-nums; font-size: 14px; white-space: nowrap; }
+
+  .checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+  .checklist li { display: flex; gap: 12px; align-items: flex-start; }
+  .checklist li::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 13px; height: 13px;
+    margin-top: 6px;
+    border: 1.5px solid var(--brass);
+  }
+
+  footer.colophon {
+    padding: 40px 0 0;
+    border-top: 2px solid var(--ink);
+    color: var(--muted);
+    font-size: 14px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; padding: 0 16px 64px; }
+    header.masthead { padding-top: 48px; }
+  }
+</style>
 </head>
 <body>
 
@@ -345,7 +638,7 @@
       <text x="66" y="22" class="cond" style="fill:var(--muted); font-size:12px; letter-spacing:0.14em; text-transform:uppercase">Audience still watching</text>
       <text x="266" y="120" class="cond" style="fill:var(--ink); font-size:14px">20% to 30% remain</text>
       <text x="266" y="138" class="cond" style="fill:var(--muted); font-size:13px">Everything below is reinforcement</text>
-      <text x="70" y="60" class="cond" style="fill:var(--ink); font-size:14px; font-weight:700">The entire pitch goes here</text>
+      <text x="70" y="169" class="cond" style="fill:var(--ink); font-size:14px; font-weight:700">The entire pitch goes here</text>
     </svg>
     <figcaption style="font-size:14px; color:var(--muted);">Shaded band: the standalone pitch. Everything after it exists to close the belief gap for the skeptics who stayed.</figcaption>
   </figure>
