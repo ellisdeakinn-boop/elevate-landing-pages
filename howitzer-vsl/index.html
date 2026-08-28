@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The 11-part Howitzer VSL structure for cold-traffic book-a-call funnels, with fill-in templates and worked examples for every part.">
+<meta property="og:title" content="The Howitzer VSL">
+<meta property="og:description" content="Put the whole pitch in the first 3 minutes, then spend the rest of the video finding the one thing standing between the viewer and a booked call.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%92%A5</text></svg>">
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img, svg { display: block; max-width: 100%; }
+</style>
+<title>The Howitzer VSL</title>
+<style>
+  :root {
+    --ground: #E7E7DF;
+    --surface: #F3F3ED;
+    --surface-2: #DEDED4;
+    --ink: #1B1E17;
+    --ink-2: #4A4F42;
+    --muted: #6E7365;
+    --rule: #C6C7BA;
+    --rule-soft: #D8D9CD;
+    --brass: #8A6712;
+    --brass-2: #6E520C;
+    --oxide: #9E3A1E;
+    --shade: rgba(138, 103, 18, 0.13);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #13150E;
+      --surface: #1B1E15;
+      --surface-2: #23261B;
+      --ink: #E8E9DE;
+      --ink-2: #BCC0AF;
+      --muted: #8E937F;
+      --rule: #343829;
+      --rule-soft: #282C1F;
+      --brass: #D3A63F;
+      --brass-2: #E8C071;
+      --oxide: #D9694A;
+      --shade: rgba(211, 166, 63, 0.14);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #13150E;
+    --surface: #1B1E15;
+    --surface-2: #23261B;
+    --ink: #E8E9DE;
+    --ink-2: #BCC0AF;
+    --muted: #8E937F;
+    --rule: #343829;
+    --rule-soft: #282C1F;
+    --brass: #D3A63F;
+    --brass-2: #E8C071;
+    --oxide: #D9694A;
+    --shade: rgba(211, 166, 63, 0.14);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: Charter, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 20px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 780px; margin: 0 auto; }
+
+  .cond {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", "Liberation Sans Narrow", sans-serif;
+  }
+  .mono {
+    font-family: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+
+  .eyebrow {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* ---------- masthead ---------- */
+  header.masthead {
+    padding: 72px 0 34px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  header.masthead h1 {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", sans-serif;
+    font-weight: 700;
+    font-size: clamp(46px, 10vw, 88px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin: 0;
+    text-wrap: balance;
+  }
+  header.masthead .standfirst {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 34em;
+    margin: 0;
+  }
+  .specline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+  }
+  .specline div {
+    flex: 1 1 190px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .specline span:last-child {
+    font-size: 15px;
+    color: var(--ink);
+  }
+</style>
+<style>
+  /* ---------- generic blocks ---------- */
+  section { padding: 46px 0; border-bottom: 1px solid var(--rule-soft); }
+  section:last-of-type { border-bottom: 0; }
+
+  h2.section-title {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    font-size: clamp(26px, 4.4vw, 36px);
+    line-height: 1.05;
+    margin: 10px 0 20px;
+    text-wrap: balance;
+  }
+  h3 {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--muted);
+    margin: 0;
+  }
+  p { margin: 0 0 16px; }
+  p:last-child { margin-bottom: 0; }
+  .lede { font-size: 19px; color: var(--ink-2); }
+  strong { font-weight: 600; }
+  em.term { font-style: italic; color: var(--ink); }
+
+  ul.plain { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  ul.plain > li { padding-left: 22px; position: relative; }
+  ul.plain > li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.63em;
+    width: 9px; height: 2px;
+    background: var(--brass);
+  }
+
+  ol.beats { counter-reset: b; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  ol.beats > li { counter-increment: b; padding-left: 40px; position: relative; }
+  ol.beats > li::before {
+    content: counter(b, decimal-leading-zero);
+    position: absolute; left: 0; top: 0.18em;
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 13px;
+    color: var(--brass);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- part cards ---------- */
+  article.part {
+    border-top: 1px solid var(--rule);
+    padding: 34px 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  article.part:first-of-type { border-top: 2px solid var(--ink); }
+  .part-head { display: flex; flex-direction: column; gap: 6px; }
+  .part-index {
+    display: flex; align-items: baseline; gap: 12px;
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--brass);
+    font-variant-numeric: tabular-nums;
+  }
+  .part-index .clock {
+    color: var(--muted);
+    border-left: 1px solid var(--rule);
+    padding-left: 12px;
+  }
+  .part-head h2 {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed",
+                 "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: clamp(30px, 5.2vw, 44px);
+    line-height: 1;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .job {
+    font-size: 18px;
+    color: var(--ink-2);
+    border-left: 2px solid var(--brass);
+    padding-left: 16px;
+    margin: 0;
+  }
+  .block { display: flex; flex-direction: column; gap: 10px; }
+
+  pre.template {
+    font-family: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    line-height: 1.72;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--brass);
+    padding: 18px 20px;
+    margin: 0;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    color: var(--ink-2);
+  }
+  pre.template b { color: var(--ink); font-weight: 600; }
+  .slot { color: var(--oxide); }
+
+  blockquote.example {
+    margin: 0;
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    padding: 20px 22px;
+    font-size: 16.5px;
+    color: var(--ink);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  blockquote.example p { margin: 0; }
+  blockquote.example .src {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed", sans-serif;
+    text-transform: uppercase; letter-spacing: 0.14em; font-size: 11px; color: var(--muted);
+  }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--oxide);
+    padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .callout h3 { color: var(--oxide); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--rule); }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  th {
+    font-family: "Avenir Next Condensed", "Helvetica Neue Condensed", "Roboto Condensed", sans-serif;
+    text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; color: var(--muted);
+    background: var(--surface);
+  }
+  tr:last-child td { border-bottom: 0; }
+  td.num { font-family: "SF Mono", ui-monospace, Menlo, monospace; font-variant-numeric: tabular-nums; font-size: 14px; white-space: nowrap; }
+
+  .checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+  .checklist li { display: flex; gap: 12px; align-items: flex-start; }
+  .checklist li::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 13px; height: 13px;
+    margin-top: 6px;
+    border: 1.5px solid var(--brass);
+  }
+
+  footer.colophon {
+    padding: 40px 0 0;
+    border-top: 2px solid var(--ink);
+    color: var(--muted);
+    font-size: 14px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; padding: 0 16px 64px; }
+    header.masthead { padding-top: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="eyebrow">VSL Framework / Book-a-call funnels / Cold traffic</span>
+  <h1>The Howitzer VSL</h1>
+  <p class="standfirst">Put the whole pitch in the first 3 minutes, then spend the rest of the video finding the one thing standing between the viewer and a booked call.</p>
+  <div class="specline">
+    <div><span class="eyebrow">Built for</span><span>High ticket, $2k and up</span></div>
+    <div><span class="eyebrow">Traffic</span><span>Cold, in-market buyers</span></div>
+    <div><span class="eyebrow">Conversion event</span><span>Booked call, price withheld</span></div>
+    <div><span class="eyebrow">Structure</span><span>11 parts</span></div>
+  </div>
+</header>
+
+<section>
+  <span class="eyebrow">The premise</span>
+  <h2 class="section-title">Most people put the pitch where nobody is left to hear it</h2>
+  <p class="lede">Average VSL engagement sits between 20% and 30%. If the offer and the call to action live at the end, you are pitching to the 2 people in 10 who made it that far. Everyone else left without ever being told what you sell or how to buy it.</p>
+  <p>So the pitch moves to the front. The first 60 to 180 seconds carry who this is for, the big benefit, the outcome, why it works differently, the proof, and a button to click. Treat the first 30% of the video as a complete standalone sales pitch, because for most of your audience that is the whole video.</p>
+
+  <figure style="margin:26px 0 0; display:flex; flex-direction:column; gap:10px;">
+    <svg viewBox="0 0 720 250" role="img" aria-label="Chart showing audience drop-off across a VSL, with the pitch placed inside the first 30 percent of runtime" style="width:100%; height:auto;">
+      <rect x="60" y="30" width="192" height="150" style="fill:var(--shade)"></rect>
+      <line x1="60" y1="180" x2="700" y2="180" style="stroke:var(--rule); stroke-width:1"></line>
+      <line x1="60" y1="30" x2="60" y2="180" style="stroke:var(--rule); stroke-width:1"></line>
+      <line x1="252" y1="30" x2="252" y2="180" style="stroke:var(--brass); stroke-width:1; stroke-dasharray:3 4"></line>
+      <path d="M60 40 C 100 92, 150 120, 188 130 S 230 141, 252 145 S 420 161, 508 169 S 640 176, 700 177"
+            style="fill:none; stroke:var(--ink); stroke-width:2.5"></path>
+      <circle cx="252" cy="145" r="4.5" style="fill:var(--brass)"></circle>
+      <text x="60" y="200" class="mono" style="fill:var(--muted); font-size:12px">0:00</text>
+      <text x="252" y="200" class="mono" style="fill:var(--brass); font-size:12px" text-anchor="middle">30% of runtime</text>
+      <text x="700" y="200" class="mono" style="fill:var(--muted); font-size:12px" text-anchor="end">End of video</text>
+      <text x="66" y="22" class="cond" style="fill:var(--muted); font-size:12px; letter-spacing:0.14em; text-transform:uppercase">Audience still watching</text>
+      <text x="266" y="120" class="cond" style="fill:var(--ink); font-size:14px">20% to 30% remain</text>
+      <text x="266" y="138" class="cond" style="fill:var(--muted); font-size:13px">Everything below is reinforcement</text>
+      <text x="70" y="60" class="cond" style="fill:var(--ink); font-size:14px; font-weight:700">The entire pitch goes here</text>
+    </svg>
+    <figcaption style="font-size:14px; color:var(--muted);">Shaded band: the standalone pitch. Everything after it exists to close the belief gap for the skeptics who stayed.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <span class="eyebrow">Who this converts</span>
+  <h2 class="section-title">Write to the in-market buyer</h2>
+  <p>This structure is built for someone who is already problem-aware, has tried other solutions, and is actively shopping right now. They want clarity, not free value. Give them a reason and they will move today.</p>
+  <ul class="plain">
+    <li>They already know they have the problem. You do not need to sell the category.</li>
+    <li>They have hired someone before and been let down. Name that experience.</li>
+    <li>They can tell when they are being handled. Do not use 1930s pain-agitation on them.</li>
+    <li>They will pay well and be pleasant to work with, which is why the whole video is pitched at them and not at the general population.</li>
+  </ul>
+  <div class="callout" style="margin-top:24px;">
+    <h3>The emotion you aim at decides the client you get</h3>
+    <p>Aim at frustration, anger, stagnation, status, pride, purpose, willingness, desire. These are the emotions of someone who has agency and intends to use it.</p>
+    <p>Aim at fear, doubt, desperation or helplessness and you attract the people who see you as a lifeline. They pay the least and ask for the most. Someone great can still feel a low-frequency emotion on a bad day, so this is a spectrum, but if your whole campaign sits down there, that is the client base you build.</p>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Before you write a word</span>
+  <h2 class="section-title">Inputs</h2>
+  <p>The script is a delivery system. The offer is the engine. If the offer is weak, a better script only gets you rejected faster.</p>
+  <ul class="checklist">
+    <li>The offer written out: what they get, what it costs you to deliver, the guarantee.</li>
+    <li>The avatar: industry, revenue, what they have already tried.</li>
+    <li>Sales call transcripts. This is the single highest-value input. It gives you their words and their objections, and you will lift lines from it directly.</li>
+    <li>Your proof: 3 named case studies with a number attached, plus a client count.</li>
+    <li>The one angle you are leading with. One video, one argument.</li>
+  </ul>
+  <p style="margin-top:18px"><strong>The language rule.</strong> Use their words, not the category's words. A roofer does not say "I struggle to get qualified leads predictably." He says "I can't get the phone ringing with homeowners who are ready to book." Read the transcripts and steal the phrasing.</p>
+</section>
+
+<section style="border-bottom:0; padding-bottom:10px;">
+  <span class="eyebrow">The structure</span>
+  <h2 class="section-title">11 parts</h2>
+  <p class="lede">Every part has one job: hand the viewer the one thing that is still missing before they book. Each part has to stand on its own, because they will skim, skip, and scrub. Do not build it like a novel.</p>
+</section>
+<article class="part">
+  <div class="part-head">
+    <div class="part-index"><span>PART 01</span><span class="clock">0:00 to 3:00</span></div>
+    <h2>The Hook</h2>
+  </div>
+  <p class="job">Give a ready buyer every piece of information they need to book, before they have a chance to leave.</p>
+  <div class="block">
+    <h3>Six jobs, all inside 3 minutes</h3>
+    <ol class="beats">
+      <li>Name the ideal prospect so they know this is for them.</li>
+      <li>State the big benefit your product or service delivers.</li>
+      <li>Reinforce the outcome that follows from that benefit.</li>
+      <li>Explain why this works differently to what they have already tried.</li>
+      <li>Stack proof, relevance and uniqueness.</li>
+      <li>Give the action takers a way to act right now.</li>
+    </ol>
+  </div>
+  <div class="block">
+    <h3>Fill this in</h3>
+<pre class="template">If you're a <span class="slot">[AVATAR]</span>, I will help you <span class="slot">[SPECIFIC OUTCOME + NUMBER + TIMEFRAME]</span>
+through our <span class="slot">[NAMED MECHANISM]</span>.
+
+Just like we've done for <span class="slot">[N]</span> other <span class="slot">[AVATAR]</span>s like
+<span class="slot">[NAME]</span>, <span class="slot">[NAME]</span> and <span class="slot">[NAME]</span>.
+
+This way you can <span class="slot">[WHAT THEY GET BACK: time, focus, headspace]</span>
+while <span class="slot">[THE MACHINE DOES THE THING THEY HATE]</span>.
+
+And if you've tried it all before, maybe you've even <span class="slot">[THE FAILED
+ATTEMPT THEY'VE ACTUALLY MADE]</span>...
+
+This is different, because <span class="slot">[THE ONE STRUCTURAL DIFFERENCE:
+risk reversal, pricing model, who carries the cost]</span>.
+
+<span class="slot">[SPELL OUT WHAT YOU ARE NOT PAID FOR]</span>. <span class="slot">[WHAT YOU ARE PAID FOR]</span>.</pre>
+  </div>
+  <div class="block">
+    <h3>Worked example</h3>
+    <blockquote class="example">
+      <p>"If you're a Chiropractor, I will help you get 30 to 60 new patient appointments every single month, through our attract, retain and refer strategy. Just like we've done for 134 other Chiropractors like John, Mary and Steven.</p>
+      <p>This way you can focus solely on patient care while your calendar gets filled with patients who are ready to pay for high-ticket care packages, and who have the money for it.</p>
+      <p>And if you've tried it all before, maybe you've even worked with a marketing guy who promised the world and delivered expensive, low-quality leads. This is different, because we pay for 100% of your ad spend. We only get paid when a patient pays for a high-ticket package. Not leads. Not calls. Not even appointments. Until we deliver cash for you, we lose money."</p>
+      <p class="src">Example only. Never claim a number or a client you cannot show.</p>
+    </blockquote>
+  </div>
+  <div class="callout">
+    <h3>What the hook is not</h3>
+    <p>You are not creating intrigue. You are not teasing. You are not bribing them to watch to the end. Assume they are on mute, between calls, half-skeptical and mostly ready to buy. Hand them everything and let them go.</p>
+  </div>
+</article>
+
+<article class="part">
+  <div class="part-head">
+    <div class="part-index"><span>PART 02</span><span class="clock">Straight after the hook</span></div>
+    <h2>Early CTA</h2>
+  </div>
+  <p class="job">Open a fast lane for the people who are already nodding, and give the rest permission to keep watching without feeling sold at.</p>
+  <p>Some viewers are bought in by the end of the hook and only need permission to act. Without this checkpoint you lose the ones who needed a small push. It also tells the undecided that they have already heard the important part, which keeps them relaxed instead of guarded.</p>
+  <div class="block">
+    <h3>Worked example</h3>
+    <blockquote class="example">
+      <p>"Now if that sounds like exactly what you've been looking for, and you already know this is something your business needs, there's a button below this video where you can book a call. We'll walk through your business, see if you're a fit, and I'll show you exactly how we'd roll this out for you, start to finish.</p>
+      <p>If you're still on the fence, or you just want to make sure this isn't another one of those marketing things, totally fine. Stick around and I'll show you how it works and why it performs."</p>
+    </blockquote>
+  </div>
+</article>
+
+<article class="part">
+  <div class="part-head">
+    <div class="part-index"><span>PART 03</span></div>
+    <h2>The Introduction</h2>
+  </div>
+  <p class="job">Establish, at a high level, why a stranger should listen to you. It also gives them a breathing point after the hook dumped everything on them at once.</p>
+  <div class="block">
+    <h3>Fill this in</h3>
+<pre class="template">Let me take a step back and tell you who I am and why you should
+listen to me at all.
+
+My name is <span class="slot">[NAME]</span>, I'm <span class="slot">[ROLE]</span> at <span class="slot">[COMPANY]</span>.
+
+I've personally <span class="slot">[VOLUME METRIC: scripts written, accounts managed,
+builds shipped]</span>, we've generated <span class="slot">[HARD NUMBER]</span> for our clients,
+and we've worked with <span class="slot">[RECOGNISABLE NAMES]</span>.
+
+I'm not telling you this to brag. I just want to establish why I'm
+qualified to talk about this in the first place.</pre>
+  </div>
+  <p>Keep it to your name, your experience, one or two lines of implied authority, and why you are qualified on this specific topic. Nothing about where you grew up unless it changes what you can do for them.</p>
+</article>
+<article class="part">
+  <div class="part-head">
+    <div class="part-index"><span>PART 04</span></div>
+    <h2>The Core Problem</h2>
+  </div>
+  <p class="job">Describe their situation so accurately that they feel understood. Do this well and the rest of the video barely matters.</p>
+  <p>You have had the experience of sitting with friends while someone describes a situation you have lived, and you start finishing their sentences because finally somebody gets it. That is the effect you are after. If you can articulate their problem the way they would describe it themselves, they will believe you can solve it.</p>
+  <p>Remind them, quietly, how the problem shows up in their business, in their day, and in their own head. Pain drives decisions. But keep it objective and keep it high frequency.</p>
+  <div class="block">
+    <h3>Pitch the pain at the right level</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Do not write</th><th>Write instead</th></tr></thead>
+        <tbody>
+          <tr><td>He's questioning why he ever started this business, and his wife is doubting him.</td><td>The business has plateaued, he can see exactly where it's stuck, and it's irritating him every single day.</td></tr>
+          <tr><td>Are you struggling to get qualified leads predictably?</td><td>Are you finding it impossible to get the phone ringing with homeowners who are ready to book?</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="block">
+    <h3>Lift lines from your call transcripts</h3>
+<pre class="template">If it just feels like <span class="slot">[EXACT QUOTE FROM A SALES CALL]</span>...
+
+I get it, you've probably been <span class="slot">[EXACT QUOTE FROM A SALES CALL]</span>.</pre>
+  </div>
+</article>
+
+<article class="part">
+  <div class="part-head">
+    <div class="part-index"><span>PART 05</span></div>
+    <h2>The False Solution</h2>
+  </div>
+  <p class="job">Break the mental model they are operating on, and replace it with one that makes your mechanism the obvious answer.</p>
+  <div class="block">
+    <h3>The two sentences</h3>
+<pre class="template"><b>[Problem]</b> isn't because of <b>[common cause]</b>, it's actually
+because of <b>[uncommon cause]</b>.
+
+Most people think the solution to <b>[problem]</b> is <b>[common solution]</b>,
+but it's actually <b>[uncommon solution]</b>.</pre>
+  </div>
+  <p>This runs on cognitive dissonance. The brain cannot hold two contradictory ideas comfortably, so it has to resolve the tension. You create the tension by showing them that what they believe is flawed, then immediately hand them a belief that is clearer and easier to act on.</p>
+  <div class="callout">
+    <h3>You have to earn this one</h3>
+    <p>The move only works if you have already proven three things: that you know what you are talking about, that you understand their specific situation, and that you are the right person to listen to. That is why Part 04 comes first.</p>
+    <p>Without that, the brain resolves the tension the cheap way, by deciding you are full of it. Your grandmother telling you Coke Zero is worse than Coke changes nothing. The same claim from someone who has spent millions studying longevity, with a mechanism attached, makes you look at the can in your hand.</p>
+  </div>
+  <div class="block">
+    <h3>Worked example</h3>
+    <blockquote class="example">
+      <p>"Most IT companies think the reason they can't scale is that they need more leads. So they hire cold callers, buy lead lists, run ads, and end up stuck on one-off jobs at $10k to $20k MRR while working 14 hour days.</p>
+      <p>In reality you're stuck because you're charging $100 per seat, you have no real sales process, and you have no offer that justifies charging $300. If you did, you'd make far more without hiring anyone or bolting 100 more services onto the package."</p>
+    </blockquote>
+  </div>
+  <p>Name what they have tried, give a logical reason it did not work, and lay out why your approach is built differently. Skip the "it's not your fault" routine. They can smell it.</p>
+</article>
+
+<article class="part">
+  <div class="part-head">
+    <div class="part-index"><span>PART 06</span></div>
+    <h2>The Real Solution and Future Pacing</h2>
+  </div>
+  <p class="job">Explain why this category of solution works. Not your offer yet, the reason behind it.</p>
+  <p>You are building the perfect opportunity in their head. Describe the qualities the right solution has to have, then paint what their week looks like once it is running.</p>
+  <div class="block">
+    <h3>Fill this in</h3>
+<pre class="template">What you need is <span class="slot">[THE CATEGORY OF SOLUTION]</span>, built for
+<span class="slot">[HOW THEIR BUYERS ACTUALLY BEHAVE]</span>.
+
+Something you don't have to spend months building.
+Something you can run yourself, so your leadflow isn't hostage to
+someone else.
+Something with a guaranteed return, so you're not lighting money
+on fire hoping it works.
+Something live in days, not months.
+
+And when you have that:
+  - <span class="slot">[OUTCOME IN THEIR PIPELINE]</span>
+  - <span class="slot">[WHAT THEY STOP RELYING ON]</span>
+  - <span class="slot">[WHAT THEIR MORNINGS LOOK LIKE]</span>
+  - <span class="slot">[WHAT THEY STOP REBUILDING]</span>
+  - <span class="slot">[THE TIME THEY GET BACK]</span></pre>
+  </div>
+</article>
+
+<article class="part">
+  <div class="part-head">
+    <div class="part-index"><span>PART 07</span></div>
+    <h2>Reinstate the Big Promise</h2>
+  </div>
+  <p class="job">Restate the promise from the hook, now that they understand what it actually means.</p>
+  <p>They have seen the problem, the false solution, and the real one. Say the promise again, plainly, and tie it to the mechanism you just explained. Keep it benefit-led. The deliverables come next.</p>
+  <div class="block">
+    <h3>Worked example</h3>
+    <blockquote class="example">
+      <p>"And yes, this is exactly what we install inside 7 Figure MSP. It's a plug and play sales and marketing system built for MSPs, designed to double your MRR in 60 to 120 days. A system that doesn't run on referrals or word of mouth. A sales process that lets you charge $300 a seat instead of $100. And a repeatable offer that turns cold traffic into monthly revenue without chasing or discounting."</p>
+    </blockquote>
+  </div>
+</article>
+<article class="part">
+  <div class="part-head">
+    <div class="part-index"><span>PART 08</span></div>
+    <h2>Case Studies and Proof</h2>
+  </div>
+  <p class="job">Answer the only question left: has this worked for someone like me?</p>
+  <div class="block">
+    <h3>Three case studies, 2 sentences each, 3 elements</h3>
+    <ol class="beats">
+      <li>Who you helped and what industry they are in.</li>
+      <li>What you helped them do, with a number.</li>
+      <li>How you did it, in one clause.</li>
+    </ol>
+  </div>
+  <div class="block">
+    <h3>Fill this in</h3>
+<pre class="template">We helped <span class="slot">[NAME]</span> <span class="slot">[SPECIFIC RESULT WITH A NUMBER]</span> after
+<span class="slot">[THE ONE THING YOU CHANGED]</span>.
+
+<span class="slot">[Repeat twice more.]</span>
+
+And <span class="slot">[N]</span> other clients we've helped <span class="slot">[THE PATTERN RESULT]</span>.</pre>
+  </div>
+  <p>Put their faces and result screenshots on screen while you say it. Then do the thing nobody else does:</p>
+  <blockquote class="example">
+    <p>"Their handles are on screen and in the case studies section below this video. Go and message them, ask what it was like working with us. We haven't paid them. They don't even know I'm handing out their socials, I'm just that confident in the work we did."</p>
+  </blockquote>
+</article>
+
+<article class="part">
+  <div class="part-head">
+    <div class="part-index"><span>PART 09</span></div>
+    <h2>List What They Get</h2>
+  </div>
+  <p class="job">Close the gap between "I believe the outcome" and "I can see how it physically arrives."</p>
+  <p>Promising an outcome is not enough. They cannot see it or touch it. A pizza oven that says "everything you need to make pizza" on the box tells you nothing. A list saying peel, coal, non-stick grate, gloves does. List the contents.</p>
+  <div class="block">
+    <h3>Rules for this section</h3>
+    <ul class="plain">
+      <li>List features plainly. This is the logical justification, not a performance.</li>
+      <li>Add a "so that you can" line only where the benefit is not obvious. "30 days of coaching so that when you hit a roadblock you message me and it's solved that day" earns it. "Your entire funnel built for you" does not need one.</li>
+      <li>Never put a fake price on a line item. No "valued at $497". It reads as a trick and it costs you the trust you spent 8 minutes building.</li>
+      <li>Make it feel like a lot by being complete, not by inflating it.</li>
+    </ul>
+  </div>
+</article>
+
+<article class="part">
+  <div class="part-head">
+    <div class="part-index"><span>PART 10</span></div>
+    <h2>Objections, Quickfire</h2>
+  </div>
+  <p class="job">Say the one thing that is still holding them back, out loud, before they have to think it.</p>
+  <p>Pull the list straight from your sales call transcripts. Name each objection and answer it honestly. Move fast. This is a rapid burst, not a chapter.</p>
+  <div class="block">
+    <h3>Fill this in</h3>
+<pre class="template">Look, if you've watched this far and you still haven't booked,
+it's probably because you've got a question. Here are the ones
+we get most.
+
+<span class="slot">[OBJECTION]</span> - <span class="slot">[HONEST ANSWER]</span>
+<span class="slot">[OBJECTION]</span> - <span class="slot">[HONEST ANSWER]</span>
+<span class="slot">[OBJECTION]</span> - <span class="slot">[HONEST ANSWER]</span></pre>
+  </div>
+</article>
+
+<article class="part">
+  <div class="part-head">
+    <div class="part-index"><span>PART 11</span><span class="clock">30 to 60 seconds</span></div>
+    <h2>Final CTA</h2>
+  </div>
+  <p class="job">Close the loop and make booking the obvious next step for anyone who has watched this far.</p>
+  <div class="block">
+    <h3>Seven beats</h3>
+    <ol class="beats">
+      <li>Reopen the pain loop in one sentence. "If you're still stuck with [status quo]..."</li>
+      <li>Restate the transformation. "...and you want to [main outcome]..."</li>
+      <li>Tie it to the offer. "That's exactly what we do with [product]."</li>
+      <li>Say what happens on the call. "We'll look at X, Y and Z, and I'll show you how we'd roll it out."</li>
+      <li>Lower the friction. "If it makes sense we move forward. If not, no hard feelings, and you still leave with [deliverable]."</li>
+      <li>Stack the deck. "If I'm wrong, you lose 30 minutes. If I'm right, you join the [N] others who [outcome]."</li>
+      <li>Tell them what to do. "Hit the button, pick a time, let's talk."</li>
+    </ol>
+  </div>
+  <div class="block">
+    <h3>Worked example</h3>
+    <blockquote class="example">
+      <p>"So if you're still stuck charging $150 a seat, living off referrals, chasing one-off break-fix jobs, and you want a real sales system that closes $300 a seat retainers, that's exactly what we build with you inside 7 Figure MSP.</p>
+      <p>We work with you one to one to reposition the offer, build the sales assets, turn one-off jobs into recurring revenue, and double your MRR in 60 to 120 days. Just like we've done for over 2,000 MSPs.</p>
+      <p>Hit the button below to book a free audit call. We'll look at your pricing, your offer and your sales process, and I'll show you what's broken and how we'd fix it. If it makes sense, I'll walk you through the program and the pricing. If not, no pressure, you'll leave with advice on what we'd do in your shoes.</p>
+      <p>If I'm wrong, you lose 30 minutes of your day. If I'm right, you join 2,000 other MSPs scaling predictably. So hit the button, pick a time, and let's talk."</p>
+    </blockquote>
+  </div>
+</article>
+<section style="padding-top:52px; border-top:2px solid var(--ink);">
+  <span class="eyebrow">Calibration</span>
+  <h2 class="section-title">How long, and how many words</h2>
+  <p>Length follows the buyer, not the framework. Wealthier, faster-moving audiences want it short. Analytical audiences want the detail and will sit through it.</p>
+  <div class="tablewrap" style="margin-bottom:22px;">
+    <table>
+      <thead><tr><th>Audience</th><th>Runtime</th><th>Script length</th></tr></thead>
+      <tbody>
+        <tr><td>Affluent, decisive, already aware</td><td class="num">2 to 10 min</td><td class="num">750 to 2,200 words</td></tr>
+        <tr><td>Analytical, skeptical, less aware</td><td class="num">15 to 30 min</td><td class="num">2,250 to 6,600 words</td></tr>
+        <tr><td>Cold, problem-unaware</td><td class="num">30 to 45 min</td><td class="num">6,600 words and up</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Talking-head delivery runs around 220 words a minute. Write at a 4th to 5th grade reading level. One idea per sentence. If a sentence has two ideas in it, split it.</p>
+  <div class="callout" style="margin-top:24px;">
+    <h3>On price</h3>
+    <p>For anything with a checkout on the page, state the price. For a book-a-call funnel, hold it for the call. The call is the conversion event, and the qualifying happens there. This is the one place the Howitzer parts ways with standard VSL advice, and the reason is the funnel type, not squeamishness about the number.</p>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Before you record</span>
+  <h2 class="section-title">Checklist</h2>
+  <ul class="checklist">
+    <li>A viewer who watches only the first 3 minutes knows who it's for, what they get, why it's different, and how to book.</li>
+    <li>There is a call to action inside the first 3 minutes, and again at the end.</li>
+    <li>Every section makes sense on its own and gives one more reason to book.</li>
+    <li>The problem section uses language lifted from real sales calls, not category language.</li>
+    <li>The false solution names something they have genuinely tried.</li>
+    <li>3 case studies, each with a name, a number and a method.</li>
+    <li>Deliverables listed as a concrete contents list, with no invented dollar values.</li>
+    <li>Objections answered honestly, in a burst, near the end.</li>
+    <li>Every number, client name and result is real and you can show it on screen.</li>
+    <li>Read it out loud start to finish. Anything you would not say out loud gets cut.</li>
+  </ul>
+</section>
+
+<footer class="colophon">
+  <p>The Howitzer structure is built for one job: cold traffic into a booked call for a high-ticket offer. The theory carries across to other funnels, the running order does not. If the conversion event changes, rebuild the sequence around it.</p>
+</footer>
+
+</div>
+
+</body>
+</html>
