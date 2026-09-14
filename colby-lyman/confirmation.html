@@ -160,6 +160,20 @@
   .proof p{font-size:14.5px; color:var(--cream2); font-weight:600; margin-top:12px}
   .proof p b{color:var(--green-light)}
 
+  /* interview testimonial cards */
+  .tgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+  @media(max-width:1024px){.tgrid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.tgrid{grid-template-columns:1fr}}
+  .tcard{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:22px 18px 18px; display:flex; flex-direction:column; gap:10px;
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .tcard:hover{transform:translateY(-3px); border-color:rgba(142,240,186,.42); box-shadow:0 12px 32px rgba(0,0,0,.4), 0 0 22px rgba(0,192,106,.14)}
+  .tcard .num{font-family:'Poppins',sans-serif; font-weight:800; font-size:24px; color:var(--green-light); line-height:1.1}
+  .tcard .claim{font-size:14px; color:var(--cream2); font-weight:600; line-height:1.45}
+  .tcard .tag{font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(142,240,186,.55); margin-top:auto}
+
   .count{display:flex; justify-content:center; gap:12px; margin:16px 0 8px; flex-wrap:wrap}
   .count div{background:var(--card); border:1px solid var(--line); border-radius:14px; min-width:76px; padding:11px 8px}
   .count b{font-family:'JetBrains Mono',monospace; font-size:26px; color:var(--green-light); display:block; font-weight:600}
@@ -174,6 +188,37 @@
   @media (prefers-reduced-motion: reduce){
     .rv{opacity:1; transform:none; transition:none}
     .orb,.checkring{animation:none}
+  }
+
+  /* mobile optimization */
+  @media(max-width:560px){
+    body{font-size:16px}
+    section{padding:36px 0}
+    .wrap{padding:0 16px}
+    .hero{padding:46px 0 40px}
+    .hero h1{font-size:27px}
+    .hero .sub{font-size:15.5px}
+    .checkring{width:64px; height:64px; margin-bottom:18px}
+    h2{font-size:24px}
+    .lede{font-size:15.5px; margin-bottom:26px}
+    .datechip{gap:6px 14px; font-size:14.5px; padding:12px 16px}
+    .step{padding:22px 17px}
+    .stephead{flex-wrap:wrap; gap:10px}
+    .step h3{font-size:17px}
+    .step p{font-size:14.5px}
+    .q .qt{font-size:15px}
+    .opt{padding:13px 13px; font-size:14.5px}
+    .btn{font-size:15.5px; padding:15px 26px}
+    .btnrow{flex-direction:column; align-items:stretch}
+    .btnrow .btn{text-align:center}
+    .discordbtn{width:100%; justify-content:center; font-size:16px; padding:15px 20px}
+    .count{gap:8px}
+    .count div{min-width:64px; padding:10px 6px; border-radius:12px}
+    .count b{font-size:21px}
+    .count span{font-size:9.5px}
+    .proof{padding:13px}
+    .proof p{font-size:13.5px}
+    .orb{filter:blur(50px)}
   }
 </style>
 </head>
@@ -293,8 +338,26 @@
   </div>
 </section>
 
-<!-- URGENCY -->
+<!-- INTERVIEW TESTIMONIALS (from the live PIF funnel's student interview wall) -->
 <section>
+  <div class="wrap" style="max-width:1000px">
+    <h2>Students Who Sat Down On Camera</h2>
+    <p class="lede">Every one of these is a recorded interview on Colby's channel. This is the room you just joined.</p>
+    <div class="tgrid">
+      <div class="tcard"><span class="num">$500/day</span><span class="claim">18 years old, making $500 a day in high-ticket sales</span><span class="tag">Student interview</span></div>
+      <div class="tcard"><span class="num">$4k/week</span><span class="claim">How he makes $4k a week in high-ticket sales</span><span class="tag">Student interview</span></div>
+      <div class="tcard"><span class="num">$600/day</span><span class="claim">Went from door-to-door sales to $600 a day</span><span class="tag">Student interview</span></div>
+      <div class="tcard"><span class="num">$100k</span><span class="claim">Earned $100k as an appointment setter</span><span class="tag">Student interview</span></div>
+      <div class="tcard"><span class="num">$2k+/week</span><span class="claim">How Davis makes $2k+ per week</span><span class="tag">Student interview</span></div>
+      <div class="tcard"><span class="num">$700 days</span><span class="claim">Stef is hitting $700 days as a setter</span><span class="tag">Student interview</span></div>
+      <div class="tcard"><span class="num">$6k/month</span><span class="claim">Jaden went from failing complicated business models to $6k a month</span><span class="tag">Student interview</span></div>
+      <div class="tcard"><span class="num">8 days</span><span class="claim">Tomas got a setter offer within 8 days of starting</span><span class="tag">Student interview</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY -->
+<section class="proofsec">
   <div class="wrap">
     <h2>The Training Starts In</h2>
     <div class="count">
@@ -364,7 +427,7 @@
   });
 
   // scroll-reveal
-  var rvTargets = document.querySelectorAll(".step,.proof,section h2,section .lede,.count");
+  var rvTargets = document.querySelectorAll(".step,.proof,.tcard,section h2,section .lede,.count");
   rvTargets.forEach(function(el, i){ el.classList.add("rv"); el.style.transitionDelay = (i % 3) * 80 + "ms"; });
   if("IntersectionObserver" in window){
     var io = new IntersectionObserver(function(entries){
@@ -374,6 +437,8 @@
   } else {
     rvTargets.forEach(function(el){ el.classList.add("on"); });
   }
+  // safety: never leave content hidden (fast scrolls, crawlers, odd in-app browsers)
+  setTimeout(function(){ rvTargets.forEach(function(el){ el.classList.add("on"); }); }, 3500);
 </script>
 </body>
 </html>

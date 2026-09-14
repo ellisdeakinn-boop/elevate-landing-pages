@@ -165,6 +165,63 @@
     .bigcta{animation:none}
     .orb{animation:none}
   }
+
+  /* mobile optimization */
+  .overlay .formcard{max-height:calc(100dvh - 32px); overflow-y:auto}
+  .bigcta{max-width:100%}
+  @media(max-width:560px){
+    body{font-size:16px}
+    section{padding:40px 0}
+    .wrap{padding:0 16px}
+    .topbar .mono{font-size:10px; letter-spacing:.1em}
+    .hero{padding:40px 0 48px}
+    .hero h1{font-size:26px}
+    .reserve{padding:8px 14px}
+    .reserve.mono{font-size:11px}
+    h2{font-size:26px}
+    .lede{font-size:16px; margin-bottom:30px}
+    .valueprop h2{font-size:29px}
+    .without{font-size:15.5px}
+    .datechip{gap:6px 14px; font-size:14.5px; padding:12px 16px}
+    .count{gap:8px}
+    .count div{min-width:68px; padding:10px 6px; border-radius:12px}
+    .count b{font-size:22px}
+    .count span{font-size:9.5px}
+    .credbar{font-size:12.5px; padding:9px 16px; line-height:1.55}
+    .bio{gap:24px}
+    .headshot{min-width:200px; width:200px}
+    .ba{padding:22px 18px}
+    .ba li{font-size:14.5px; padding:9px 0 9px 28px}
+    .module{padding:18px 16px; gap:13px}
+    .module .ic{min-width:40px; width:40px; height:40px; border-radius:11px}
+    .module .ic svg{width:20px; height:20px}
+    .module h3{font-size:16.5px}
+    .module p{font-size:14px}
+    .giftbox{padding:26px 18px}
+    .giftdoc{padding:28px 20px 24px}
+    .giftdoc h3{font-size:22px}
+    .qual{padding:20px 16px}
+    .qual::before{left:16px; top:22px}
+    .qual p{padding-left:30px; font-size:15px}
+    .proof{padding:13px; gap:11px}
+    .proof p{font-size:14px}
+    .faq summary{font-size:15px; padding:16px 18px; padding-right:46px}
+    .faq summary::after{right:18px; top:12px}
+    .faq .a{padding:0 18px 18px; font-size:14.5px}
+    .formcard{padding:24px 18px}
+    .formcard input{padding:14px 14px}
+    .btn{font-size:16.5px; padding:16px 24px}
+    .sticky{gap:10px; padding:9px 12px calc(9px + env(safe-area-inset-bottom))}
+    .sticky .when{font-size:11.5px}
+    .sticky button{font-size:14px; padding:12px 22px}
+    .friction{font-size:12.5px}
+    .consent{font-size:11px}
+    .stats{gap:10px}
+    .stat{padding:20px 18px; min-width:150px}
+    .stat b{font-size:28px}
+    .stat span{font-size:13.5px}
+    .orb{filter:blur(50px)}
+  }
   .friction{font-size:13.5px; color:var(--muted); margin-top:13px}
   .consent{font-size:12px; color:rgba(247,245,238,.45); margin-top:9px; line-height:1.5}
   .success{display:none; padding:26px 8px}
@@ -305,6 +362,7 @@
       radial-gradient(700px 400px at 50% 110%, rgba(0,192,106,.18), transparent 65%),
       var(--deep);
     border-top:1px solid var(--line);
+    position:relative; overflow:hidden;
   }
 
   /* disclaimers + footer */
@@ -713,6 +771,8 @@
   } else {
     rvTargets.forEach(function(el){ el.classList.add("on"); });
   }
+  // safety: never leave content hidden (fast scrolls, crawlers, odd in-app browsers)
+  setTimeout(function(){ rvTargets.forEach(function(el){ el.classList.add("on"); }); }, 3500);
 </script>
 </body>
 </html>
