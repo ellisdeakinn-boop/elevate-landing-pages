@@ -122,16 +122,13 @@
   .surveydone h3{color:var(--green-light); margin-bottom:6px}
   .surveydone p{color:var(--muted)}
 
-  /* video slot */
+  /* video embed */
   .vid{
-    border:1px dashed rgba(142,240,186,.35); border-radius:14px; aspect-ratio:16/9;
-    display:flex; flex-direction:column; gap:10px; align-items:center; justify-content:center;
-    color:rgba(142,240,186,.6); background:rgba(0,192,106,.04);
+    border:1px solid var(--line); border-radius:14px; aspect-ratio:16/9;
+    overflow:hidden; background:#000;
+    box-shadow:0 14px 38px rgba(0,0,0,.45), 0 0 28px rgba(0,192,106,.12);
   }
-  .vid .play{
-    width:58px; height:58px; border-radius:50%; background:rgba(0,192,106,.15);
-    border:1px solid rgba(142,240,186,.4); display:flex; align-items:center; justify-content:center;
-  }
+  .vid iframe{width:100%; height:100%; display:block; border:0}
 
   .btnrow{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
   .btn.ghost{
@@ -291,12 +288,11 @@
 
       <!-- STEP 2: VIDEO -->
       <div class="step">
-        <div class="stephead"><span class="stepnum">Step 2</span><h3>Watch this 90-second welcome from Colby</h3></div>
-        <p>What to expect on the training, and what to have ready so you get placed faster.</p>
-        <!-- SLOT: embed Colby's welcome video (Wistia/YouTube unlisted). Script brief in webinar-registration.md -->
+        <div class="stephead"><span class="stepnum">Step 2</span><h3>Watch this from Colby before the training</h3></div>
+        <p>How fast placement actually works, and what to have ready so you get placed faster.</p>
+        <!-- PLACEHOLDER embed (Ellis 2026-09-14): swap src for Colby's filmed 90s welcome at launch -->
         <div class="vid">
-          <div class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5z" fill="#3fdc8e"/></svg></div>
-          <span class="mono">Welcome video slot</span>
+          <iframe src="https://www.youtube-nocookie.com/embed/Am4fPf1m94s" title="Colby Lyman: how to get a remote high ticket sales job" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
         </div>
       </div>
 
