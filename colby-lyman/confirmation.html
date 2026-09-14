@@ -212,10 +212,12 @@
     .btnrow{flex-direction:column; align-items:stretch}
     .btnrow .btn{text-align:center}
     .discordbtn{width:100%; justify-content:center; font-size:16px; padding:15px 20px}
-    .count{gap:8px}
-    .count div{min-width:64px; padding:10px 6px; border-radius:12px}
-    .count b{font-size:21px}
-    .count span{font-size:9.5px}
+    .count.count{gap:8px; flex-wrap:nowrap}
+    .count.count div.sec{display:none}
+    .count.count div{flex:1; min-width:0; max-width:104px}
+    .count.count div{padding:10px 6px; border-radius:12px}
+    .count.count b{font-size:22px}
+    .count.count span{font-size:9.5px}
     .proof{padding:13px}
     .proof p{font-size:13.5px}
     .orb{filter:blur(50px)}
@@ -364,7 +366,7 @@
       <div><b id="cd">00</b><span>Days</span></div>
       <div><b id="ch">00</b><span>Hours</span></div>
       <div><b id="cm">00</b><span>Mins</span></div>
-      <div><b id="cs">00</b><span>Secs</span></div>
+      <div class="sec"><b id="cs">00</b><span>Secs</span></div>
     </div>
     <p class="lede" style="margin-bottom:0">Show up live. The Q&A and the free 6 Figure Sales Script are live-only, and the replay comes down after 72 hours.</p>
   </div>

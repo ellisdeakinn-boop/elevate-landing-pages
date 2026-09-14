@@ -183,10 +183,12 @@
     .valueprop h2{font-size:29px}
     .without{font-size:15.5px}
     .datechip{gap:6px 14px; font-size:14.5px; padding:12px 16px}
-    .count{gap:8px}
-    .count div{min-width:68px; padding:10px 6px; border-radius:12px}
-    .count b{font-size:22px}
-    .count span{font-size:9.5px}
+    .count.count{gap:8px; flex-wrap:nowrap}
+    .count.count div.sec{display:none}
+    .count.count div{flex:1; min-width:0; max-width:104px}
+    .count.count div{padding:10px 6px; border-radius:12px}
+    .count.count b{font-size:22px}
+    .count.count span{font-size:9.5px}
     .credbar{font-size:12.5px; padding:9px 16px; line-height:1.55}
     .bio{gap:24px}
     .headshot{min-width:200px; width:200px}
@@ -435,7 +437,7 @@
         <div><b id="cd">00</b><span>Days</span></div>
         <div><b id="ch">00</b><span>Hours</span></div>
         <div><b id="cm">00</b><span>Mins</span></div>
-        <div><b id="cs">00</b><span>Secs</span></div>
+        <div class="sec"><b id="cs">00</b><span>Secs</span></div>
       </div>
     </div>
   </div>
@@ -658,7 +660,7 @@
       <div><b class="cd2">00</b><span>Days</span></div>
       <div><b class="ch2">00</b><span>Hours</span></div>
       <div><b class="cm2">00</b><span>Mins</span></div>
-      <div><b class="cs2">00</b><span>Secs</span></div>
+      <div class="sec"><b class="cs2">00</b><span>Secs</span></div>
     </div>
     <h2 style="margin-bottom:6px">Secure Your Free Seat</h2>
     <p class="friction" style="margin:0 0 26px">Sunday, September 27 at 7:00 PM EST. Live on Zoom.</p>
