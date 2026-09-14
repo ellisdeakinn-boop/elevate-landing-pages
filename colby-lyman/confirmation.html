@@ -414,7 +414,8 @@
     "SUMMARY:" + title,"DESCRIPTION:" + details.replace(/,/g,"\\,"),"END:VEVENT","END:VCALENDAR"].join("\r\n");
   document.getElementById("ics").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
 
-  // Survey (front-end demo; SLOT: post answers to the real endpoint)
+  // Survey: answers go to Ellis via Telegram (demo backend). Swap for the real CRM at launch.
+  var API = "https://colby-pif-funnel.vercel.app";
   document.querySelectorAll(".opt input").forEach(function(r){
     r.addEventListener("change", function(){
       r.closest(".q").querySelectorAll(".opt").forEach(function(o){o.classList.remove("picked")});
@@ -423,6 +424,16 @@
   });
   document.getElementById("survey").addEventListener("submit", function(e){
     e.preventDefault();
+    var sf = document.getElementById("survey");
+    var pick = function(n){ var el = sf.querySelector('[name="' + n + '"]:checked'); return el ? el.value : ""; };
+    var params = new URLSearchParams(location.search);
+    try{
+      fetch(API + "/api/survey", {
+        method: "POST", keepalive: true,
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({fn: params.get("fn") || "", em: params.get("em") || "", q1: pick("q1"), q2: pick("q2"), q3: pick("q3")})
+      }).catch(function(){});
+    }catch(err){}
     document.getElementById("surveybody").style.display = "none";
     document.getElementById("surveydone").style.display = "block";
   });

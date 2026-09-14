@@ -751,15 +751,24 @@
   overlay.addEventListener("click", function(e){ if(e.target === overlay) closeModal(); });
   document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeModal(); });
 
-  // SLOT: wire to the real endpoint (WebinarJam / Kit / GHL webhook) before launch.
-  // On success the registrant lands on the confirmation page (survey + next steps).
+  // Demo backend: sends the mock confirmation email + Telegram ping, then the
+  // registrant lands on the confirmation page. Swap API for WebinarJam/Kit/GHL at launch.
+  var API = "https://colby-pif-funnel.vercel.app";
   var f = document.getElementById("regform");
   f.addEventListener("submit", function(e){
     e.preventDefault();
     var email = f.querySelector('[name="email"]');
     if(!email.value || email.value.indexOf("@") < 0){ email.focus(); return; }
     var first = f.querySelector('[name="first_name"]').value.trim();
-    window.location.href = "confirmation.html" + (first ? "?fn=" + encodeURIComponent(first) : "");
+    var phone = f.querySelector('[name="phone"]').value.trim();
+    try{
+      fetch(API + "/api/optin", {
+        method: "POST", keepalive: true,
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({first_name: first, email: email.value.trim(), phone: phone})
+      }).catch(function(){});
+    }catch(err){}
+    window.location.href = "confirmation.html?fn=" + encodeURIComponent(first) + "&em=" + encodeURIComponent(email.value.trim());
   });
 
   // scroll-reveal
